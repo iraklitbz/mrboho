@@ -1,19 +1,22 @@
 <script setup lang="ts">
-import { sunglassesStore } from '~/store/sunglasses';
-await sunglassesStore().fetchSunglassesTypes()
+import { heroStore } from '~/store/hero';
+await heroStore().fetchHeroHome()
 
 </script>
 
 <template>
   <main>
     <section
-        class="-mt-40 relative z-10"
+        class="-mt-28 relative z-10"
     >
-      <client-only>
-        <VimeoPlayer
-            video-id="1040708796"
-        />
-      </client-only>
+      <nuxt-img
+          :src="heroStore().homeHero?.image?.url"
+          alt="MR.BOHO"
+          class="w-full h-screen object-cover"
+      />
+      <h3 class="text-3xl w-full sm:text-5xl text-white md:text-7xl font-bold uppercase lg:text-8xl absolute left-1/2 text-center px-10 -translate-x-1/2 bottom-10">
+        {{ heroStore().homeHero?.title }}
+      </h3>
     </section>
     <section
         class="px-10 py-20"

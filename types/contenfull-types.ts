@@ -169,6 +169,7 @@ export type AssetFilterContenfull = {
 export type AssetLinkingCollectionsContenfull = {
   __typename?: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollectionContenfull>;
+  heroCollection?: Maybe<HeroCollectionContenfull>;
   opticalGlassesCollection?: Maybe<OpticalGlassesCollectionContenfull>;
   opticalTypesCollection?: Maybe<OpticalTypesCollectionContenfull>;
   sunglassesCollection?: Maybe<SunglassesCollectionContenfull>;
@@ -177,6 +178,14 @@ export type AssetLinkingCollectionsContenfull = {
 
 
 export type AssetLinkingCollectionsentryCollectionContenfullArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type AssetLinkingCollectionsheroCollectionContenfullArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -309,6 +318,85 @@ export enum EntryOrderContenfull {
   sys_publishedAt_DESC = 'sys_publishedAt_DESC',
   sys_publishedVersion_ASC = 'sys_publishedVersion_ASC',
   sys_publishedVersion_DESC = 'sys_publishedVersion_DESC'
+}
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/hero) */
+export type HeroContenfull = EntryContenfull & _NodeContenfull & {
+  __typename?: 'Hero';
+  _id: Scalars['ID']['output'];
+  contentfulMetadata: ContentfulMetadataContenfull;
+  image?: Maybe<AssetContenfull>;
+  linkedFrom?: Maybe<HeroLinkingCollectionsContenfull>;
+  sys: SysContenfull;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/hero) */
+export type HeroimageContenfullArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/hero) */
+export type HerolinkedFromContenfullArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/hero) */
+export type HerotitleContenfullArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HeroCollectionContenfull = {
+  __typename?: 'HeroCollection';
+  items: Array<Maybe<HeroContenfull>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type HeroFilterContenfull = {
+  AND?: InputMaybe<Array<InputMaybe<HeroFilterContenfull>>>;
+  OR?: InputMaybe<Array<InputMaybe<HeroFilterContenfull>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilterContenfull>;
+  image_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  sys?: InputMaybe<SysFilterContenfull>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type HeroLinkingCollectionsContenfull = {
+  __typename?: 'HeroLinkingCollections';
+  entryCollection?: Maybe<EntryCollectionContenfull>;
+};
+
+
+export type HeroLinkingCollectionsentryCollectionContenfullArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum HeroOrderContenfull {
+  sys_firstPublishedAt_ASC = 'sys_firstPublishedAt_ASC',
+  sys_firstPublishedAt_DESC = 'sys_firstPublishedAt_DESC',
+  sys_id_ASC = 'sys_id_ASC',
+  sys_id_DESC = 'sys_id_DESC',
+  sys_publishedAt_ASC = 'sys_publishedAt_ASC',
+  sys_publishedAt_DESC = 'sys_publishedAt_DESC',
+  sys_publishedVersion_ASC = 'sys_publishedVersion_ASC',
+  sys_publishedVersion_DESC = 'sys_publishedVersion_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
 }
 
 export enum ImageFormatContenfull {
@@ -821,6 +909,8 @@ export type QueryContenfull = {
   asset?: Maybe<AssetContenfull>;
   assetCollection?: Maybe<AssetCollectionContenfull>;
   entryCollection?: Maybe<EntryCollectionContenfull>;
+  hero?: Maybe<HeroContenfull>;
+  heroCollection?: Maybe<HeroCollectionContenfull>;
   opticalGlasses?: Maybe<OpticalGlassesContenfull>;
   opticalGlassesCollection?: Maybe<OpticalGlassesCollectionContenfull>;
   opticalTypes?: Maybe<OpticalTypesContenfull>;
@@ -863,6 +953,23 @@ export type QueryentryCollectionContenfullArgs = {
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<EntryFilterContenfull>;
+};
+
+
+export type QueryheroContenfullArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryheroCollectionContenfullArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<HeroOrderContenfull>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<HeroFilterContenfull>;
 };
 
 

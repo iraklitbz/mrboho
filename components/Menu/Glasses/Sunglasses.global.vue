@@ -7,7 +7,10 @@ await sunglassesStore().fetchSunglassesTypes()
   <nav
     class="w-60 border-l border-solid border-gray-100 overflow-y-auto"
   >
-    <nuxt-link class="text-center block py-8 border-b border-solid border-gray-100">
+    <nuxt-link
+        to="/sunglasses"
+        class="text-center block py-8 border-b border-solid border-gray-100"
+    >
       <span
           class="text-base relative after:bg-black after:absolute after:h-[1px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
       >

@@ -2,7 +2,9 @@
 import Header from "~/components/Header.vue";
 </script>
 <template>
-  <div>
+  <div
+    class="pt-28"
+  >
     <Header />
     <div>
       <slot />
