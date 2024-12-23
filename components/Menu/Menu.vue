@@ -50,7 +50,7 @@ function handleComponentSelected(component) {
         >
           <span
               v-if="item.component"
-              class="text-5xl relative uppercase after:bg-black after:absolute after:h-[3px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+              class="text-4xl relative uppercase after:bg-black after:absolute after:h-[3px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
               @click="handleComponentSelected(item.component)"
           >
              {{ item.name }}
@@ -58,7 +58,7 @@ function handleComponentSelected(component) {
           <nuxt-link
               v-else
               :to="`/${item.slug}`"
-              class="text-5xl relative uppercase after:bg-black after:absolute after:h-[3px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+              class="text-4xl relative uppercase after:bg-black after:absolute after:h-[3px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
           >
             {{ item.name }}
           </nuxt-link>

@@ -9,5 +9,6 @@ import Header from "~/components/Header.vue";
     <div>
       <slot />
     </div>
+    <Footer />
   </div>
 </template>

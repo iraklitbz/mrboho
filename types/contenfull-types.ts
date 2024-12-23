@@ -172,6 +172,7 @@ export type AssetLinkingCollectionsContenfull = {
   heroCollection?: Maybe<HeroCollectionContenfull>;
   opticalGlassesCollection?: Maybe<OpticalGlassesCollectionContenfull>;
   opticalTypesCollection?: Maybe<OpticalTypesCollectionContenfull>;
+  slidesCollection?: Maybe<SlidesCollectionContenfull>;
   sunglassesCollection?: Maybe<SunglassesCollectionContenfull>;
   sunglassesTypesCollection?: Maybe<SunglassesTypesCollectionContenfull>;
 };
@@ -202,6 +203,14 @@ export type AssetLinkingCollectionsopticalGlassesCollectionContenfullArgs = {
 
 
 export type AssetLinkingCollectionsopticalTypesCollectionContenfullArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type AssetLinkingCollectionsslidesCollectionContenfullArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -245,6 +254,143 @@ export enum AssetOrderContenfull {
   url_DESC = 'url_DESC',
   width_ASC = 'width_ASC',
   width_DESC = 'width_DESC'
+}
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/campaign) */
+export type CampaignContenfull = EntryContenfull & _NodeContenfull & {
+  __typename?: 'Campaign';
+  _id: Scalars['ID']['output'];
+  contentfulMetadata: ContentfulMetadataContenfull;
+  linkedFrom?: Maybe<CampaignLinkingCollectionsContenfull>;
+  onlyImages?: Maybe<Scalars['Boolean']['output']>;
+  slidesCollection?: Maybe<CampaignSlidesCollectionContenfull>;
+  slug?: Maybe<Scalars['String']['output']>;
+  sys: SysContenfull;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/campaign) */
+export type CampaignlinkedFromContenfullArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/campaign) */
+export type CampaignonlyImagesContenfullArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/campaign) */
+export type CampaignslidesCollectionContenfullArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<CampaignSlidesCollectionOrderContenfull>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<SlidesFilterContenfull>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/campaign) */
+export type CampaignslugContenfullArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/campaign) */
+export type CampaigntitleContenfullArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CampaignCollectionContenfull = {
+  __typename?: 'CampaignCollection';
+  items: Array<Maybe<CampaignContenfull>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type CampaignFilterContenfull = {
+  AND?: InputMaybe<Array<InputMaybe<CampaignFilterContenfull>>>;
+  OR?: InputMaybe<Array<InputMaybe<CampaignFilterContenfull>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilterContenfull>;
+  onlyImages?: InputMaybe<Scalars['Boolean']['input']>;
+  onlyImages_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  onlyImages_not?: InputMaybe<Scalars['Boolean']['input']>;
+  slides?: InputMaybe<cfSlidesNestedFilterContenfull>;
+  slidesCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilterContenfull>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type CampaignLinkingCollectionsContenfull = {
+  __typename?: 'CampaignLinkingCollections';
+  entryCollection?: Maybe<EntryCollectionContenfull>;
+};
+
+
+export type CampaignLinkingCollectionsentryCollectionContenfullArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum CampaignOrderContenfull {
+  onlyImages_ASC = 'onlyImages_ASC',
+  onlyImages_DESC = 'onlyImages_DESC',
+  slug_ASC = 'slug_ASC',
+  slug_DESC = 'slug_DESC',
+  sys_firstPublishedAt_ASC = 'sys_firstPublishedAt_ASC',
+  sys_firstPublishedAt_DESC = 'sys_firstPublishedAt_DESC',
+  sys_id_ASC = 'sys_id_ASC',
+  sys_id_DESC = 'sys_id_DESC',
+  sys_publishedAt_ASC = 'sys_publishedAt_ASC',
+  sys_publishedAt_DESC = 'sys_publishedAt_DESC',
+  sys_publishedVersion_ASC = 'sys_publishedVersion_ASC',
+  sys_publishedVersion_DESC = 'sys_publishedVersion_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+export type CampaignSlidesCollectionContenfull = {
+  __typename?: 'CampaignSlidesCollection';
+  items: Array<Maybe<SlidesContenfull>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export enum CampaignSlidesCollectionOrderContenfull {
+  headline_ASC = 'headline_ASC',
+  headline_DESC = 'headline_DESC',
+  onlyText_ASC = 'onlyText_ASC',
+  onlyText_DESC = 'onlyText_DESC',
+  privateName_ASC = 'privateName_ASC',
+  privateName_DESC = 'privateName_DESC',
+  sys_firstPublishedAt_ASC = 'sys_firstPublishedAt_ASC',
+  sys_firstPublishedAt_DESC = 'sys_firstPublishedAt_DESC',
+  sys_id_ASC = 'sys_id_ASC',
+  sys_id_DESC = 'sys_id_DESC',
+  sys_publishedAt_ASC = 'sys_publishedAt_ASC',
+  sys_publishedAt_DESC = 'sys_publishedAt_DESC',
+  sys_publishedVersion_ASC = 'sys_publishedVersion_ASC',
+  sys_publishedVersion_DESC = 'sys_publishedVersion_DESC'
 }
 
 export type ContentfulMetadataContenfull = {
@@ -908,6 +1054,8 @@ export type QueryContenfull = {
   _node?: Maybe<_NodeContenfull>;
   asset?: Maybe<AssetContenfull>;
   assetCollection?: Maybe<AssetCollectionContenfull>;
+  campaign?: Maybe<CampaignContenfull>;
+  campaignCollection?: Maybe<CampaignCollectionContenfull>;
   entryCollection?: Maybe<EntryCollectionContenfull>;
   hero?: Maybe<HeroContenfull>;
   heroCollection?: Maybe<HeroCollectionContenfull>;
@@ -915,6 +1063,8 @@ export type QueryContenfull = {
   opticalGlassesCollection?: Maybe<OpticalGlassesCollectionContenfull>;
   opticalTypes?: Maybe<OpticalTypesContenfull>;
   opticalTypesCollection?: Maybe<OpticalTypesCollectionContenfull>;
+  slides?: Maybe<SlidesContenfull>;
+  slidesCollection?: Maybe<SlidesCollectionContenfull>;
   sunglasses?: Maybe<SunglassesContenfull>;
   sunglassesCollection?: Maybe<SunglassesCollectionContenfull>;
   sunglassesTypes?: Maybe<SunglassesTypesContenfull>;
@@ -943,6 +1093,23 @@ export type QueryassetCollectionContenfullArgs = {
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<AssetFilterContenfull>;
+};
+
+
+export type QuerycampaignContenfullArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QuerycampaignCollectionContenfullArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<CampaignOrderContenfull>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<CampaignFilterContenfull>;
 };
 
 
@@ -1007,6 +1174,23 @@ export type QueryopticalTypesCollectionContenfullArgs = {
 };
 
 
+export type QueryslidesContenfullArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryslidesCollectionContenfullArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<SlidesOrderContenfull>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<SlidesFilterContenfull>;
+};
+
+
 export type QuerysunglassesContenfullArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
@@ -1039,6 +1223,154 @@ export type QuerysunglassesTypesCollectionContenfullArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<SunglassesTypesFilterContenfull>;
 };
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/slides) */
+export type SlidesContenfull = EntryContenfull & _NodeContenfull & {
+  __typename?: 'Slides';
+  _id: Scalars['ID']['output'];
+  contentfulMetadata: ContentfulMetadataContenfull;
+  headline?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<AssetContenfull>;
+  linkedFrom?: Maybe<SlidesLinkingCollectionsContenfull>;
+  onlyText?: Maybe<Scalars['Boolean']['output']>;
+  privateName?: Maybe<Scalars['String']['output']>;
+  sys: SysContenfull;
+  text?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/slides) */
+export type SlidesheadlineContenfullArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/slides) */
+export type SlidesimageContenfullArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/slides) */
+export type SlideslinkedFromContenfullArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/slides) */
+export type SlidesonlyTextContenfullArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/slides) */
+export type SlidesprivateNameContenfullArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/slides) */
+export type SlidestextContenfullArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SlidesCollectionContenfull = {
+  __typename?: 'SlidesCollection';
+  items: Array<Maybe<SlidesContenfull>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type SlidesFilterContenfull = {
+  AND?: InputMaybe<Array<InputMaybe<SlidesFilterContenfull>>>;
+  OR?: InputMaybe<Array<InputMaybe<SlidesFilterContenfull>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilterContenfull>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  headline_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  image_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  onlyText?: InputMaybe<Scalars['Boolean']['input']>;
+  onlyText_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  onlyText_not?: InputMaybe<Scalars['Boolean']['input']>;
+  privateName?: InputMaybe<Scalars['String']['input']>;
+  privateName_contains?: InputMaybe<Scalars['String']['input']>;
+  privateName_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  privateName_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  privateName_not?: InputMaybe<Scalars['String']['input']>;
+  privateName_not_contains?: InputMaybe<Scalars['String']['input']>;
+  privateName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilterContenfull>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  text_contains?: InputMaybe<Scalars['String']['input']>;
+  text_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  text_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  text_not?: InputMaybe<Scalars['String']['input']>;
+  text_not_contains?: InputMaybe<Scalars['String']['input']>;
+  text_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type SlidesLinkingCollectionsContenfull = {
+  __typename?: 'SlidesLinkingCollections';
+  campaignCollection?: Maybe<CampaignCollectionContenfull>;
+  entryCollection?: Maybe<EntryCollectionContenfull>;
+};
+
+
+export type SlidesLinkingCollectionscampaignCollectionContenfullArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<SlidesLinkingCollectionsCampaignCollectionOrderContenfull>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type SlidesLinkingCollectionsentryCollectionContenfullArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum SlidesLinkingCollectionsCampaignCollectionOrderContenfull {
+  onlyImages_ASC = 'onlyImages_ASC',
+  onlyImages_DESC = 'onlyImages_DESC',
+  slug_ASC = 'slug_ASC',
+  slug_DESC = 'slug_DESC',
+  sys_firstPublishedAt_ASC = 'sys_firstPublishedAt_ASC',
+  sys_firstPublishedAt_DESC = 'sys_firstPublishedAt_DESC',
+  sys_id_ASC = 'sys_id_ASC',
+  sys_id_DESC = 'sys_id_DESC',
+  sys_publishedAt_ASC = 'sys_publishedAt_ASC',
+  sys_publishedAt_DESC = 'sys_publishedAt_DESC',
+  sys_publishedVersion_ASC = 'sys_publishedVersion_ASC',
+  sys_publishedVersion_DESC = 'sys_publishedVersion_DESC',
+  title_ASC = 'title_ASC',
+  title_DESC = 'title_DESC'
+}
+
+export enum SlidesOrderContenfull {
+  headline_ASC = 'headline_ASC',
+  headline_DESC = 'headline_DESC',
+  onlyText_ASC = 'onlyText_ASC',
+  onlyText_DESC = 'onlyText_DESC',
+  privateName_ASC = 'privateName_ASC',
+  privateName_DESC = 'privateName_DESC',
+  sys_firstPublishedAt_ASC = 'sys_firstPublishedAt_ASC',
+  sys_firstPublishedAt_DESC = 'sys_firstPublishedAt_DESC',
+  sys_id_ASC = 'sys_id_ASC',
+  sys_id_DESC = 'sys_id_DESC',
+  sys_publishedAt_ASC = 'sys_publishedAt_ASC',
+  sys_publishedAt_DESC = 'sys_publishedAt_DESC',
+  sys_publishedVersion_ASC = 'sys_publishedVersion_ASC',
+  sys_publishedVersion_DESC = 'sys_publishedVersion_DESC'
+}
 
 /** [See type definition](https://app.contentful.com/spaces/4tddvybktz4p/content_types/sunglasses) */
 export type SunglassesContenfull = EntryContenfull & _NodeContenfull & {
@@ -1593,6 +1925,38 @@ export type cfOpticalTypesNestedFilterContenfull = {
   slug_not_contains?: InputMaybe<Scalars['String']['input']>;
   slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilterContenfull>;
+};
+
+export type cfSlidesNestedFilterContenfull = {
+  AND?: InputMaybe<Array<InputMaybe<cfSlidesNestedFilterContenfull>>>;
+  OR?: InputMaybe<Array<InputMaybe<cfSlidesNestedFilterContenfull>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilterContenfull>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  headline_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  image_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  onlyText?: InputMaybe<Scalars['Boolean']['input']>;
+  onlyText_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  onlyText_not?: InputMaybe<Scalars['Boolean']['input']>;
+  privateName?: InputMaybe<Scalars['String']['input']>;
+  privateName_contains?: InputMaybe<Scalars['String']['input']>;
+  privateName_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  privateName_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  privateName_not?: InputMaybe<Scalars['String']['input']>;
+  privateName_not_contains?: InputMaybe<Scalars['String']['input']>;
+  privateName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilterContenfull>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  text_contains?: InputMaybe<Scalars['String']['input']>;
+  text_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  text_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  text_not?: InputMaybe<Scalars['String']['input']>;
+  text_not_contains?: InputMaybe<Scalars['String']['input']>;
+  text_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type cfSunglassesNestedFilterContenfull = {

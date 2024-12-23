@@ -21,8 +21,12 @@ const mainNavMenu = ref([
         component: 'Optical'
       },
       {
-        name: 'About Us',
-        slug: 'about-us'
+        name: 'Lookbook',
+        slug: 'lookbook'
+      },
+      {
+        name: 'We are Mr.Boho',
+        slug: 'we-are-mr-boho'
       }
     ]
   }

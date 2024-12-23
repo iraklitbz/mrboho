@@ -23,8 +23,3 @@ defineProps({
 })
 </script>
 
-<style lang="scss">
-.icon--filled * {
-  @apply fill-current;
-}
-</style>
