@@ -15,7 +15,7 @@ async function handleSendEmail() {
             <p>Mensaje: <b>${userModel.value.message}</b></p>
             `
   }
-  const { data } = await useFetch("/api/send", {
+  const { data } = await useFetch("/api/send-message", {
     method: "POST",
     body: msg
   });
