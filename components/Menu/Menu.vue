@@ -1,0 +1,82 @@
+<script setup lang="ts">
+import Icon from "~/components/Icon.vue";
+import { toggleMenu } from '~/store/menu';
+import IconClose from 'assets/icons/close.svg'
+const props = defineProps<{
+  mainNavMenu: {
+    name: string;
+    slug: string;
+    component?: string }[]
+}>()
+const activeSubmenu = ref(false)
+const componentSelected = ref('')
+function handleComponentSelected(component) {
+  if (componentSelected.value === `Lazy${component}`) {
+    activeSubmenu.value = false
+    componentSelected.value = ''
+  } else {
+    componentSelected.value = `Lazy${component}`
+    activeSubmenu.value = true
+  }
+}
+</script>
+
+<template>
+  <div
+      class="h-screen fixed left-0 top-0 w-full flex z-40"
+      :class="toggleMenu().menuIsOpen ? 'bg-black/20' : ''"
+  >
+    <nav
+        class="py-24 px-10 max-w-lg w-full overflow-y-auto relative z-40 bg-white"
+    >
+      <button
+          class="absolute right-10 top-5 cursor-pointer"
+          @click="toggleMenu().handleCloseMenu()"
+      >
+        <Icon
+            :icon="IconClose"
+            :auto-align="true"
+            class="cursor-pointer text-2xl text-black"
+        />
+      </button>
+      <ul
+          class="flex flex-col justify-center gap-7 text-base"
+      >
+
+        <li
+            v-for="(item, index) in props.mainNavMenu"
+            :key="index"
+
+        >
+          <span
+              v-if="item.component"
+              class="text-5xl relative uppercase after:bg-black after:absolute after:h-[3px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+              @click="handleComponentSelected(item.component)"
+          >
+             {{ item.name }}
+          </span>
+          <nuxt-link
+              v-else
+              :to="`/${item.slug}`"
+              class="text-5xl relative uppercase after:bg-black after:absolute after:h-[3px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+          >
+            {{ item.name }}
+          </nuxt-link>
+        </li>
+      </ul>
+    </nav>
+    <component
+        v-if="activeSubmenu"
+        class="bg-white relative z-40"
+        :is="componentSelected"
+    />
+    <div
+        class="absolute left-0 top-0 bg-black/20 w-full h-full z-20"
+        @click="toggleMenu().handleCloseMenu()"
+    ></div>
+  </div>
+</template>
+
+<style scoped>
+
+</style>
