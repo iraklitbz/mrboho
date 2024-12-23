@@ -47,7 +47,7 @@ function handleMenu(submenu = [], menuName: string) {
   }
 }
 function handleScroll() {
-  if (window.scrollY > 200) {
+  if (window.scrollY > 30) {
     isScrolled.value = true;
   } else {
     isScrolled.value = false;

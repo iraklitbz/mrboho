@@ -65,5 +65,8 @@ export default defineNuxtConfig({
     cssPath: "~/assets/css/main.scss",
     exposeConfig: true,
   },
+  runtimeConfig: {
+    RESEND_API_KEY: process.env.RESEND_API_KEY
+  },
   devtools: { enabled: true },
 });
