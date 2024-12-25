@@ -5,12 +5,12 @@
 @layer base {
   html {
     @apply overflow-x-hidden;
+    &.menu-open {
+      @apply overflow-hidden;
+    }
   }
   html,
   body {
     @apply max-w-full scroll-smooth;
-    &.menu-open {
-      overflow: hidden;
-    }
   }
 }

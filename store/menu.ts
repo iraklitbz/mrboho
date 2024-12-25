@@ -6,14 +6,14 @@ export const toggleMenu = defineStore('toggleMenu', {
         handleToggleMenu() {
             this.menuIsOpen = !this.menuIsOpen
             if (this.menuIsOpen) {
-                document.body.classList.add('menu-open')
+                document.documentElement.classList.add('menu-open')
             } else {
-                document.body.classList.remove('menu-open')
+                document.documentElement.classList.remove('menu-open')
             }
         },
         handleCloseMenu() {
             this.menuIsOpen = false
-            document.body.classList.remove('menu-open')
+            document.documentElement.classList.remove('menu-open')
         },
     },
 })

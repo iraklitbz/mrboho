@@ -100,7 +100,7 @@ onUnmounted(() => {
         </nuxt-link>
       </h1>
       <ul
-          class="flex flex-row justify-end gap-10 text-base z-50 relative w-1/3"
+          class="flex flex-row justify-end gap-10 text-base z-40 relative w-1/3"
       >
 
         <li
@@ -115,9 +115,18 @@ onUnmounted(() => {
         </li>
       </ul>
     </div>
-    <Menu
-      v-if="toggleMenu().menuIsOpen"
-      :main-nav-menu="currentMenuNavbar"
-    />
+    <transition name="fade-left" mode="out-in">
+      <Menu
+        v-if="toggleMenu().menuIsOpen"
+        :main-nav-menu="currentMenuNavbar"
+      />
+    </transition>
+    <transition name="fade" mode="out-in">
+      <div
+          v-if="toggleMenu().menuIsOpen"
+          class="absolute left-0 top-0 bg-black/20 w-full h-screen z-20"
+          @click="toggleMenu().handleCloseMenu()"
+      ></div>
+    </transition>
   </header>
 </template>

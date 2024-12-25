@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Icon from '~/components/Icon.vue';
 import IconLoader from 'assets/icons/loader.svg';
+import {campaignStore} from "~/store/campaign";
 const userModel = ref({})
 const loading = ref(false)
 const error = ref(false)
@@ -31,12 +32,14 @@ async function handleSendEmail() {
 
 <template>
 <main>
-  <section>
-    <Headline
-        :title="'Contact us'"
-    />
+  <Headline
+      :title="'Contact us'"
+  />
+  <section
+      class="grid mt-10 grid-cols-1 border-t border-b md:grid-cols-2 border-solid border-black"
+  >
     <div
-      class="p-10 max-w-xl m-auto"
+        class="p-10 w-full max-w-3xl m-auto"
     >
       <FormKit
           v-model="userModel"
@@ -122,6 +125,15 @@ async function handleSendEmail() {
         </div>
       </FormKit>
     </div>
+    <figure
+        class="max-h-[600px] h-full"
+    >
+      <nuxt-img
+          src="https://images.ctfassets.net/4tddvybktz4p/62p67iLFduD3Vmevsc3buy/056429ae2bfb5df3fc19577234bc86ca/00-Lookbook-MRBOHO-FW24-08_web_c82b6bed-271b-4286-86bd-10a83cf1a46b.jpg"
+          alt="contact picture"
+          class="w-full h-full object-cover"
+      />
+    </figure>
   </section>
 </main>
 </template>

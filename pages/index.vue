@@ -21,7 +21,7 @@ await heroStore().fetchHeroHome()
     <section
         class="px-10 py-20"
     >
-      <p class="text-5xl">
+      <p class="text-2xl md:text-5xl">
         MR.BOHO is the expression in the form of glasses of our conception of fashion. A tireless commitment to creating products in constant evolution and systematically trying to achieve maximum efficiency that allows us to reach our users with competitive prices while respecting demanding quality standards.
       </p>
     </section>

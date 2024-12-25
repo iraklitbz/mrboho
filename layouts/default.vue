@@ -3,7 +3,7 @@ import Header from "~/components/Header.vue";
 </script>
 <template>
   <div
-    class="pt-28"
+    class="pt-16 md:pt-28"
   >
     <Header />
     <div>

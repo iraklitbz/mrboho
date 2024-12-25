@@ -2,6 +2,7 @@
 import Icon from "~/components/Icon.vue";
 import { toggleMenu } from '~/store/menu';
 import IconClose from 'assets/icons/close.svg'
+import IconChevronDown from 'assets/icons/chevron-down.svg'
 const props = defineProps<{
   mainNavMenu: {
     name: string;
@@ -24,13 +25,12 @@ function handleComponentSelected(component) {
 <template>
   <div
       class="h-screen fixed left-0 top-0 w-full flex z-40"
-      :class="toggleMenu().menuIsOpen ? 'bg-black/20' : ''"
   >
     <nav
         class="py-24 px-10 max-w-lg w-full overflow-y-auto relative z-40 bg-white"
     >
       <button
-          class="absolute right-10 top-5 cursor-pointer"
+          class="absolute right-8 top-5 cursor-pointer"
           @click="toggleMenu().handleCloseMenu()"
       >
         <Icon
@@ -40,7 +40,7 @@ function handleComponentSelected(component) {
         />
       </button>
       <ul
-          class="flex flex-col justify-center gap-7 text-base"
+          class="flex flex-col justify-center gap-5 md:gap-7 text-base"
       >
 
         <li
@@ -50,7 +50,7 @@ function handleComponentSelected(component) {
         >
           <span
               v-if="item.component"
-              class="text-4xl relative uppercase after:bg-black after:absolute after:h-[3px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+              class="text-xl md:text-4xl flex justify-between items-center relative uppercase after:bg-black after:absolute after:h-[3px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
               @click="handleComponentSelected(item.component)"
           >
              {{ item.name }}
@@ -58,7 +58,7 @@ function handleComponentSelected(component) {
           <nuxt-link
               v-else
               :to="`/${item.slug}`"
-              class="text-4xl relative uppercase after:bg-black after:absolute after:h-[3px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+              class="text-xl md:text-4xl relative uppercase after:bg-black after:absolute after:h-[3px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
           >
             {{ item.name }}
           </nuxt-link>
@@ -70,10 +70,6 @@ function handleComponentSelected(component) {
         class="bg-white relative z-40"
         :is="componentSelected"
     />
-    <div
-        class="absolute left-0 top-0 bg-black/20 w-full h-full z-20"
-        @click="toggleMenu().handleCloseMenu()"
-    ></div>
   </div>
 </template>
 
