@@ -52,7 +52,7 @@ const props = defineProps<{
       <h2>
         {{ props.product.name }}
       </h2>
-      <p>EUR {{ props.product.price }}</p>
+      <p>{{ props.product.price }} ₾</p>
     </footer>
   </nuxt-link>
 </template>
