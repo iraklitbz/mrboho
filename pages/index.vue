@@ -21,8 +21,8 @@ await heroStore().fetchHeroHome()
     <section
         class="px-10 py-20"
     >
-      <p class="text-2xl md:text-5xl">
-        MR.BOHO is the expression in the form of glasses of our conception of fashion. A tireless commitment to creating products in constant evolution and systematically trying to achieve maximum efficiency that allows us to reach our users with competitive prices while respecting demanding quality standards.
+      <p class="text-center text-2xl md:text-5xl !leading-[1.2]">
+        MR.BOHO ჩვენი მოდის კონცეფციის სათვალეების ფორმით გამოხატულებაა. დაუღალავი სურვილი შევქმნათ მუდმივად განვითარებადი პროდუქტები და სისტემატურად მივაღწიოთ მაქსიმალურ ეფექტურობას, რაც საშუალებას გვაძლევს  ჩვენს მომხმარებლებს კონკურენტული ფასები მივაწოდოთ და ამავდროულად, დავიცვათ მკაცრი ხარისხის სტანდარტები.
       </p>
     </section>
   </main>

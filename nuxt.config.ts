@@ -1,6 +1,13 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   app: {
+    head: {
+      link: [
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "anonymous" },
+        { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@100..900&display=swap" }
+      ]
+    },
     layoutTransition: {
       name: "fade",
       mode: "out-in",

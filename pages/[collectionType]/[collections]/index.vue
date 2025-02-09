@@ -33,12 +33,12 @@ function getItems() {
   }
   return []
 }
-
 </script>
 
 <template>
   <main>
     <Headline
+        v-if="productData"
         :title="productData?.name as string"
         :description="productData?.description as string"
         :category-type="categoryType"
