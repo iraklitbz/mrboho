@@ -33,7 +33,7 @@ await sunglassesStore().fetchSunglassesTypes()
           <nuxt-img
               :src="item?.mainImage?.url"
               :alt="item.name"
-              class="w-28 h-20 object-cover"
+              class="w-28 h-20 object-contain"
           />
         <span
             class="text-base font-bold uppercase"
