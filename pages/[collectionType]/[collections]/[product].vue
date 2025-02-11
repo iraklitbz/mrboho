@@ -52,7 +52,7 @@ if(route.params.collectionType === 'sunglasses') {
         <li
           v-for="(images, index) in productDetail?.imagesCollection?.items"
           :key="index"
-          class="border-b border-solid border-black"
+          class="border-b border-solid border-black p-5 md:p-0"
           :class="index === 0 ? 'border-t' : ''"
         >
           <nuxt-img

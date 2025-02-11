@@ -15,7 +15,7 @@ const props = defineProps({
 
 <template>
   <section>
-    <h2 class="text-8xl uppercase py-14 px-10">More <span> {{props.collectionType}} </span> options</h2>
+    <h2 class="text-4xl md:text-8xl uppercase py-14 px-5 md:px-10">More <span> {{props.collectionType}} </span> options</h2>
     <div
         class="sunglasses-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4"
     >

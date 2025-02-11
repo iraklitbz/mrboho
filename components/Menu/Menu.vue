@@ -27,10 +27,20 @@ function handleComponentSelected(component) {
       class="h-screen fixed left-0 top-0 w-full flex z-40"
   >
     <nav
-        class="py-24 px-10 max-w-lg w-full overflow-y-auto relative z-40 bg-white"
+        class="py-24 px-5 md:px-10 max-w-lg w-full overflow-y-auto relative z-40 bg-white"
     >
+      <div class="flex justify-center relative -top-16">
+        <nuxt-link
+            href="/"
+            class="font-bold uppercase text-3xl"
+        >
+          <span>
+            MR.BOHO
+          </span>
+        </nuxt-link>
+      </div>
       <button
-          class="absolute right-8 top-5 cursor-pointer"
+          class="absolute right-5 top-5 cursor-pointer"
           @click="toggleMenu().handleCloseMenu()"
       >
         <Icon

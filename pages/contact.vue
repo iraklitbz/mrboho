@@ -39,7 +39,7 @@ async function handleSendEmail() {
       class="grid mt-10 grid-cols-1 border-t border-b md:grid-cols-2 border-solid border-black"
   >
     <div
-        class="p-10 w-full max-w-3xl m-auto"
+        class="px-5 py-10 md:p-10 w-full max-w-3xl m-auto"
     >
       <FormKit
           v-model="userModel"

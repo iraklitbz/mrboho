@@ -49,10 +49,10 @@ const props = defineProps<{
     <footer
         class="flex justify-between text-base"
     >
-      <h2>
+      <h2 class="text-xl">
         {{ props.product.name }}
       </h2>
-      <p>{{ props.product.price }} ₾</p>
+      <p class="text-xl font-bold">{{ props.product.price }} ₾</p>
     </footer>
   </nuxt-link>
 </template>

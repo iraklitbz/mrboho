@@ -25,7 +25,7 @@
 
 <template>
   <footer
-    class="bg-gray-50 px-10 py-8"
+    class="bg-gray-50 px-5 md:px-10 py-8"
   >
       <div>
         <Icon

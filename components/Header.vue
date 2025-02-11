@@ -47,7 +47,7 @@ function handleMenu(submenu = [], menuName: string) {
   }
 }
 function handleScroll() {
-  if (window.scrollY > 30) {
+  if (window.scrollY > 5) {
     isScrolled.value = true;
   } else {
     isScrolled.value = false;
@@ -64,7 +64,7 @@ onUnmounted(() => {
 <template>
   <header
       ref="headerRef"
-      class="px-10 py-6 z-50 fixed top-0 left-0 w-full transition-all duration-300 ease-in-out "
+      class="px-5 md:px-10 py-6 z-50 fixed top-0 left-0 w-full transition-all duration-300 ease-in-out "
       :class="isScrolled ? 'bg-white shadow-md' : 'bg-transparent'"
   >
     <div class="flex justify-between items-center">

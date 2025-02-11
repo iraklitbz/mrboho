@@ -10,7 +10,7 @@ if(campaignStore().campaign === null || campaignStore().campaign === undefined) 
 <template>
   <main
       v-if="!campaignStore().campaign?.onlyImages"
-      class="md:mt-10"
+      class="mt-10 md:mt-10"
   >
     <section
         v-for="(campaign, index) in campaignStore().campaign?.slidesCollection?.items"
@@ -31,12 +31,12 @@ if(campaignStore().campaign === null || campaignStore().campaign === undefined) 
       </figure>
 
       <div
-          class="p-10 flex flex-col justify-between"
+          class="px-5 py-10 md:p-10 flex flex-col justify-between"
           :class="index % 2 === 0 ? 'order-1 md:order-2' : 'order-1 md:order-1'"
       >
         <h2
             v-if="campaign?.onlyText"
-            class="text-xl lg:text-4xl font-bold py-10"
+            class="text-xl lg:text-4xl font-bold"
         >
           {{ campaign?.headline }}
         </h2>
