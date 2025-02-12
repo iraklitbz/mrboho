@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Menu from '~/components/Menu/Menu.vue';
 import Icon from '~/components/Icon.vue';
-import IconHamburguer from 'assets/icons/hamburguer.svg';
+import IconHamburguer from '~/assets/icons/hamburguer.svg';
 import { toggleMenu } from '~/store/menu';
 const mainNavMenu = ref([
   {
@@ -31,9 +31,11 @@ const mainNavMenu = ref([
     ]
   }
 ])
-const headerRef = ref<HTMLElement | null>(null);
-const currentMenuNavbar = ref([]);
-const activeMenu = ref<string | null>(null); // Track the currently active menu
+const headerRef = ref<HTMLElement | null>(null)
+const route = useRoute()
+const isHomepage = route.path === "/"
+const currentMenuNavbar = ref([])
+const activeMenu = ref<string | null>(null)
 const isScrolled = ref(false);
 function handleMenu(submenu = [], menuName: string) {
   if (activeMenu.value === menuName) {
@@ -47,18 +49,14 @@ function handleMenu(submenu = [], menuName: string) {
   }
 }
 function handleScroll() {
-  if (window.scrollY > 5) {
-    isScrolled.value = true;
-  } else {
-    isScrolled.value = false;
-  }
+  isScrolled.value = window.scrollY > 5
 }
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
-});
+})
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll);
-});
+})
 </script>
 
 <template>
@@ -83,16 +81,20 @@ onUnmounted(() => {
            <Icon
                :icon="IconHamburguer"
                :auto-align="true"
-               class="cursor-pointer text-2xl text-black"
+               class="cursor-pointer text-2xl"
+               :class="isHomepage && !isScrolled ? 'text-white' : 'text-black'"
            />
         </button>
         </li>
       </ul>
-      <h1 class="flex justify-center w-1/3">
+      <h1
+          class="flex justify-center w-1/3"
+          :class="isHomepage && !isScrolled ? 'text-white' : 'text-black'"
+      >
         <nuxt-link
             href="/"
             class="font-bold uppercase transition-all ease-in-out duration-300"
-            :class="isScrolled ? 'text-2xl sm:text-3xl md:text-5xl lg:text-6xl' : 'text-3xl sm:text-5xl md:text-7xl lg:text-8xl'"
+            :class="isScrolled && !isScrolled ? 'text-2xl sm:text-3xl md:text-5xl lg:text-6xl' : 'text-3xl sm:text-5xl md:text-7xl lg:text-8xl'"
         >
           <span>
             MR.BOHO
@@ -109,6 +111,7 @@ onUnmounted(() => {
           <nuxt-link
               to="/contact"
               class="relative font-bold after:bg-black after:absolute after:h-[1px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+              :class="isHomepage && !isScrolled? 'text-white' : 'text-black'"
           >
            Contact
         </nuxt-link>

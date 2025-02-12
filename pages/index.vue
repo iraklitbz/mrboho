@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { heroStore } from '~/store/hero';
 await heroStore().fetchHeroHome()
-
 </script>
 
 <template>
@@ -9,11 +8,20 @@ await heroStore().fetchHeroHome()
     <section
         class="-mt-28 relative z-10"
     >
-      <nuxt-img
-          :src="heroStore().homeHero?.image?.url"
-          alt="MR.BOHO"
-          class="w-full h-screen object-cover"
-      />
+      <iframe
+          class="hidden md:block w-full aspect-video"
+          src="https://player.vimeo.com/video/1010264738?autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1&background=1"
+          title="we are mrboho video desktop"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+      ></iframe>
+      <iframe
+          class="md:hidden w-full aspect-[9/16]"
+          src="https://player.vimeo.com/video/1010265946?autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1&background=1"
+          title="we are mrboho video mobile"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+      ></iframe>
       <h3 class="text-3xl w-full sm:text-5xl text-white md:text-7xl font-bold uppercase lg:text-8xl absolute left-1/2 text-center px-10 -translate-x-1/2 bottom-10">
         {{ heroStore().homeHero?.title }}
       </h3>
