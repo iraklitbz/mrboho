@@ -2,7 +2,6 @@
 import Icon from "~/components/Icon.vue";
 import { toggleMenu } from '~/store/menu';
 import IconClose from 'assets/icons/close.svg'
-import IconChevronDown from 'assets/icons/chevron-down.svg'
 const props = defineProps<{
   mainNavMenu: {
     name: string;

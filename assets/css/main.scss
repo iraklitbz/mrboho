@@ -3,9 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 @font-face {
-  font-family: 'LGV Big Noodle';
-  src: url('https://assets.ctfassets.net/4tddvybktz4p/7Ay8sKrjndjlzfyVbtnNQE/71e9b9c07fcba8c8c64a3259cbf0ee0f/LGV_Big_Noodle.woff2') format('woff2'),
-  url('https://assets.ctfassets.net/4tddvybktz4p/5nGL70ZCEFRyXbQTUnvc19/b883016d166692c78ceadea722d0a6b8/LGV_Big_Noodle.woff') format('woff');
+  font-family: 'BPG Excelsior DejaVu 2010';
+  src: url('../font/BPGExcelsiorDejaVu2010.woff2') format('woff2'),
+  url('../font/BPGExcelsiorDejaVu2010.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -20,11 +20,8 @@
   html,
   body {
     @apply max-w-full scroll-smooth;
-    p {
-      font-family: 'LGV Big Noodle Regular', sans-serif;
-      font-optical-sizing: auto;
-      font-style: normal;
-      font-variation-settings: "wdth" 100;
-    }
+    font-family: 'BPG Excelsior DejaVu 2010';
+    font-weight: normal;
+    font-style: normal;
   }
 }
