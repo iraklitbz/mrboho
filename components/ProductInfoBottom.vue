@@ -21,11 +21,12 @@ import type {
       >
         {{ props.productDetail?.price }} ₾
       </h2>
-      <button
+      <nuxt-link
+          to="/contact"
           class="text-2xl md:text-3xl text-center bg-black text-white py-3 md:py-4 px-8 rounded-full"
       >
         Contact us
-      </button>
+      </nuxt-link>
     </div>
   </div>
 </template>
