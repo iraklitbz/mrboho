@@ -88,7 +88,7 @@ onUnmounted(() => {
         </li>
       </ul>
       <h1
-          class="flex justify-center w-1/3"
+          class="flex flex-col items-center justify-center w-1/3"
           :class="isHomepage && !isScrolled ? 'text-white' : 'text-black'"
       >
         <nuxt-link

@@ -22,9 +22,14 @@ await heroStore().fetchHeroHome()
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
       ></iframe>
-      <h3 class="text-3xl w-full sm:text-5xl text-white md:text-7xl font-bold uppercase lg:text-8xl absolute left-1/2 text-center px-10 -translate-x-1/2 bottom-10">
-        {{ heroStore().homeHero?.title }}
-      </h3>
+     <div
+      class="flex flex-col items-center absolute left-1/2 -translate-x-1/2 bottom-10 w-full"
+     >
+       <h3 class="text-3xl w-full sm:text-5xl text-white md:text-7xl font-bold uppercase lg:text-8xl  text-center px-10 ">
+         {{ heroStore().homeHero?.title }}
+       </h3>
+       <p class="text-xl w-full sm:text-3xl text-white text-center mt-3">Official Partner & Exclusive Distributor in Georgia</p>
+     </div>
     </section>
     <section
         class="px-10 py-20"
