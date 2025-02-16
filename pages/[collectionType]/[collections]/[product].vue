@@ -64,8 +64,12 @@ if(route.params.collectionType === 'sunglasses') {
       </ul>
     </section>
     <MoreProducts
+        class="mb-10"
         :collection-type="productData?.name"
         :product-more-data="route.params.collectionType === 'sunglasses' ? productData?.sunglassesCollection?.items : productData?.glassesCollection?.items"
+    />
+    <ProductInfoBottom
+        :product-detail="productDetail as SunglassesContenfull | OpticalGlassesContenfull"
     />
   </main>
 </template>

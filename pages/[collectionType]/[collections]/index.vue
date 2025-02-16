@@ -45,7 +45,7 @@ function getItems() {
         :hero-image="productData?.hero?.url as string"
     />
     <section
-        class="sunglasses-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-14"
+        class="sunglasses-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-14 mb-10"
     >
       <Card
           v-for="(sunglasses, index) in getItems()"
