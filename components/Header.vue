@@ -33,7 +33,7 @@ const mainNavMenu = ref([
 ])
 const headerRef = ref<HTMLElement | null>(null)
 const route = useRoute()
-const isHomepage = route.path === "/"
+const isHomepage = computed(() => route.path === '/')
 const currentMenuNavbar = ref([])
 const activeMenu = ref<string | null>(null)
 const isScrolled = ref(false);
@@ -89,14 +89,17 @@ onUnmounted(() => {
       </ul>
       <h1
           class="flex flex-col items-center justify-center w-1/3"
-          :class="isHomepage && !isScrolled ? 'text-white' : 'text-black'"
       >
         <nuxt-link
             href="/"
             class="font-bold uppercase transition-all ease-in-out duration-300"
             :class="isScrolled && !isScrolled ? 'text-2xl sm:text-3xl md:text-5xl lg:text-6xl' : 'text-3xl sm:text-5xl md:text-7xl lg:text-8xl'"
         >
-          <span>
+          <span
+              class="latin"
+              :class="isHomepage && !isScrolled ? 'text-white' : 'text-black'"
+
+          >
             MR.BOHO
           </span>
         </nuxt-link>

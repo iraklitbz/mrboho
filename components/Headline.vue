@@ -16,7 +16,7 @@ const props = defineProps<{
       class="flex flex-col items-center justify-center"
       :class="heroImage ? 'pb-10' : ''"
   >
-    <h2 class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-center uppercase">
+    <h2 class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-center uppercase latin">
       {{ props.title }}
     </h2>
     <nuxt-link

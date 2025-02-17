@@ -10,6 +10,15 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'MRBOHO';
+  src: url('../font/MRBOHOBETA3-Regular.woff2') format('woff2'),
+  url('../font/MRBOHOBETA3-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   html {
     @apply overflow-x-hidden;
@@ -20,8 +29,13 @@
   html,
   body {
     @apply max-w-full scroll-smooth;
-    font-family: 'BPG Excelsior DejaVu 2010';
+    font-family: 'BPG Excelsior DejaVu 2010', sans-serif;
     font-weight: normal;
     font-style: normal;
+    .latin {
+      font-family: 'MRBOHO', sans-serif;
+      font-weight: normal;
+      font-style: normal;
+    }
   }
 }

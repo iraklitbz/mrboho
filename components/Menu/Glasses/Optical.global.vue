@@ -27,7 +27,7 @@ await opticalStore().fetchOpticalTypes()
         >
           <nuxt-link
               :to="`/optical/${item.slug}`"
-              class="flex flex-col items-center justify-center"
+              class="flex flex-col latin items-center justify-center"
           >
           <nuxt-img
               :src="item?.mainImage?.url"

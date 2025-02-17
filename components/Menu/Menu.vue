@@ -31,9 +31,9 @@ function handleComponentSelected(component) {
       <div class="flex justify-center relative -top-16">
         <nuxt-link
             href="/"
-            class="font-bold uppercase text-3xl"
+            class="font-bold uppercase text-3xl md:text-4xl"
         >
-          <span>
+          <span class="latin">
             MR.BOHO
           </span>
         </nuxt-link>
