@@ -36,11 +36,11 @@ if(campaignStore().campaign === null || campaignStore().campaign === undefined) 
       >
         <h2
             v-if="campaign?.onlyText"
-            class="text-xl lg:text-4xl font-bold"
+            class="text-xl lg:text-4xl font-bold !leading-[1.2]"
         >
           {{ campaign?.headline }}
         </h2>
-        <h2 v-else class="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold uppercase">
+        <h2 v-else class="text-xl sm:text-3xl md:text-5xl lg:text-5xl font-bold uppercase">
           {{ campaign?.headline }}
         </h2>
         <p

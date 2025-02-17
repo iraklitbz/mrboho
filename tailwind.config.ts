@@ -38,5 +38,5 @@ export default {
     variants: {
         extend: {},
     },
-    plugins: [ FormKitVariants ]
+    plugins: [ FormKitVariants, require('tailwindcss-motion') ]
 } satisfies Config
