@@ -5,14 +5,14 @@ await opticalStore().fetchOpticalTypes()
 
 <template>
   <nav
-      class="w-60 border-l border-solid border-gray-100 overflow-y-auto"
+      class="w-1/2 md:w-60 border-l border-solid border-gray-100 overflow-y-auto"
   >
     <nuxt-link
         to="/optical"
-        class="text-center block py-8 border-b border-solid border-gray-100"
+        class="text-center block py-8 border-b border-solid border-gray-100 sticky top-0 bg-white"
     >
       <span
-          class="text-base relative after:bg-black after:absolute after:h-[1px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+          class="text-base block text-center relative px-5 after:bg-black after:absolute after:h-[1px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
       >
          See all Optical
       </span>

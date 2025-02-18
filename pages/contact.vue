@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Icon from '~/components/Icon.vue';
 import IconLoader from 'assets/icons/loader.svg';
-import {campaignStore} from "~/store/campaign";
 const userModel = ref({})
 const loading = ref(false)
 const error = ref(false)
@@ -10,7 +9,7 @@ async function handleSendEmail() {
   error.value = false;
   let msg = {
     from: 'web@mrboho.ge',
-    to: 'mrbohoge@gmail.com',
+    to: 'hi@mrboho.ge',
     subject:  `Message from ${userModel.value.name} ${userModel.value.surname}`,
     html:  `<p>${userModel.value.name} ${userModel.value.surname} con el email: ${userModel.value.email}, ha mandado una pregunta mediante el formulario de la web:</p><br>
             <p>Mensaje: <b>${userModel.value.message}</b></p>

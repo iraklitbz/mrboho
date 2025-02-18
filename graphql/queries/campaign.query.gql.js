@@ -9,6 +9,7 @@ export const dataQueryCampaign = gql`
                         items {
                             headline
                             onlyText
+                            privateName
                             text
                             image {
                                 url

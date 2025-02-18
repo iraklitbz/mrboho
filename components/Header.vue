@@ -9,10 +9,6 @@ const mainNavMenu = ref([
     menu: 'products',
     submenu: [
       {
-        name: 'New In',
-        slug: 'new-in'
-      },
-      {
         name: 'Sunglasses',
         component: 'Sunglasses'
       },
@@ -82,7 +78,7 @@ onUnmounted(() => {
                :icon="IconHamburguer"
                :auto-align="true"
                class="cursor-pointer text-2xl"
-               :class="isHomepage && !isScrolled ? 'text-white' : 'text-black'"
+               :class="isHomepage && !isScrolled || route.path.includes('we-are-mr-boho') ? 'text-white' : 'text-black'"
            />
         </button>
         </li>
@@ -97,7 +93,7 @@ onUnmounted(() => {
         >
           <span
               class="latin"
-              :class="isHomepage && !isScrolled ? 'text-white' : 'text-black'"
+              :class="isHomepage && !isScrolled || route.path.includes('we-are-mr-boho') ? 'text-white' : 'text-black'"
 
           >
             MR.BOHO
@@ -114,7 +110,7 @@ onUnmounted(() => {
           <nuxt-link
               to="/contact"
               class="relative font-bold after:bg-black after:absolute after:h-[1px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
-              :class="isHomepage && !isScrolled? 'text-white' : 'text-black'"
+              :class="isHomepage && !isScrolled || route.path.includes('we-are-mr-boho') ? 'text-white' : 'text-black'"
           >
            Contact
         </nuxt-link>

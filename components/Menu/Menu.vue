@@ -26,7 +26,8 @@ function handleComponentSelected(component) {
       class="h-screen fixed left-0 top-0 w-full flex z-40"
   >
     <nav
-        class="py-24 px-5 md:px-10 max-w-lg w-full overflow-y-auto relative z-40 bg-white"
+        class="pt-32 pb-24 px-5 md:px-10 max-w-lg  overflow-y-auto relative z-40 bg-white transition-all ease-in-out duration-100"
+        :class="activeSubmenu ? 'w-1/2' : 'w-full'"
     >
       <div class="flex justify-center relative -top-16">
         <nuxt-link
