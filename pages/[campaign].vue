@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { campaignStore } from "~/store/campaign"
-import {heroStore} from "~/store/hero";
 const route = useRoute()
 await campaignStore().fetchCampaign(route.params.campaign as string)
 if(campaignStore().campaign === null || campaignStore().campaign === undefined) {

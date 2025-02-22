@@ -7,6 +7,7 @@ import type {
   const props = defineProps<{
     productDetail: Maybe<SunglassesContenfull | OpticalGlassesContenfull>
   }>()
+import { selectedStore } from "~/store/selected"
 </script>
 
 <template>
@@ -23,9 +24,10 @@ import type {
       </h2>
       <nuxt-link
           to="/contact"
+          @click="selectedStore().handleSelected(props.productDetail?.name)"
           class="text-2xl md:text-3xl text-center bg-black text-white py-3 md:py-4 px-8 rounded-full"
       >
-        Contact us
+        კონტაქტი
       </nuxt-link>
     </div>
   </div>

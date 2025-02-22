@@ -49,7 +49,7 @@ const props = defineProps<{
     <footer
         class="flex justify-between text-base"
     >
-      <h2 class="text-xl">
+      <h2 class="text-lg">
         {{ props.product.name }}
       </h2>
       <p class="text-xl font-bold">{{ props.product.price }} ₾</p>

@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import Icon from '~/components/Icon.vue';
 import IconLoader from 'assets/icons/loader.svg';
+import { selectedStore } from "~/store/selected"
 const userModel = ref({})
 const loading = ref(false)
 const error = ref(false)
+if(selectedStore().glasses && selectedStore().glasses.length > 0) {
+  console.log(userModel.value.subject)
+  userModel.value.subject = `${selectedStore().glasses}`
+}
 async function handleSendEmail() {
   loading.value = true;
   error.value = false;
@@ -50,6 +55,7 @@ async function handleSendEmail() {
           form-class="flex flex-col gap-7 mb-2"
           :on-submit-invalid="true"
           :incomplete-message="false"
+          @submit="handleSendEmail"
       >
         <FormKit
             id="name"
@@ -108,13 +114,11 @@ async function handleSendEmail() {
           }"
         />
         <FormKit
-            id="submit"
             type="submit"
             :classes="{
                  outer: 'w-full relative ',
                  input: 'w-full text-center flex items-center justify-center h-12'
             }"
-            @submit="handleSendEmail()"
         >
           <Icon
               v-if="loading"

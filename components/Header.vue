@@ -78,7 +78,7 @@ onUnmounted(() => {
                :icon="IconHamburguer"
                :auto-align="true"
                class="cursor-pointer text-2xl"
-               :class="isHomepage && !isScrolled || route.path.includes('we-are-mr-boho') ? 'text-white' : 'text-black'"
+               :class="isHomepage && !isScrolled || route.path.includes('we-are-mr-boho') && !isScrolled ? 'text-white' : 'text-black'"
            />
         </button>
         </li>
@@ -93,7 +93,7 @@ onUnmounted(() => {
         >
           <span
               class="latin"
-              :class="isHomepage && !isScrolled || route.path.includes('we-are-mr-boho') ? 'text-white' : 'text-black'"
+              :class="isHomepage && !isScrolled || route.path.includes('we-are-mr-boho') && !isScrolled ? 'text-white' : 'text-black'"
 
           >
             MR.BOHO
