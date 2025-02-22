@@ -10,7 +10,7 @@ async function handleSendEmail() {
   let msg = {
     from: 'web@mrboho.ge',
     to: 'hi@mrboho.ge',
-    subject:  `Message from ${userModel.value.name} ${userModel.value.surname}`,
+    subject:  `${userModel.value.subject}`,
     html:  `<p>${userModel.value.name} ${userModel.value.surname} con el email: ${userModel.value.email}, ha mandado una pregunta mediante el formulario de la web:</p><br>
             <p>Mensaje: <b>${userModel.value.message}</b></p>
             `
@@ -46,6 +46,7 @@ async function handleSendEmail() {
           name="contactForm"
           type="form"
           :actions="false"
+
           form-class="flex flex-col gap-7 mb-2"
           :on-submit-invalid="true"
           :incomplete-message="false"
@@ -53,8 +54,8 @@ async function handleSendEmail() {
         <FormKit
             id="name"
             type="text"
-            placeholder="Jon Snow"
-            label="Name"
+            placeholder="Jon"
+            label="სახელი"
             name="name"
             validation="required"
             :validation-message="{
@@ -65,7 +66,7 @@ async function handleSendEmail() {
             id="surname"
             type="text"
             placeholder="Snow"
-            label="Surname"
+            label="გვარი"
             name="surname"
             validation="required"
             :validation-message="{
@@ -76,7 +77,7 @@ async function handleSendEmail() {
             id="email"
             type="email"
             placeholder="Jonsnow@winterfall.com"
-            label="Email"
+            label="ელ. ფოსტა"
             name="email"
             validation="required|email"
             :validation-messages="{
@@ -85,10 +86,21 @@ async function handleSendEmail() {
           }"
         />
         <FormKit
+            id="subject"
+            type="text"
+            placeholder="About the glasses Atrani"
+            label="სათაური"
+            name="subject"
+            validation="required"
+            :validation-message="{
+            required: 'Please enter the subject'
+          }"
+        />
+        <FormKit
             id="message"
             type="textarea"
             placeholder="I have a question"
-            label="Your message"
+            label="ტექსტი"
             name="message"
             validation="required"
             :validation-message="{
@@ -97,12 +109,12 @@ async function handleSendEmail() {
         />
         <FormKit
             id="submit"
-            type="button"
+            type="submit"
             :classes="{
                  outer: 'w-full relative ',
                  input: 'w-full text-center flex items-center justify-center h-12'
             }"
-            @click="handleSendEmail()"
+            @submit="handleSendEmail()"
         >
           <Icon
               v-if="loading"
@@ -113,14 +125,14 @@ async function handleSendEmail() {
               v-else
               class="text-white"
           >
-            Send the message
+            გაგზავნა
           </span>
         </FormKit>
         <div
             v-if="error"
             class="text-red-500 text-center -mt-5"
         >
-          There was an error sending the message, please try again later
+          შეტყობინების გაგზავნისას მოხდა შეცდომა, გთხოვთ, სცადოთ მოგვიანებით
         </div>
       </FormKit>
     </div>

@@ -3,22 +3,16 @@
   import IconLogo from 'assets/icons/logo.svg';
   import IconInstagram from 'assets/icons/instagram.svg';
   import IconFacebook from 'assets/icons/facebook.svg';
-  import IconTicktok from 'assets/icons/ticktok.svg';
   const socialMedia = [
     {
       name: 'Instagram',
-      link: 'https://www.instagram.com/',
+      link: 'https://www.instagram.com/mrboho.geo',
       icon: IconInstagram
     },
     {
       name: 'Facebook',
       link: 'https://www.facebook.com/',
       icon: IconFacebook
-    },
-    {
-      name: 'Twitter',
-      link: 'https://twitter.com/',
-      icon: IconTicktok
     }
   ]
 </script>
@@ -47,6 +41,7 @@
               />
               <a
                   :href="item.link"
+                  target="_blank"
               >
                 <span
                     class="text-base relative after:bg-black after:absolute after:h-[1px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"

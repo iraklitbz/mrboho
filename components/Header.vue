@@ -9,19 +9,19 @@ const mainNavMenu = ref([
     menu: 'products',
     submenu: [
       {
-        name: 'Sunglasses',
+        name: 'მზის სათვალეები',
         component: 'Sunglasses'
       },
       {
-        name: 'Optical',
+        name: 'ოპტიკური ჩარჩოები',
         component: 'Optical'
       },
       {
-        name: 'Lookbook',
+        name: 'ლუქბუქი',
         slug: 'lookbook'
       },
       {
-        name: 'We are Mr.Boho',
+        name: 'ჩვენ ვართ Mr.Boho',
         slug: 'we-are-mr-boho'
       }
     ]
@@ -112,7 +112,7 @@ onUnmounted(() => {
               class="relative font-bold after:bg-black after:absolute after:h-[1px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
               :class="isHomepage && !isScrolled || route.path.includes('we-are-mr-boho') ? 'text-white' : 'text-black'"
           >
-           Contact
+            კონტაქტი
         </nuxt-link>
         </li>
       </ul>

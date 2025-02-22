@@ -42,7 +42,7 @@ await heroStore().fetchHeroHome()
       class="flex flex-col items-center absolute left-1/2 -translate-x-1/2 bottom-10 w-full z-20"
      >
        <h3 class="text-3xl latin w-full sm:text-5xl text-white md:text-7xl font-bold uppercase lg:text-8xl  text-center md:px-10 px-5">
-         {{ heroStore().homeHero?.title }}
+         ჩვენ ვართ <span class="latin">MR.BOHO</span>
        </h3>
        <p class="text-xl w-full sm:text-3xl text-white text-center mt-3 latin px-5">Official Partner & Exclusive Distributor in Georgia</p>
      </div>
