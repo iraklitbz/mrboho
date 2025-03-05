@@ -2,6 +2,9 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   app: {
     head: {
+      meta: [
+        { name: 'facebook-domain-verification', content: process.env.FACEBOOK_SITE}
+      ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon/favicon.ico' },
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
