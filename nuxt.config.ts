@@ -21,6 +21,9 @@ export default defineNuxtConfig({
       mode: "out-in",
     },
   },
+  supabase: {
+    redirect: false
+  },
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxt/image",
@@ -30,6 +33,7 @@ export default defineNuxtConfig({
     "@formkit/nuxt",
     "pinia-plugin-persistedstate/nuxt",
     "@nuxt/eslint",
+    '@nuxtjs/supabase'
   ],
   components: [
     '~/components',
@@ -69,6 +73,11 @@ export default defineNuxtConfig({
       }
     },
   },
+  routeRules: {
+    '/account/**': {
+      ssr: false
+    }
+  },
   build: {
     transpile: ["@fawmi/vue-google-maps"],
   },
@@ -77,7 +86,11 @@ export default defineNuxtConfig({
     exposeConfig: true,
   },
   runtimeConfig: {
-    RESEND_API_KEY: process.env.RESEND_API_KEY
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    public: {
+      SUPABASE_URL: process.env.SUPABASE_URL,
+      SUPABASE_KEY: process.env.SUPABASE_KEY
+    }
   },
   devtools: { enabled: true },
 });
