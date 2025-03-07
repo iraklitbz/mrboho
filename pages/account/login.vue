@@ -53,21 +53,21 @@ async  function handleLoginWithGoogle() {
   }
   router.push('/account/me')
 }
-// async  function handleLoginWithFacebook() {
-//   loading.value = true
-//   const { error } = await supabase.auth.signInWithOAuth({
-//     provider: 'facebook',
-//     options: {
-//       redirectTo: `${config.public.NUXT_PUBLIC_BASE_URL}/account/me`,
-//     }
-//   })
-//   loading.value = false
-//   if (error) {
-//     console.error('Error logging in with Facebook:', error.message)
-//     errorMessage.value = 'Failed to log in with Facebook. Please try again later.'
-//   }
-//   router.push('/account/me')
-// }
+async  function handleLoginWithFacebook() {
+  loading.value = true
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: 'facebook',
+    options: {
+      redirectTo: `${config.public.NUXT_PUBLIC_BASE_URL}/account/me`,
+    }
+  })
+  loading.value = false
+  if (error) {
+    console.error('Error logging in with Facebook:', error.message)
+    errorMessage.value = 'Failed to log in with Facebook. Please try again later.'
+  }
+  router.push('/account/me')
+}
 async function resendConfirmationEmail() {
   loading.value = true
   const { data, error } = await supabase.auth.resend({
@@ -110,17 +110,17 @@ async function resendConfirmationEmail() {
               />
               Google ავტორიზაცია
             </button>
-<!--            <button-->
-<!--                type="button"-->
-<!--                class="text-white w-full mt-3 bg-[#156AFE] hover:bg-[#156AFE]/90 focus:ring-4 focus:outline-none focus:ring-[#156AFE]/50 font-medium text-sm p-3 text-center inline-flex items-center justify-center mr-2"-->
-<!--                @click="handleLoginWithFacebook()"-->
-<!--            >-->
-<!--              <Icon-->
-<!--                  :icon="IconFacebook"-->
-<!--                  class="text-xl mr-4"-->
-<!--              />-->
-<!--              Facebook ავტორიზაცია-->
-<!--            </button>-->
+            <button
+                type="button"
+                class="text-white w-full mt-3 bg-[#156AFE] hover:bg-[#156AFE]/90 focus:ring-4 focus:outline-none focus:ring-[#156AFE]/50 font-medium text-sm p-3 text-center inline-flex items-center justify-center mr-2"
+                @click="handleLoginWithFacebook()"
+            >
+              <Icon
+                  :icon="IconFacebook"
+                  class="text-xl mr-4"
+              />
+              Facebook ავტორიზაცია
+            </button>
           </div>
         </div>
         <div class="py-3 flex items-center text-md text-gray-800 before:flex-1 before:border-t before:border-gray-300 before:me-6 after:flex-1 after:border-t after:border-gray-300 after:ms-6 ">
