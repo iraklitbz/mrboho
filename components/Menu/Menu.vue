@@ -2,6 +2,8 @@
 import Icon from "~/components/Icon.vue";
 import { toggleMenu } from '~/store/menu';
 import IconClose from 'assets/icons/close.svg'
+const user = useSupabaseUser()
+const supabase = useSupabaseClient()
 const props = defineProps<{
   mainNavMenu: {
     name: string;
@@ -9,6 +11,7 @@ const props = defineProps<{
     component?: string }[]
 }>()
 const activeSubmenu = ref(false)
+const router = useRouter()
 const componentSelected = ref('')
 function handleComponentSelected(component) {
   if (componentSelected.value === `Lazy${component}`) {
@@ -18,6 +21,10 @@ function handleComponentSelected(component) {
     componentSelected.value = `Lazy${component}`
     activeSubmenu.value = true
   }
+}
+function handleLogout() {
+  supabase.auth.signOut()
+  router.push('/account/login')
 }
 </script>
 
@@ -80,6 +87,32 @@ function handleComponentSelected(component) {
         class="bg-white relative z-40"
         :is="componentSelected"
     />
+    <div class="absolute bottom-0 left-0 z-50 p-5 md:hidden text-xl w-full">
+      <nuxt-link
+        v-if="!user"
+        to="/account/login"
+        class="bg-black text-white p-3 w-full block text-center"
+      >
+        შესვლა
+      </nuxt-link>
+      <div
+          v-else
+          class="text-center"
+      >
+        <nuxt-link
+            to="/account/me"
+            class="bg-black text-white p-3 w-full block text-center"
+        >
+          პროფილი
+        </nuxt-link>
+        <button
+            class="mt-3 relative text-red-600 font-bold after:bg-red-600 after:absolute after:h-[1px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+            @click="handleLogout()"
+        >
+          გასვლა
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 

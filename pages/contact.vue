@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import Icon from '~/components/Icon.vue';
-import IconLoader from 'assets/icons/loader.svg';
+import IconLoader from '~/assets/icons/loader.svg'
 import { selectedStore } from "~/store/selected"
 const userModel = ref({})
 const loading = ref(false)
 const error = ref(false)
 if(selectedStore().glasses && selectedStore().glasses.length > 0) {
-  console.log(userModel.value.subject)
   userModel.value.subject = `${selectedStore().glasses}`
 }
 async function handleSendEmail() {
@@ -37,7 +36,7 @@ async function handleSendEmail() {
 <template>
 <main>
   <Headline
-      :title="'Contact us'"
+      :title="'კონტაქტი'"
   />
   <section
       class="grid mt-10 grid-cols-1 border-t border-b md:grid-cols-2 border-solid border-black"
