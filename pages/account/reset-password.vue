@@ -1,4 +1,7 @@
 <script setup lang="ts">
+definePageMeta({
+  middleware: 'auth'
+})
 const userModel = ref({
   password: '',
   passwordRepeat: ''
@@ -6,7 +9,6 @@ const userModel = ref({
 const supabase = useSupabaseClient();
 const router = useRouter();
 const errorMessage = ref('');
-const isValidCode = ref(false);
 const error = ref(false);
 
 async function submitResetPasswordForm() {
@@ -36,13 +38,13 @@ async function submitResetPasswordForm() {
 <template>
   <main>
     <Headline
-        :title="'Restablecer contraseña'"
+        :title="'პაროლის განახლება'"
     />
     <section
         class="mt-10 border-t border-b border-solid border-black"
     >
       <div
-          class="px-5 py-10 md:p-10 w-full max-w-3xl m-auto"
+          class="px-5 py-10 md:p-10 w-full max-w-xl m-auto"
       >
         <FormKit
             v-model="userModel"
@@ -56,7 +58,7 @@ async function submitResetPasswordForm() {
           <FormKit
               id="password"
               type="password"
-              label="Nueva contraseña"
+              label="ახალი პაროლი"
               name="password"
               validation="required"
               :validation-message="{
@@ -66,7 +68,7 @@ async function submitResetPasswordForm() {
           <FormKit
               id="passwordRepeat"
               type="password"
-              label="Repetir contraseña"
+              label="გაიმეორე პაროლი"
               name="passwordRepeat"
               validation="required"
               :validation-message="{
@@ -83,7 +85,7 @@ async function submitResetPasswordForm() {
             <span
                 class="text-white"
             >
-            Restablecer contraseña
+            პაროლის განახლება
           </span>
           </FormKit>
           <div

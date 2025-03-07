@@ -1,4 +1,7 @@
 <script setup lang="ts">
+definePageMeta({
+  middleware: 'pre-auth'
+})
 const supabase = useSupabaseClient()
 const userModel = ref({
   email: '',
@@ -16,7 +19,7 @@ async function submitRegisterForm () {
     email: userModel.value.email,
     password: userModel.value.password,
     options: {
-      emailRedirectTo: 'https://example.com/welcome',
+      emailRedirectTo: "http://localhost:3000/account/me",
       data: {
         full_name: userModel.value.name + ' ' + userModel.value.surname,
       }
@@ -36,13 +39,13 @@ async function submitRegisterForm () {
 <template>
   <main>
     <Headline
-        :title="'ანგარიშის შექმნა'"
+        :title="'რეგისტრაცია'"
     />
     <section
         class=" mt-10 border-t border-b border-solid border-black"
     >
       <div
-          class="px-5 py-10 md:p-10 w-full max-w-3xl m-auto"
+          class="px-5 py-10 md:p-10 w-full max-w-xl m-auto"
       >
           <FormKit
               v-model="userModel"
@@ -92,7 +95,7 @@ async function submitRegisterForm () {
               type="password"
               label="პაროლი"
               name="password"
-              validation="required"
+              validation="required|contains_numeric|contains_special|contains_uppercase|length:8"
               :validation-message="{
                 required: 'Please enter your password'
               }"
@@ -107,7 +110,7 @@ async function submitRegisterForm () {
             <span
                 class="text-white"
             >
-            შექმნა
+            რეგისტრაცია
           </span>
           </FormKit>
           <div
@@ -117,6 +120,16 @@ async function submitRegisterForm () {
             შეტყობინების გაგზავნისას მოხდა შეცდომა, გთხოვთ, სცადოთ მოგვიანებით
           </div>
         </FormKit>
+        <div
+            class="text-center"
+        >
+          <nuxt-link
+              to="/account/login"
+              class="relative font-bold after:bg-black after:absolute after:h-[1px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+          >
+            შესვლა
+          </nuxt-link>
+        </div>
       </div>
     </section>
   </main>

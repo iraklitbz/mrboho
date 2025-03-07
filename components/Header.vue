@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import Menu from '~/components/Menu/Menu.vue';
-import Icon from '~/components/Icon.vue';
-import IconHamburguer from '~/assets/icons/hamburguer.svg';
-import { toggleMenu } from '~/store/menu';
+import { cartStore } from "~/store/cart"
+import Menu from '~/components/Menu/Menu.vue'
+import Icon from '~/components/Icon.vue'
+import IconHamburguer from '~/assets/icons/hamburguer.svg'
+import { toggleMenu } from '~/store/menu'
+import DropDown from "~/components/AccountButton/DropDown.vue"
 const mainNavMenu = ref([
   {
     name: 'Products',
@@ -33,7 +35,6 @@ const isHomepage = computed(() => route.path === '/')
 const currentMenuNavbar = ref([])
 const activeMenu = ref<string | null>(null)
 const isScrolled = ref(false)
-const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 function handleMenu(submenu = [], menuName: string) {
   if (activeMenu.value === menuName) {
@@ -103,7 +104,7 @@ onUnmounted(() => {
         </nuxt-link>
       </h1>
       <ul
-          class="flex flex-row justify-end gap-10 text-base z-40 relative w-1/3"
+          class="flex flex-row justify-end gap-5 text-base z-40 relative w-1/3"
       >
 
         <li
@@ -114,14 +115,7 @@ onUnmounted(() => {
               class="relative"
               :class="isHomepage && !isScrolled || route.path.includes('we-are-mr-boho') ? 'text-white' : 'text-black'"
           >
-<!--            {{-->
-<!--              user.user_metadata.full_name-->
-<!--            }}-->
-            <button
-              @click="supabase.auth.signOut()"
-            >
-              logout
-            </button>
+            <DropDown />
           </span>
           <nuxt-link
             v-else
@@ -129,10 +123,9 @@ onUnmounted(() => {
             :class="isHomepage && !isScrolled || route.path.includes('we-are-mr-boho') ? 'text-white' : 'text-black'"
             to="/account/login"
           >
-            Account
+            ავტორიზაცია
           </nuxt-link>
         </li>
-
         <li
             class="flex items-center justify-center"
         >
@@ -143,6 +136,20 @@ onUnmounted(() => {
           >
             კონტაქტი
         </nuxt-link>
+        </li>
+        <li
+            class="flex items-center justify-center"
+        >
+          <button
+              @click="cartStore().handleCartToggle()"
+              class="relative font-bold after:bg-black after:absolute after:h-[1px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+              :class="isHomepage && !isScrolled || route.path.includes('we-are-mr-boho') ? 'text-white' : 'text-black'"
+          >
+            კალათა
+            <span>
+              ({{ cartStore().cartTotalItems }})
+            </span>
+          </button>
         </li>
       </ul>
     </div>
@@ -158,6 +165,11 @@ onUnmounted(() => {
           class="absolute left-0 top-0 bg-black/20 w-full h-screen z-20"
           @click="toggleMenu().handleCloseMenu()"
       ></div>
+    </transition>
+    <transition name="fade" mode="out-in">
+      <Cart
+          v-if="cartStore().cartToggle"
+      />
     </transition>
   </header>
 </template>

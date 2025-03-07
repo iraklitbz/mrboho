@@ -3,12 +3,10 @@ import type {
     SunglassesTypesCollectionContenfull,
     SunglassesTypesContenfull,
     SunglassesContenfull,
-    AssetLinkingCollectionsContenfull
 } from '~/types/contenfull-types'
 import { apiCall } from '~/composables/apiCall'
 import {
     dataQueryAllSunGlasses,
-    dataQueryNewIn,
     dataQuerySunglasses,
     dataQuerySunGlassesTypes,
     dataQuerySunGlassesTypesBySlug
@@ -19,7 +17,6 @@ export const sunglassesStore = defineStore('sunglassesData', {
         sunglassesTypesBySlug: {} as Maybe<SunglassesTypesContenfull>,
         sunglassesDetail: {} as Maybe<SunglassesContenfull>,
         sunglassesMoreOptions: [] as Array<Maybe<SunglassesContenfull>>,
-        newIn: [] as Array<Maybe<SunglassesContenfull>>,
         allGlasses: [] as Array<Maybe<SunglassesContenfull>>,
     }),
     actions: {
@@ -37,7 +34,7 @@ export const sunglassesStore = defineStore('sunglassesData', {
         },
         async fetchAllSunglasses() {
             const data = await apiCall(dataQueryAllSunGlasses, 'sunglassesCollection', {}, false) as SunglassesTypesCollectionContenfull
-            this.allGlasses = data.items
+            this.allGlasses = data.items as Array<Maybe<SunglassesContenfull>>
         },
         async fetchSunglassesDetail(slug: string) {
             this.sunglassesDetail = {} as Maybe<SunglassesContenfull>
@@ -46,10 +43,6 @@ export const sunglassesStore = defineStore('sunglassesData', {
             }
             const data = await apiCall(dataQuerySunglasses, 'sunglassesCollection', variables, false) as SunglassesTypesCollectionContenfull
             this.sunglassesDetail = data.items[0] as SunglassesContenfull
-        },
-        async fetchNewIn() {
-            const data = await apiCall(dataQueryNewIn, 'sunglassesCollection', {}, false) as AssetLinkingCollectionsContenfull
-            this.newIn = data.items
-        },
+        }
     },
 })

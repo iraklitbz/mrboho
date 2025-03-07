@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import IconLoader from "assets/icons/loader.svg";
+import IconLoader from "~/assets/icons/loader.svg";
+import IconGoogle from "~/assets/icons/google.svg";
+import IconFacebook from "~/assets/icons/facebook.svg";
 import Icon from "~/components/Icon.vue";
-
+definePageMeta({
+  middleware: 'pre-auth'
+})
 const supabase = useSupabaseClient()
 const userModel = ref({
   email: '',
@@ -31,7 +35,37 @@ async function submitLoginForm () {
     return
   }
 
-  router.push('/')
+  router.push('/account/me')
+}
+async  function handleLoginWithGoogle() {
+  loading.value = true
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: 'http://localhost:3000/account/me',
+    }
+  })
+  loading.value = false
+  if (error) {
+    console.error('Error logging in with Google:', error.message)
+    errorMessage.value = 'Failed to log in with Google. Please try again later.'
+  }
+  router.push('/account/me')
+}
+async  function handleLoginWithFacebook() {
+  loading.value = true
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: 'facebook',
+    options: {
+      redirectTo: 'http://localhost:3000/account/me',
+    }
+  })
+  loading.value = false
+  if (error) {
+    console.error('Error logging in with Facebook:', error.message)
+    errorMessage.value = 'Failed to log in with Facebook. Please try again later.'
+  }
+  router.push('/account/me')
 }
 async function resendConfirmationEmail() {
   loading.value = true
@@ -52,14 +86,45 @@ async function resendConfirmationEmail() {
 <template>
   <main>
     <Headline
-        :title="'ანგარიშზე შესვლა'"
+        :title="'ავტორიზაცია'"
     />
     <section
         class=" mt-10 border-t border-b border-solid border-black"
     >
       <div
-          class="px-5 py-10 md:p-10 w-full max-w-3xl m-auto"
+          class="px-5 py-10 md:p-10 w-full max-w-xl m-auto"
       >
+        <div
+          class="mb-5"
+        >
+          <div>
+            <button
+                type="button"
+                class="text-white w-full  bg-[#EA4336] hover:bg-[#EA4336]/90 focus:ring-4 focus:outline-none focus:ring-[#EA4336]/50 font-medium text-sm p-3 text-center inline-flex items-center justify-center mr-2"
+                @click="handleLoginWithGoogle()"
+            >
+              <Icon
+                  :icon="IconGoogle"
+                  class="text-xl mr-4"
+              />
+              Google ავტორიზაცია
+            </button>
+            <button
+                type="button"
+                class="text-white w-full mt-3 bg-[#156AFE] hover:bg-[#156AFE]/90 focus:ring-4 focus:outline-none focus:ring-[#156AFE]/50 font-medium text-sm p-3 text-center inline-flex items-center justify-center mr-2"
+                @click="handleLoginWithFacebook()"
+            >
+              <Icon
+                  :icon="IconFacebook"
+                  class="text-xl mr-4"
+              />
+              Facebook ავტორიზაცია
+            </button>
+          </div>
+        </div>
+        <div class="py-3 flex items-center text-md text-gray-800 before:flex-1 before:border-t before:border-gray-300 before:me-6 after:flex-1 after:border-t after:border-gray-300 after:ms-6 ">
+          ან
+        </div>
         <FormKit
             v-model="userModel"
             id="loginForm"
@@ -133,7 +198,7 @@ async function resendConfirmationEmail() {
               to="/account/forgot-password"
               class="relative font-bold after:bg-black after:absolute after:h-[1px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
           >
-            პაროლი დაგავიწყდა
+            დაგავიწყდათ პაროლი?
           </nuxt-link>
         </div>
         <div
@@ -143,7 +208,7 @@ async function resendConfirmationEmail() {
               to="/account/register"
               class="relative font-bold after:bg-black after:absolute after:h-[1px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
           >
-            ანგარიშის რეგისტრაცია
+            რეგისტრაცია
           </nuxt-link>
         </div>
       </div>

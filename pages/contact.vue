@@ -36,7 +36,7 @@ async function handleSendEmail() {
 <template>
 <main>
   <Headline
-      :title="'Contact us'"
+      :title="'კონტაქტი'"
   />
   <section
       class="grid mt-10 grid-cols-1 border-t border-b md:grid-cols-2 border-solid border-black"

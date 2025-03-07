@@ -37,5 +37,8 @@
       font-weight: normal;
       font-style: normal;
     }
+    &.cart-open {
+      overflow: hidden;
+    }
   }
 }

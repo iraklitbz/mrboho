@@ -1,4 +1,7 @@
 <script setup lang="ts">
+definePageMeta({
+  middleware: 'pre-auth'
+})
 const userModel = ref({
   email: ''
 })
@@ -30,13 +33,13 @@ async function submitForgotPassword() {
 <template>
   <main>
     <Headline
-        :title="'ანგარიშზე შესვლა'"
+        :title="'პაროლის განახლება'"
     />
     <section
         class=" mt-10 border-t border-b border-solid border-black"
     >
       <div
-          class="px-5 py-10 md:p-10 w-full max-w-3xl m-auto"
+          class="px-5 py-10 md:p-10 w-full max-w-xl m-auto"
       >
         <FormKit
             v-model="userModel"
@@ -69,7 +72,7 @@ async function submitForgotPassword() {
             <span
                 class="text-white"
             >
-            შესვლა
+            პაროლის განახლება
           </span>
           </FormKit>
           <div

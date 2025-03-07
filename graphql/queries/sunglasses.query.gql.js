@@ -77,6 +77,8 @@ export const dataQuerySunglasses = gql`
             items {
                 name
                 price
+                slug
+                soldOut
                 familie {
                     slug
                 }

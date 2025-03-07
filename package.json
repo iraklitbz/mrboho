@@ -30,6 +30,7 @@
     "@nuxtjs/supabase": "1.5.0",
     "@nuxtjs/tailwindcss": "6.12.2",
     "@pinia/nuxt": "0.5.5",
+    "@supabase/supabase-js": "2.49.1",
     "@types/node": "20.13.0",
     "@types/vimeo__player": "2.18.3",
     "@typescript-eslint/eslint-plugin": "8.18.0",
@@ -53,6 +54,8 @@
     "typescript": "5.6.3",
     "vue": "3.5.12",
     "vue3-google-map": "0.21.0",
-    "@supabase/supabase-js": "2.49.1"
+    "@intlify/core-base": "11.1.2",
+    "@vueuse/components": "12.8.2",
+    "@vueuse/core": "12.8.2"
   }
 }
