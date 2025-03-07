@@ -115,7 +115,9 @@ onUnmounted(() => {
               class="relative"
               :class="isHomepage && !isScrolled || route.path.includes('we-are-mr-boho') ? 'text-white' : 'text-black'"
           >
-            <DropDown />
+            <client-only>
+              <DropDown />
+            </client-only>
           </span>
           <nuxt-link
             v-else
