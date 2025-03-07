@@ -11,6 +11,7 @@ const userModel = ref({
   email: '',
   password: ''
 })
+const config = useRuntimeConfig()
 const router = useRouter()
 const loading = ref(false)
 const error = ref(false)
@@ -42,7 +43,7 @@ async  function handleLoginWithGoogle() {
   const { error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: 'http://localhost:3000/account/me',
+      redirectTo: `${config.public.NUXT_PUBLIC_BASE_URL}/account/me`
     }
   })
   loading.value = false
@@ -57,7 +58,7 @@ async  function handleLoginWithGoogle() {
 //   const { error } = await supabase.auth.signInWithOAuth({
 //     provider: 'facebook',
 //     options: {
-//       redirectTo: 'http://localhost:3000/account/me',
+//       redirectTo: `${config.public.NUXT_PUBLIC_BASE_URL}/account/me`,
 //     }
 //   })
 //   loading.value = false

@@ -89,7 +89,8 @@ export default defineNuxtConfig({
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     public: {
       SUPABASE_URL: process.env.SUPABASE_URL,
-      SUPABASE_KEY: process.env.SUPABASE_KEY
+      SUPABASE_KEY: process.env.SUPABASE_KEY,
+      NUXT_PUBLIC_BASE_URL: process.env.NUXT_PUBLIC_BASE_URL
     }
   },
   devtools: { enabled: true },

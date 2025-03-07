@@ -9,7 +9,8 @@ const supabase = useSupabaseClient();
 const loading = ref(false);
 const error = ref(false);
 const errorMessage = ref("");
-const successMessage = ref("");
+const successMessage = ref("")
+const config = useRuntimeConfig()
 let successOnSend = false
 async function submitForgotPassword() {
   successOnSend = false
@@ -18,7 +19,7 @@ async function submitForgotPassword() {
   successMessage.value = "";
 
   const { data, error: supabaseError } = await supabase.auth.resetPasswordForEmail(userModel.value.email, {
-    redirectTo: "http://localhost:3000/account/reset-password",
+    redirectTo: `${config.public.NUXT_PUBLIC_BASE_URL}/account/reset-password`,
   })
   loading.value = false;
   if (supabaseError) {

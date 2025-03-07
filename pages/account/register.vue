@@ -2,6 +2,7 @@
 definePageMeta({
   middleware: 'pre-auth'
 })
+const config = useRuntimeConfig()
 const supabase = useSupabaseClient()
 const userModel = ref({
   email: '',
@@ -19,7 +20,7 @@ async function submitRegisterForm () {
     email: userModel.value.email,
     password: userModel.value.password,
     options: {
-      emailRedirectTo: "http://localhost:3000/account/me",
+      emailRedirectTo: `${config.public.NUXT_PUBLIC_BASE_URL}/account/me`,
       data: {
         full_name: userModel.value.name + ' ' + userModel.value.surname,
       }
