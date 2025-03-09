@@ -5,6 +5,8 @@ import Icon from '~/components/Icon.vue'
 import IconHamburguer from '~/assets/icons/hamburguer.svg'
 import { toggleMenu } from '~/store/menu'
 import DropDown from "~/components/AccountButton/DropDown.vue"
+import { useMounted } from '@vueuse/core'
+const isMounted = useMounted()
 const mainNavMenu = ref([
   {
     name: 'Products',
@@ -61,7 +63,7 @@ onUnmounted(() => {
 <template>
   <header
       ref="headerRef"
-      class="px-5 md:px-10 py-6 z-50 fixed top-0 left-0 w-full transition-all duration-300 ease-in-out "
+      class="px-5 md:px-10 py-6 z-[9999] fixed top-0 left-0 w-full transition-all duration-300 ease-in-out "
       :class="isScrolled ? 'bg-white shadow-md' : 'bg-transparent'"
   >
     <div class="flex justify-between items-center">
@@ -137,7 +139,9 @@ onUnmounted(() => {
               :class="isHomepage && !isScrolled || route.path.includes('we-are-mr-boho') ? 'text-white' : 'text-black'"
           >
             კალათა
-            <span>
+            <span
+            v-if="isMounted"
+            >
               ({{ cartStore().cartTotalItems }})
             </span>
           </button>

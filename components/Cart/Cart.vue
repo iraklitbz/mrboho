@@ -24,7 +24,11 @@ function updateTotal(slug: string, newTotal: string) {
         :class="['max-w-md md:max-w-md absolute w-full p-6 bg-white shadow-lg top-0 h-full', { 'slide-in': isVisible }]"
     >
       <header>
-        <h2 class="text-xl">კალათა</h2>
+        <h2 class="text-xl">კალათა
+          <span>
+            ({{ cartStore().cartTotalItems }})
+          </span>
+        </h2>
         <button
             class="absolute right-5 top-5 cursor-pointer"
             @click="cartStore().handleCartToggle()"
@@ -103,6 +107,7 @@ function updateTotal(slug: string, newTotal: string) {
         </div>
         <nuxt-link
             to="/checkout"
+            @click.native="cartStore().handleCartToggle()"
             class="text-center w-full block mt-4 bg-black/90 text-white py-3 md:py-3 px-8 relative font-bold after:bg-black after:absolute after:z-0 after:h-full after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer overflow-hidden"
         >
           <span class="relative z-20">ყიდვის გაგრძელება</span>

@@ -22,7 +22,7 @@ export async function apiCallClient (query: any, returnObject?: string, variable
     if (data && returnObject) {
         return data[returnObject]
     }
-    return data?.value
+    return data
 }
 
 export async function apiCall (query: any, returnObject?: string, variables: object = {}, cache: boolean = true, isAuth: boolean = false) {

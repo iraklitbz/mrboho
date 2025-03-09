@@ -92,27 +92,24 @@ export const dataQuerySunglasses = gql`
     }
 `
 
-export const dataQueryNewIn = gql`
-    query newInGlasses {
-        sunglassesCollection (where: { new: true }) {
+export const dataQueryIsSoldOut = gql`
+    query isSoldOut ($slug: [String]) {
+        sunglassesCollection (where: { slug_in: $slug }) {
             items {
-                name
-                price
-                new
                 soldOut
                 slug
-                familie {
-                    slug
-                }
-                imagesCollection(limit: 2) {
-                    items {
-                        url
-                    }
-                }
+                price
+            }
+        }
+        opticalGlassesCollection (where: { slug_in: $slug }) {
+            items {
+                slug
+                soldOut
+                price
             }
         }
     }
-`
+`;
 
 
 

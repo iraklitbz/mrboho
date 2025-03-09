@@ -33,8 +33,12 @@ export default defineNuxtConfig({
     "@formkit/nuxt",
     "pinia-plugin-persistedstate/nuxt",
     "@nuxt/eslint",
-    '@nuxtjs/supabase'
+    '@nuxtjs/supabase',
+    'nuxt-paypal'
   ],
+  paypal: {
+    clientId: process.env.PAYPAL_CLIENT_ID,
+  },
   components: [
     '~/components',
     '~/components/Menu',
@@ -75,6 +79,9 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/account/**': {
+      ssr: false
+    },
+    '/checkout': {
       ssr: false
     }
   },

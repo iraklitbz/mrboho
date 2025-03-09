@@ -77,6 +77,7 @@ export const dataQueryOptical = gql`
             items {
                 name
                 price
+                slug
                 familie {
                     slug
                 }
