@@ -11,7 +11,7 @@
     },
     {
       name: 'Facebook',
-      link: 'https://www.facebook.com/',
+      link: 'https://www.facebook.com/profile.php?id=61573262527849',
       icon: IconFacebook
     }
   ]
