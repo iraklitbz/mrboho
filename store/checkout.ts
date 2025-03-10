@@ -3,6 +3,7 @@ import type {
     UserOrderItem,
     CartProduct
 } from '~/types/local-types'
+import {cartStore} from "~/store/cart"
 import { orderEmailTemplate } from '~/services/emails/order'
 import { orderConfirmationEmailTemplate } from '~/services/emails/orderConfirmation'
 import { customAlphabet } from 'nanoid'
@@ -26,7 +27,9 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
         const orderProducts = products.map((product: CartProduct) => ({
             name: product?.product?.name,
             slug: product?.product?.slug,
+            productID: product?.product?.sys?.id,
             quantity: product?.total,
+            price: currencyFormat(product?.product?.price as number),
             imageUrl: product.product?.imagesCollection?.items[0]?.url || "default-image-url"
         }))
         const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
@@ -54,18 +57,19 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
             console.error('Error al crear la orden:', orderError.message)
             return
         }
-        await handleSendEmail(orderProducts, total)
+        await handleSendEmail(orderProducts, total, orderID)
         await handleSendConfirmationEmailUser(orderProducts, total, orderID)
+        cartStore().resetCart()
         router.push('/thanks')
     }
-    async function handleSendEmail(orderProducts: UserOrderItem[]  , total: string) {
+    async function handleSendEmail(orderProducts: UserOrderItem[]  , total: string, orderID: string) {
         loading.value = true;
         error.value = false;
         let msg = {
             from: 'web@mrboho.ge',
             to: 'georgia@mrboho.ge',
             subject:  `New order from ${userOrderForm.value.email}`,
-            html: orderEmailTemplate(userOrderForm.value, orderProducts, total)
+            html: orderEmailTemplate(userOrderForm.value, orderProducts, total, orderID)
         }
         const { data } = await useFetch("/api/order-success-email", {
             method: "POST",
@@ -73,7 +77,6 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
         });
         if(data) {
             loading.value = false;
-            navigateTo("/thankyou")
         } else {
             error.value = true;
             loading.value = false;
@@ -83,7 +86,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
         loading.value = true;
         error.value = false;
         let msg = {
-            from: 'orders@mrboho.ge',
+            from: 'mrboho@mrboho.ge',
             to: userOrderForm.value.email,
             subject:  `Your order ${orderID}`,
             html: orderConfirmationEmailTemplate(userOrderForm.value, orderProducts, total, orderID)
@@ -94,7 +97,6 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
         });
         if(data) {
             loading.value = false;
-            navigateTo("/thankyou")
         } else {
             error.value = true;
             loading.value = false;

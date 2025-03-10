@@ -36,6 +36,7 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     'nuxt-paypal'
   ],
+  css: [ 'vue-final-modal/style.css' ],
   paypal: {
     clientId: process.env.PAYPAL_CLIENT_ID,
   },

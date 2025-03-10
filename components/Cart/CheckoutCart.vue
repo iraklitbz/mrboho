@@ -8,7 +8,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div>
+  <div class="sticky top-40">
     <ul
       class="flex flex-col gap-2"
     >
@@ -28,7 +28,7 @@ const props = defineProps<{
           />
         </figure>
         <div class="flex items-center justify-between w-full">
-          <h3 class="latin">{{item?.product?.name}}</h3>
+          <h3 class="latin"><nuxt-link :to="item?.product?.slug">{{item?.product?.name}}</nuxt-link></h3>
           <p class="latin"><strong>{{currencyFormat(item?.product?.price as number)}}</strong></p>
         </div>
       </li>

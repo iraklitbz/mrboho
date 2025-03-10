@@ -30,6 +30,7 @@
     "@nuxtjs/strapi": "2.0.0",
     "@nuxtjs/supabase": "1.5.0",
     "@nuxtjs/tailwindcss": "6.12.2",
+    "vue-final-modal": "4.5.5",
     "@pinia/nuxt": "0.5.5",
     "@supabase/supabase-js": "2.49.1",
     "@types/node": "20.13.0",

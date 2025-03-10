@@ -134,6 +134,9 @@ devDependencies:
   vue:
     specifier: 3.5.12
     version: 3.5.12(typescript@5.6.3)
+  vue-final-modal:
+    specifier: 4.5.5
+    version: 4.5.5(@vueuse/core@12.8.2)(@vueuse/integrations@13.0.0)(focus-trap@7.6.4)(vue@3.5.12)
   vue3-google-map:
     specifier: 0.21.0
     version: 0.21.0(vue@3.5.12)
@@ -4332,8 +4335,71 @@ packages:
       - typescript
     dev: true
 
+  /@vueuse/core@13.0.0(vue@3.5.12):
+    resolution: {integrity: sha512-rkgb4a8/0b234lMGCT29WkCjPfsX0oxrIRR7FDndRoW3FsaC9NBzefXg/9TLhAgwM11f49XnutshM4LzJBrQ5g==}
+    peerDependencies:
+      vue: ^3.5.0
+    dependencies:
+      '@types/web-bluetooth': 0.0.21
+      '@vueuse/metadata': 13.0.0
+      '@vueuse/shared': 13.0.0(vue@3.5.12)
+      vue: 3.5.12(typescript@5.6.3)
+    dev: true
+
+  /@vueuse/integrations@13.0.0(focus-trap@7.6.4)(vue@3.5.12):
+    resolution: {integrity: sha512-PXARslYRWf4u0xjdW6N5eC5kVQj2z/dxfZ7ildI1okLm2AwmhL+wiWzaNMSJMxTKX4ew7kNe70yJg1QjnWmE5w==}
+    peerDependencies:
+      async-validator: ^4
+      axios: ^1
+      change-case: ^5
+      drauu: ^0.4
+      focus-trap: ^7
+      fuse.js: ^7
+      idb-keyval: ^6
+      jwt-decode: ^4
+      nprogress: ^0.2
+      qrcode: ^1.5
+      sortablejs: ^1
+      universal-cookie: ^7
+      vue: ^3.5.0
+    peerDependenciesMeta:
+      async-validator:
+        optional: true
+      axios:
+        optional: true
+      change-case:
+        optional: true
+      drauu:
+        optional: true
+      focus-trap:
+        optional: true
+      fuse.js:
+        optional: true
+      idb-keyval:
+        optional: true
+      jwt-decode:
+        optional: true
+      nprogress:
+        optional: true
+      qrcode:
+        optional: true
+      sortablejs:
+        optional: true
+      universal-cookie:
+        optional: true
+    dependencies:
+      '@vueuse/core': 13.0.0(vue@3.5.12)
+      '@vueuse/shared': 13.0.0(vue@3.5.12)
+      focus-trap: 7.6.4
+      vue: 3.5.12(typescript@5.6.3)
+    dev: true
+
   /@vueuse/metadata@12.8.2:
     resolution: {integrity: sha512-rAyLGEuoBJ/Il5AmFHiziCPdQzRt88VxR+Y/A/QhJ1EWtWqPBBAxTAFaSkviwEuOEZNtW8pvkPgoCZQ+HxqW1A==}
+    dev: true
+
+  /@vueuse/metadata@13.0.0:
+    resolution: {integrity: sha512-TRNksqmvtvqsuHf7bbgH9OSXEV2b6+M3BSN4LR5oxWKykOFT9gV78+C2/0++Pq9KCp9KQ1OQDPvGlWNQpOb2Mw==}
     dev: true
 
   /@vueuse/shared@12.8.2(typescript@5.6.3):
@@ -4342,6 +4408,14 @@ packages:
       vue: 3.5.13(typescript@5.6.3)
     transitivePeerDependencies:
       - typescript
+    dev: true
+
+  /@vueuse/shared@13.0.0(vue@3.5.12):
+    resolution: {integrity: sha512-9MiHhAPw+sqCF/RLo8V6HsjRqEdNEWVpDLm2WBRW2G/kSQjb8X901sozXpSCaeLG0f7TEfMrT4XNaA5m1ez7Dg==}
+    peerDependencies:
+      vue: ^3.5.0
+    dependencies:
+      vue: 3.5.12(typescript@5.6.3)
     dev: true
 
   /@whatwg-node/disposablestack@0.0.5:
@@ -6643,6 +6717,12 @@ packages:
 
   /flatted@3.3.3:
     resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
+    dev: true
+
+  /focus-trap@7.6.4:
+    resolution: {integrity: sha512-xx560wGBk7seZ6y933idtjJQc1l+ck+pI3sKvhKozdBV1dRZoKhkW5xoCaFv9tQiX5RH1xfSxjuNu6g+lmN/gw==}
+    dependencies:
+      tabbable: 6.2.0
     dev: true
 
   /foreground-child@3.3.1:
@@ -10763,6 +10843,10 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
+  /tabbable@6.2.0:
+    resolution: {integrity: sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==}
+    dev: true
+
   /tailwind-config-viewer@2.0.4(tailwindcss@3.4.15):
     resolution: {integrity: sha512-icvcmdMmt9dphvas8wL40qttrHwAnW3QEN4ExJ2zICjwRsPj7gowd1cOceaWG3IfTuM/cTNGQcx+bsjMtmV+cw==}
     engines: {node: '>=13'}
@@ -11802,6 +11886,20 @@ packages:
       semver: 7.7.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /vue-final-modal@4.5.5(@vueuse/core@12.8.2)(@vueuse/integrations@13.0.0)(focus-trap@7.6.4)(vue@3.5.12):
+    resolution: {integrity: sha512-A6xgsXqE6eLw9e6Tq/W6pxDBmimPuSuvq20WL9TOZpZy7itPdGeNn8e1P15PCGqP2yHM3q2gJIchPY9ZJd8YsA==}
+    peerDependencies:
+      '@vueuse/core': '>=10.0.0'
+      '@vueuse/integrations': '>=10.0.0'
+      focus-trap: '>=7.2.0'
+      vue: '>=3.2.0'
+    dependencies:
+      '@vueuse/core': 12.8.2(typescript@5.6.3)
+      '@vueuse/integrations': 13.0.0(focus-trap@7.6.4)(vue@3.5.12)
+      focus-trap: 7.6.4
+      vue: 3.5.12(typescript@5.6.3)
     dev: true
 
   /vue-router@4.5.0(vue@3.5.12):

@@ -8,13 +8,13 @@ import IconLoader from "assets/icons/loader.svg"
 import Icon from "~/components/Icon.vue"
 import { useCheckoutStore } from "~/store/checkout"
 const checkoutStore = useCheckoutStore()
-import Payment from "~/components/checkout/Payment.vue"
+import Payment from "~/components/Checkout/Payment.vue"
 </script>
 <template>
   <FormKit
       v-model="checkoutStore.userOrderForm"
-      id="contactForm"
-      name="contactForm"
+      id="checkoutForm"
+      name="checkoutForm"
       type="form"
       :actions="false"
 
@@ -24,12 +24,12 @@ import Payment from "~/components/checkout/Payment.vue"
       @submit="checkoutStore.handleCheckoutForm(products, total)"
   >
     <div>
-      <h3 class="flex justify-between items-center">Contact <nuxt-link to="/account/login">Login</nuxt-link></h3>
+      <h3 class="flex justify-between items-center mb-4">Contact <nuxt-link to="/account/login">Login</nuxt-link></h3>
       <FormKit
           id="email"
           type="email"
           placeholder="Jonsnow@winterfall.com"
-          label="ელ. ფოსტა"
+          label="ელ. ფოსტა *"
           name="email"
           validation="required|email"
           :validation-messages="{
@@ -39,13 +39,13 @@ import Payment from "~/components/checkout/Payment.vue"
       />
     </div>
     <div>
-      <h3 class="flex justify-between items-center">Delivery</h3>
+      <h3 class="flex justify-between items-center mb-4">Delivery</h3>
       <div class="grid grid-cols-6 gap-4">
         <FormKit
             id="name"
             type="text"
             placeholder="Jon"
-            label="სახელი"
+            label="სახელი *"
             name="name"
             :classes="{
               outer: 'col-span-3',
@@ -59,7 +59,7 @@ import Payment from "~/components/checkout/Payment.vue"
             id="surname"
             type="text"
             placeholder="Snow"
-            label="გვარი"
+            label="გვარი *"
             name="surname"
             :classes="{
               outer: 'col-span-3',
@@ -101,7 +101,7 @@ import Payment from "~/components/checkout/Payment.vue"
             id="region"
             type="text"
             placeholder="Snow"
-            label="გვარი"
+            label="regioni"
             name="region"
             :classes="{
               outer: 'col-span-2',

@@ -17,9 +17,18 @@ export type UserOrderForm = {
     products?: string
 }
 
+export type ExtendedUserOrderForm = UserOrderForm & {
+    id: string,
+    created_at: string,
+    order_id: string,
+    total_price: string
+};
+
 export type UserOrderItem = {
     name: string,
     slug: string,
+    productID: string,
     imageUrl: string,
+    price: string,
     quantity: string
 }

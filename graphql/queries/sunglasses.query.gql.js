@@ -2,6 +2,9 @@ export const dataQuerySunGlassesTypes = gql`
     query sunGlassesTypes {
         sunglassesTypesCollection(order: name_ASC) {
             items {
+                sys {
+                    id
+                }
                 name,
                 slug,
                 description,
@@ -17,6 +20,9 @@ export const dataQueryAllSunGlasses = gql`
     query sunGlassesAll {
         sunglassesCollection(order: name_ASC) {
             items {
+                sys {
+                    id
+                }
                 name
                 slug
                 price
@@ -39,6 +45,9 @@ export const dataQuerySunGlassesTypesBySlug = gql`
     query sunGlassesTypesBySlug($slug: String) {
         sunglassesTypesCollection(order: name_ASC, where: {  slug: $slug }) {
             items {
+                sys {
+                    id
+                }
                 name,
                 slug,
                 description,
@@ -47,6 +56,9 @@ export const dataQuerySunGlassesTypesBySlug = gql`
                 }
                 sunglassesCollection(limit: 15) {
                     items {
+                        sys {
+                            id
+                        }
                         sys {
                             id
                         }
@@ -75,6 +87,9 @@ export const dataQuerySunglasses = gql`
     query sunglasses ($slug: String) {
         sunglassesCollection(order: name_ASC, limit: 1, where: { slug: $slug }) {
             items {
+                sys {
+                    id
+                }
                 name
                 price
                 slug
@@ -93,16 +108,22 @@ export const dataQuerySunglasses = gql`
 `
 
 export const dataQueryIsSoldOut = gql`
-    query isSoldOut ($slug: [String]) {
-        sunglassesCollection (where: { slug_in: $slug }) {
+    query isSoldOut ($ids: [String]) {
+        sunglassesCollection (where: { sys: { id_in: $ids } }) {
             items {
+                sys {
+                    id
+                }
                 soldOut
                 slug
                 price
             }
         }
-        opticalGlassesCollection (where: { slug_in: $slug }) {
+        opticalGlassesCollection (where: { sys: { id_in: $ids } }) {
             items {
+                sys {
+                    id
+                }
                 slug
                 soldOut
                 price

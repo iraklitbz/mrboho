@@ -1,7 +1,6 @@
 <script setup async lang="ts">
 import { cartStore } from "~/store/cart"
 import IconClose from "assets/icons/close.svg"
-import IconTrash from "assets/icons/trash.svg"
 import Icon from "~/components/Icon.vue"
 import type {CartProduct} from "~/types/local-types"
 import {currencyFormat} from "~/utils/currency-utils";
@@ -11,8 +10,8 @@ onMounted(() => {
     isVisible.value = true
   }, 2)
 })
-function updateTotal(slug: string, newTotal: string) {
-  cartStore().updateProductTotal(slug, parseInt(newTotal, 10))
+function updateTotal(id: string, newTotal: string) {
+  cartStore().updateProductTotal(id, parseInt(newTotal, 10))
 }
 </script>
 <template>
@@ -36,7 +35,7 @@ function updateTotal(slug: string, newTotal: string) {
           <Icon
               :icon="IconClose"
               :auto-align="true"
-              class="cursor-pointer text-2xl text-black"
+              class="cursor-pointer text-xl text-black"
           />
         </button>
       </header>
@@ -50,7 +49,7 @@ function updateTotal(slug: string, newTotal: string) {
           <li
             v-for="(item, index) in cartStore().cartProducts as CartProduct[]"
             :key="index"
-            class="bg-gray-100 p-2 rounded-lg"
+            class="bg-gray-100/50 p-2 rounded-lg border-solid border-gray-300 border"
           >
             <div
               class="flex flex-col items-center justify-between w-full gap-5"
@@ -66,7 +65,12 @@ function updateTotal(slug: string, newTotal: string) {
               </figure>
               <div class="w-full">
                 <div>
-                  <h3 class="latin">{{item?.product?.name}}</h3>
+                  <h3 class="latin">
+                    <nuxt-link
+                        :to="item?.product?.slug"
+                        @click="cartStore().handleCartToggle()"
+                    >{{item?.product?.name}}</nuxt-link>
+                  </h3>
                   <p class="latin"><strong>{{currencyFormat(item?.product?.price as number)}}</strong></p>
                 </div>
               </div>
@@ -78,16 +82,16 @@ function updateTotal(slug: string, newTotal: string) {
                   type="number"
                   :value="item.total"
                   class="bg-transparent w-full"
-                  @input="updateTotal(item.product?.slug as string, ($event.target as HTMLInputElement).value)"
+                  @input="updateTotal(item.product?.sys?.id as string, ($event.target as HTMLInputElement).value)"
               />
               <button
-                @click="cartStore().removeFromCart(item?.product?.slug as string)"
+                @click="cartStore().removeFromCart(item?.product?.sys?.id as string)"
                 class="hover:motion-preset-compress"
               >
                 <Icon
-                    :icon="IconTrash"
+                    :icon="IconClose"
                     :auto-align="true"
-                    class="cursor-pointer text-2xl text-red-400"
+                    class="cursor-pointer text-xl text-red-400"
                 />
               </button>
             </div>

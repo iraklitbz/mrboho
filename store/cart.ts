@@ -46,7 +46,7 @@ export const cartStore = defineStore('cartData', {
         },
         addToCart(product: Maybe<OpticalGlassesContenfull> | Maybe<SunglassesContenfull>) {
             this.handleCartToggle()
-            const existingProductIndex = this.cartProducts.findIndex(cartProduct => cartProduct.product?.slug === product?.slug)
+            const existingProductIndex = this.cartProducts.findIndex(cartProduct => cartProduct.product?.sys?.id === product?.sys?.id)
 
             if (existingProductIndex !== -1) {
                 this.cartProducts[existingProductIndex]?.total && (this.cartProducts[existingProductIndex].total += 1)
@@ -54,41 +54,43 @@ export const cartStore = defineStore('cartData', {
                 this.cartProducts.push({ product, total: 1 })
             }
         },
-        removeFromCart(slug: string) {
-            this.cartProducts = this.cartProducts.filter(cartProduct => cartProduct.product?.slug !== slug)
+        removeFromCart(id: string) {
+            this.cartProducts = this.cartProducts.filter(cartProduct => cartProduct.product?.sys?.id !== id)
         },
-        updateProductTotal(slug: string, newTotal: number) {
-            const productIndex = this.cartProducts.findIndex(cartProduct => cartProduct.product?.slug === slug)
+        resetCart() {
+            this.cartProducts = []
+        },
+        updateProductTotal(id: string, newTotal: number) {
+            const productIndex = this.cartProducts.findIndex(cartProduct => cartProduct.product?.sys?.id === id)
             if (productIndex === -1) {
-                console.warn(`Product with slug "${slug}" not found in cart.`);
+                console.warn(`Product with slug "${id}" not found in cart.`);
                 return
             }
             if (newTotal <= 0) {
-                this.removeFromCart(slug)
+                this.removeFromCart(id)
             } else {
                 this.cartProducts[productIndex].total = newTotal
             }
         },
-        async fetchIfExist(slugs: string[]) {
+        async fetchIfExist(ids: string[]) {
             let cartChanged = false
             this.cartUpdated = false
-            const variables = { slug: slugs }
+            const variables = { ids }
             const data = await apiCall(dataQueryIsSoldOut, '', variables, false) as any
-
             const fetchedProducts = [
                 ...(data?.opticalGlassesCollection?.items || []),
                 ...(data?.sunglassesCollection?.items || [])
             ];
 
-            const fetchedSlugs = new Set(fetchedProducts.map(item => item.slug))
+            const fetchedIDs = new Set(fetchedProducts.map(item => item.sys.id))
             const soldOutProducts = fetchedProducts.filter(item => item.soldOut === true)
-            const removedProducts = slugs.filter(slug => !fetchedSlugs.has(slug))
+            const removedProducts = ids.filter(ID => !fetchedIDs.has(ID))
             soldOutProducts.forEach(product => {
-                this.removeFromCart(product.slug)
+                this.removeFromCart(product.sys.id)
                 cartChanged = true
             });
-            removedProducts.forEach(slug => {
-                this.removeFromCart(slug)
+            removedProducts.forEach(id => {
+                this.removeFromCart(id)
                 cartChanged = true
             })
             this.cartUpdated = cartChanged

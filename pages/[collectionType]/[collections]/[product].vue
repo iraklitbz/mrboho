@@ -70,6 +70,7 @@ if(route.params.collectionType === 'sunglasses') {
     />
     <ProductInfoBottom
         :product-detail="productDetail as SunglassesContenfull | OpticalGlassesContenfull"
+        :breadcrumbs-nav="breadcrumbsNav"
     />
   </main>
 </template>
