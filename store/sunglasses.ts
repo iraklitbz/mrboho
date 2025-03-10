@@ -58,7 +58,6 @@ export const sunglassesStore = defineStore('sunglassesData', {
                 this.filteredItems = this.sunglassesTypesBySlug.sunglassesCollection.items.filter(item =>
                     item.color.includes(color)
                 )
-                console.log(this.filteredItems)
             }
         },
         reserFilter() {

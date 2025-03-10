@@ -30,7 +30,6 @@ const getUpdatedProductDetail = () => {
 
 const addToCart = () => {
   const updatedProduct = getUpdatedProductDetail()
-  console.log(updatedProduct)
   if (updatedProduct) {
     cartStore().addToCart(updatedProduct)
   }
