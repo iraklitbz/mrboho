@@ -50,23 +50,8 @@ const resetFilters = () => {
         :category-type="categoryType"
         :hero-image="productData?.hero?.url as string"
     />
-    <section
-      class="relative mt-14 mb-10"
-    >
-      <div
-          v-if="sunglassesStore().uniqueColors && sunglassesStore().uniqueColors.length > 3"
-          class="px-5"
-      >
-        <FiltersColor
-          :colors="sunglassesStore().uniqueColors"
-          @handleFilter="handleColorFilter"
-          @resetFilters="resetFilters"
-          :filter-is-active="sunglassesStore().filteredItems.length > 0"
-        />
-      </div>
-      <div
-          class="sunglasses-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-7"
-      >
+    <section class="relative mt-14 mb-10">
+      <div class="sunglasses-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-7">
         <Card
             v-for="(sunglasses, index) in getItems()"
             :key="sunglasses?.sys?.id"
@@ -74,6 +59,18 @@ const resetFilters = () => {
             class="card border-l border-y border-solid border-black -mt-[1px]"
             :class="index === (getItems()?.length - 1) ? 'border-r' : ''"
             :slug="`${route.params.collectionType}/${sunglasses.familie?.slug}/${sunglasses?.slug}`"
+        />
+      </div>
+
+      <div
+          v-if="sunglassesStore().uniqueColors && sunglassesStore().uniqueColors.length > 3"
+          class="px-5 sticky bottom-5 z-40 mt-10"
+      >
+        <FiltersColor
+            :colors="sunglassesStore().uniqueColors"
+            @handleFilter="handleColorFilter"
+            @resetFilters="resetFilters"
+            :filter-is-active="sunglassesStore().filteredItems.length > 0"
         />
       </div>
     </section>

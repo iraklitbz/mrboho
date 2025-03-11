@@ -30,7 +30,7 @@ const colorClasses: Record<string, string> = {
           <div
               v-for="color in colors"
               :key="color"
-              class="rounded-full cursor-pointer w-11 h-11"
+              class="rounded-full cursor-pointer w-8 h-8 md:w-11 md:h-11"
               :class="colorClasses[color]"
               @click="emit('handleFilter', color)"
           ></div>

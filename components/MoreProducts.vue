@@ -17,7 +17,7 @@ const props = defineProps({
   <section>
     <h2 class="text-4xl md:text-6xl uppercase py-14 px-5 md:px-10 text-center">More <span> {{props.collectionType}} </span> options</h2>
     <div
-        class="sunglasses-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4"
+        class="sunglasses-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
     >
       <Card
           v-for="(sunglasses, index) in props.productMoreData.slice(0, 4)"
