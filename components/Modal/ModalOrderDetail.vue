@@ -14,7 +14,7 @@ const props = defineProps<{
 <template>
   <VueFinalModal
       content-transition="slide-up"
-      content-class="h-full"
+      content-class="h-full w-full"
       :lock-scroll="false"
       :reserve-scroll-bar-gap="false">
       <div class="flex h-full w-screen cursor-pointer items-center justify-center overflow-hidden py-16" @click.self="() => emit('close')">

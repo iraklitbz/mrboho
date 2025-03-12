@@ -8,7 +8,6 @@ import IconLoader from "assets/icons/loader.svg"
 import Icon from "~/components/Icon.vue"
 import { useCheckoutStore } from "~/store/checkout"
 const checkoutStore = useCheckoutStore()
-import Payment from "~/components/Checkout/Payment.vue"
 </script>
 <template>
   <FormKit
@@ -137,7 +136,6 @@ import Payment from "~/components/Checkout/Payment.vue"
         />
       </div>
     </div>
-    <Payment />
     <FormKit
         type="submit"
         :classes="{
@@ -162,6 +160,12 @@ import Payment from "~/components/Checkout/Payment.vue"
         class="text-red-500 text-center -mt-5"
     >
       შეტყობინების გაგზავნისას მოხდა შეცდომა, გთხოვთ, სცადოთ მოგვიანებით
+    </div>
+    <div
+        v-else-if="checkoutStore.errorPayment"
+        class="text-red-500 text-center -mt-5"
+    >
+      ბანკთან კავშირის პრობლემა იყო, გთხოვთ, სცადოთ შემდეგში.
     </div>
   </FormKit>
 </template>

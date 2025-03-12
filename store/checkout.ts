@@ -7,6 +7,7 @@ import {cartStore} from "~/store/cart"
 import { orderEmailTemplate } from '~/services/emails/order'
 import { orderConfirmationEmailTemplate } from '~/services/emails/orderConfirmation'
 import { customAlphabet } from 'nanoid'
+import useSendOrder from '~/composables/useSendOrder'
 export const useCheckoutStore = defineStore('checkoutData', () => {
     const supabase = useSupabaseClient()
     const router = useRouter()
@@ -18,12 +19,13 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
         city: '',
         region: '',
         phone : '',
-        additional: ''
+        additional: '',
     })
     const loading = ref(false)
     const error = ref(false)
-
+    const errorPayment = ref(false)
     async function handleCheckoutForm(products: any, total: string) {
+        errorPayment .value = false
         const orderProducts = products.map((product: CartProduct) => ({
             name: product?.product?.name,
             slug: product?.product?.slug,
@@ -35,6 +37,19 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
         const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
         const nanoid = customAlphabet(alphabet, 10);
         const orderID = `MR-${nanoid()}`
+
+        const basket = products.map((product: CartProduct) => ({
+            quantity: product?.total,
+            unit_price: product?.product?.price,
+            product_id: product?.product?.sys.id
+        }))
+        const totalToNumber = parseFloat(total.replace(/[^\d.-]/g, '').replace(',', ''))
+        const paymentData = await useSendOrder(totalToNumber, basket)
+        if (!paymentData) {
+            errorPayment.value = true
+            return;
+        }
+
         const { data: orderData, error: orderError } = await supabase
             .from('orders')
             .insert([
@@ -107,6 +122,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
         userOrderForm,
         loading,
         error,
+        errorPayment,
         handleCheckoutForm,
     }
 })

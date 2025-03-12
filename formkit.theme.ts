@@ -2985,6 +2985,47 @@ const classes: Record<string, Record<string, boolean>> = {
     },
     "step__stepNext": {
         "ml-auto": true
+    },
+    'stepNumber__outer': {
+        'flex ': true,
+        'items-center': true,
+        'justify-between': true,
+        'rounded-full': false,
+        'bg-gray-100': false,
+        '[&:disabled]:select-none': true,
+        '[&:disabled]:opacity-50': true,
+        '[&:disabled]:cursor-not-allowed': true,
+        '[&.is-small]:text-xs': true,
+        '[&.is-small_.formkit-minus]:p-1.5': true,
+        '[&.is-small_.formkit-plus]:p-1.5': true,
+        '[&.is-small_.formkit-container]:flex-col': true
+    },
+    'stepNumber__wrapper': {
+        'flex items-center': true
+    },
+    'stepNumber__inner': {
+        flex: true
+    },
+    'stepNumber__inputContainer': {
+        'flex': true,
+        'h-10 rounded-3xl shadow-[0px_3px_2px_rgba(206,214,224,1)]': true
+    },
+    'stepNumber__container': {
+        'flex': true,
+        'items-center': true,
+        'gap-2': true
+    },
+    'stepNumber__minus': {
+        'p-3 bg-gray-100 text-lg rounded-l-full [&:disabled]:select-none [&:disabled]:opacity-50 [&:disabled]:cursor-not-allowed': true
+    },
+    'stepNumber__plus': {
+        'p-3 bg-gray-100 text-lg rounded-r-full [&:disabled]:select-none [&:disabled]:opacity-50 [&:disabled]:cursor-not-allowed': true
+    },
+    'stepNumber__stepNumberQuantity': {
+        'flex text-center text-lg w-8 bg-gray-100 [-moz-appearance:_textfield] [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&:disabled]:select-none [&:disabled]:opacity-50 [&:disabled]:cursor-not-allowed': true
+    },
+    'stepNumber__error': {
+        'text-gray-500 text-xxs text-center': true
     }
 };
 

@@ -1,14 +1,17 @@
 <script setup async lang="ts">
 import { cartStore } from "~/store/cart"
+import { getNode } from '@formkit/core'
 import IconClose from "assets/icons/close.svg"
 import Icon from "~/components/Icon.vue"
 import type {CartProduct} from "~/types/local-types"
 import {currencyFormat} from "~/utils/currency-utils";
+import MiniCard from "~/components/Cards/MiniCard.vue";
 const isVisible = ref(false)
 onMounted(() => {
   setTimeout(() => {
     isVisible.value = true
   }, 2)
+
 })
 function updateTotal(id: string, newTotal: string) {
   cartStore().updateProductTotal(id, parseInt(newTotal, 10))
@@ -44,58 +47,14 @@ function updateTotal(id: string, newTotal: string) {
           class="mt-10"
       >
         <ul
-          class="grid grid-cols-2 gap-4"
+          class="grid gap-4"
+          :class="cartStore().cartProducts && cartStore().cartProducts.length > 1 ? 'grid-cols-2' : 'grid-cols-1'"
         >
-          <li
-            v-for="(item, index) in cartStore().cartProducts as CartProduct[]"
-            :key="index"
-            class="bg-gray-100/50 p-2 rounded-lg border-solid border-gray-300 border"
-          >
-            <div
-              class="flex flex-col items-center justify-between w-full gap-5"
-            >
-              <figure
-                v-if="item?.product && item?.product?.imagesCollection && item?.product?.imagesCollection?.items[0]?.url"
-              >
-                <nuxt-img
-                    :src="item?.product?.imagesCollection?.items[0]?.url as string"
-                    :alt="item?.product?.name as string"
-                    class="object-contain"
-                />
-              </figure>
-              <div class="w-full">
-                <div>
-                  <h3 class="latin">
-                    <nuxt-link
-                        :to="item?.product?.slug"
-                        @click="cartStore().handleCartToggle()"
-                    >{{item?.product?.name}}</nuxt-link>
-                  </h3>
-                  <p class="latin"><strong>{{currencyFormat(item?.product?.price as number)}}</strong></p>
-                </div>
-              </div>
-            </div>
-            <div
-                class="flex items-center justify-between w-full gap-5 mt-7"
-            >
-              <input
-                  type="number"
-                  :value="item.total"
-                  class="bg-transparent w-full"
-                  @input="updateTotal(item.product?.sys?.id as string, ($event.target as HTMLInputElement).value)"
-              />
-              <button
-                @click="cartStore().removeFromCart(item?.product?.sys?.id as string)"
-                class="hover:motion-preset-compress"
-              >
-                <Icon
-                    :icon="IconClose"
-                    :auto-align="true"
-                    class="cursor-pointer text-xl text-red-400"
-                />
-              </button>
-            </div>
-          </li>
+          <MiniCard
+              v-for="(item, index) in cartStore().cartProducts as CartProduct[]"
+              :key="index"
+              :item="item as CartProduct"
+          />
         </ul>
       </div>
       <div
