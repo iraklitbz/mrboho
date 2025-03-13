@@ -33,8 +33,9 @@ export default defineNuxtConfig({
     "@formkit/nuxt",
     "pinia-plugin-persistedstate/nuxt",
     "@nuxt/eslint",
-    '@nuxtjs/supabase'
+    '@nuxtjs/supabase',
   ],
+  css: [ 'vue-final-modal/style.css' ],
   components: [
     '~/components',
     '~/components/Menu',
@@ -76,6 +77,9 @@ export default defineNuxtConfig({
   routeRules: {
     '/account/**': {
       ssr: false
+    },
+    '/checkout': {
+      ssr: false
     }
   },
   build: {
@@ -87,6 +91,9 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
+    BANK_PUBLIC_KEY: process.env.BANK_PUBLIC_KEY,
+    BANK_SECRET_KEY: process.env.BANK_SECRET_KEY,
+    BANK_API_URL: process.env.BANK_API_URL,
     public: {
       SUPABASE_URL: process.env.SUPABASE_URL,
       SUPABASE_KEY: process.env.SUPABASE_KEY,

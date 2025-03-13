@@ -1,19 +1,23 @@
-<script setup>
-import { toggleMenu } from '~/store/menu';
-const router = useRouter()
+<script setup lang="ts">
+  import { ModalsContainer } from 'vue-final-modal'
+  import { toggleMenu } from '~/store/menu'
+  const router = useRouter()
 
-router.afterEach(() => {
-  if(toggleMenu().menuIsOpen) {
-    toggleMenu().handleCloseMenu()
-  }
+  router.afterEach(() => {
+    if(toggleMenu().menuIsOpen) {
+      toggleMenu().handleCloseMenu()
+    }
 })
 
 </script>
 <template>
-  <div class="main ">
+  <div class="main">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+    <client-only>
+      <ModalsContainer />
+    </client-only>
   </div>
 </template>
 
@@ -28,5 +32,3 @@ router.afterEach(() => {
   filter: blur(1rem);
 }
 </style>
-<script setup lang="ts">
-</script>

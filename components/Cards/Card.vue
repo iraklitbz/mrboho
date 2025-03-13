@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { SunglassesContenfull } from '~/types/contenfull-types';
+import {currencyFormat} from "~/utils/currency-utils";
 const props = defineProps<{
   product: SunglassesContenfull;
   slug: string
@@ -47,12 +48,12 @@ const props = defineProps<{
       />
     </figure>
     <footer
-        class="flex justify-between text-base"
+        class="flex flex-col justify-between text-base"
     >
-      <h2 class="text-lg">
+      <h2 class="text-xl">
         {{ props.product.name }}
       </h2>
-      <p class="text-xl font-bold">{{ props.product.price }} ₾</p>
+      <p class="text-xl font-bold mt-3 whitespace-nowrap">{{ currencyFormat(props.product.price as number) }} </p>
     </footer>
   </nuxt-link>
 </template>

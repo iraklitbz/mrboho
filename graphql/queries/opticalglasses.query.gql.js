@@ -2,6 +2,9 @@ export const dataQueryOpticalTypes = gql`
     query {
         opticalTypesCollection(order: name_ASC) {
             items {
+                sys {
+                    id
+                }
                 name,
                 slug,
                 description,
@@ -17,6 +20,9 @@ export const dataQueryAllOptical = gql`
     query opticalAll {
         opticalGlassesCollection(order: name_ASC) {
             items {
+                sys {
+                    id
+                }
                 name
                 slug
                 price
@@ -39,6 +45,9 @@ export const dataQueryOpticalTypesBySlug = gql`
     query opticalTypesBySlug($slug: String) {
         opticalTypesCollection(order: name_ASC, where: {  slug: $slug }) {
             items {
+                sys {
+                    id
+                }
                 name,
                 slug,
                 description,
@@ -75,8 +84,12 @@ export const dataQueryOptical = gql`
     query optical ( $slug: String ) {
         opticalGlassesCollection(order: name_ASC, limit: 1, where: { slug: $slug }) {
             items {
+                sys {
+                    id
+                }
                 name
                 price
+                slug
                 familie {
                     slug
                 }

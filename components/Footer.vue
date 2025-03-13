@@ -7,12 +7,19 @@
     {
       name: 'Instagram',
       link: 'https://www.instagram.com/mrboho.geo',
-      icon: IconInstagram
+      icon: IconInstagram,
+      external: true
     },
     {
       name: 'Facebook',
-      link: 'https://www.facebook.com/',
-      icon: IconFacebook
+      link: 'https://www.facebook.com/profile.php?id=61573262527849',
+      icon: IconFacebook,
+      external: true
+    },
+    {
+      name: 'კონტაქტი',
+      link: '/contact',
+      external: false
     }
   ]
 </script>
@@ -35,11 +42,13 @@
               class="flex items-center"
             >
               <Icon
+                  v-if="item.icon"
                   :icon="item.icon"
                   :auto-align="true"
                   class="cursor-pointer text-xl text-black mr-2"
               />
               <a
+                  v-if="item.external"
                   :href="item.link"
                   target="_blank"
               >
@@ -49,6 +58,16 @@
                 {{ item.name }}
               </span>
               </a>
+              <nuxt-link
+                  v-else
+                  :to="item.link"
+              >
+                <span
+                    class="text-base relative after:bg-black after:absolute after:h-[1px] after:w-0 after:bottom-0.5 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer"
+                >
+                {{ item.name }}
+              </span>
+              </nuxt-link>
             </li>
           </ul>
         </div>
