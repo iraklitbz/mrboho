@@ -95,7 +95,9 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
-    BANK_TOKEN: process.env.BANK_TOKEN,
+    BANK_PUBLIC_KEY: process.env.BANK_PUBLIC_KEY,
+    BANK_SECRET_KEY: process.env.BANK_SECRET_KEY,
+    BANK_API_URL: process.env.BANK_API_URL,
     public: {
       SUPABASE_URL: process.env.SUPABASE_URL,
       SUPABASE_KEY: process.env.SUPABASE_KEY,

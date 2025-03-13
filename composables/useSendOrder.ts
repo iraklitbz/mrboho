@@ -3,11 +3,12 @@ interface BasketItem {
     unit_price: number;
     product_id: string;
 }
-export default async (totalPrice: number, basket: BasketItem[]) => {
+export default async (orderID: string, totalPrice: number, basket: BasketItem[]) => {
     try {
         const { data, error } = await useFetch('/api/create-order', {
             method: 'POST',
             body: {
+                orderID,
                 totalPrice,
                 basket
             }
