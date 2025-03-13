@@ -5,8 +5,7 @@ import Icon from '~/components/Icon.vue'
 import IconHamburguer from '~/assets/icons/hamburguer.svg'
 import { toggleMenu } from '~/store/menu'
 import DropDown from "~/components/AccountButton/DropDown.vue"
-import { useMounted } from '@vueuse/core'
-const isMounted = useMounted()
+const isMounted = ref(false)
 const mainNavMenu = ref([
   {
     name: 'Products',
@@ -53,6 +52,7 @@ function handleScroll() {
   isScrolled.value = window.scrollY > 5
 }
 onMounted(() => {
+  isMounted.value = true
   window.addEventListener('scroll', handleScroll);
 })
 onUnmounted(() => {
