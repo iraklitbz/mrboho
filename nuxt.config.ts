@@ -34,12 +34,8 @@ export default defineNuxtConfig({
     "pinia-plugin-persistedstate/nuxt",
     "@nuxt/eslint",
     '@nuxtjs/supabase',
-    'nuxt-paypal'
   ],
   css: [ 'vue-final-modal/style.css' ],
-  paypal: {
-    clientId: process.env.PAYPAL_CLIENT_ID,
-  },
   components: [
     '~/components',
     '~/components/Menu',

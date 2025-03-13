@@ -98,9 +98,6 @@ devDependencies:
   nuxt:
     specifier: 3.13.2
     version: 3.13.2(@types/node@20.13.0)(eslint@9.16.0)(sass@1.77.8)(typescript@5.6.3)(vite@6.2.0)
-  nuxt-paypal:
-    specifier: 0.0.1-beta
-    version: 0.0.1-beta
   nuxt-svgo:
     specifier: 4.0.6
     version: 4.0.6(vue@3.5.12)
@@ -3154,12 +3151,6 @@ packages:
       '@parcel/watcher-win32-arm64': 2.5.1
       '@parcel/watcher-win32-ia32': 2.5.1
       '@parcel/watcher-win32-x64': 2.5.1
-    dev: true
-
-  /@paypal/paypal-js@7.1.1:
-    resolution: {integrity: sha512-fVpExBrHINGHsyODYKBXSMinxrgPKzmVW7ZCaCqUaMl7kTSR1ZsVi2IhgLvsPpXF4LWSAMkPTP/J6aetQ6ZlNA==}
-    dependencies:
-      promise-polyfill: 8.3.0
     dev: true
 
   /@peculiar/asn1-schema@2.3.15:
@@ -8655,17 +8646,6 @@ packages:
     hasBin: true
     dev: true
 
-  /nuxt-paypal@0.0.1-beta:
-    resolution: {integrity: sha512-d9ZCsRxs6kK5xXf5P67cHfipcnDo+sZJN++9tuttHfAXWrT/f+prtps7MiaqTc9JxPjwBDrUruDh5eSnTQVDTw==}
-    dependencies:
-      '@nuxt/kit': 3.15.4(magicast@0.3.5)
-      '@paypal/paypal-js': 7.1.1
-      defu: 6.1.4
-    transitivePeerDependencies:
-      - magicast
-      - supports-color
-    dev: true
-
   /nuxt-svgo@4.0.6(vue@3.5.12):
     resolution: {integrity: sha512-23piTK/Dv+6gqZBLf3TyZLc03CmZj9M191D/qol6dN/tc/pikFz1FOOBTe4LqXoRiE2ZbRB7/VypE+Y0kuwH1A==}
     peerDependencies:
@@ -9781,10 +9761,6 @@ packages:
   /process@0.11.10:
     resolution: {integrity: sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==}
     engines: {node: '>= 0.6.0'}
-    dev: true
-
-  /promise-polyfill@8.3.0:
-    resolution: {integrity: sha512-H5oELycFml5yto/atYqmjyigJoAo3+OXwolYiH7OfQuYlAqhxNvTfiNMbV9hsC6Yp83yE5r2KTVmtrG6R9i6Pg==}
     dev: true
 
   /promise@7.3.1:
