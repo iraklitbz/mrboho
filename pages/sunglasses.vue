@@ -2,7 +2,6 @@
 import type {SunglassesContenfull} from '~/types/contenfull-types'
 import { sunglassesStore } from "~/store/sunglasses"
 await sunglassesStore().fetchAllSunglasses()
-
 </script>
 
 <template>
