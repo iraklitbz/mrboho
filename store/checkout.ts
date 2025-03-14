@@ -81,7 +81,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
                 return;
             }
             if (paymentData && paymentData._links?.redirect?.href) {
-                window.open(paymentData._links.redirect.href, "_blank");
+                window.location.href = paymentData._links.redirect.href;
             } else {
                 errorPayment.value = true;
             }

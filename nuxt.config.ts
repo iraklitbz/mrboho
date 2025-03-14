@@ -24,15 +24,15 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false
   },
-  vite: {
-    server: {
-      allowedHosts: [
-        '297c-88-12-201-144.ngrok-free.app',
-        'localhost',
-        '127.0.0.1',
-      ]
-    }
-  },
+  // vite: {
+  //   server: {
+  //     allowedHosts: [
+  //       '297c-88-12-201-144.ngrok-free.app',
+  //       'localhost',
+  //       '127.0.0.1',
+  //     ]
+  //   }
+  // },
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxt/image",
