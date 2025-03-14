@@ -154,5 +154,6 @@ const checkoutStore = useCheckoutStore()
     >
       ბანკთან კავშირის პრობლემა იყო, გთხოვთ, სცადოთ შემდეგში.
     </div>
+    <PaymentList />
   </FormKit>
 </template>
