@@ -24,6 +24,15 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false
   },
+  vite: {
+    server: {
+      allowedHosts: [
+        '297c-88-12-201-144.ngrok-free.app',
+        'localhost',
+        '127.0.0.1',
+      ]
+    }
+  },
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxt/image",
@@ -91,9 +100,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
-    BANK_PUBLIC_KEY: process.env.BANK_PUBLIC_KEY,
+    BANK_CLIENT_ID: process.env.BANK_CLIENT_ID,
     BANK_SECRET_KEY: process.env.BANK_SECRET_KEY,
     BANK_API_URL: process.env.BANK_API_URL,
+    BANK_PUBLIC_KEY: process.env.BANK_PUBLIC_KEY,
     public: {
       SUPABASE_URL: process.env.SUPABASE_URL,
       SUPABASE_KEY: process.env.SUPABASE_KEY,

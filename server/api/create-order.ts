@@ -1,7 +1,7 @@
 const config = useRuntimeConfig();
 
 async function getBankToken() {
-    const clientID = config.BANK_PUBLIC_KEY;
+    const clientID = config.BANK_CLIENT_ID;
     const secretKey = config.BANK_SECRET_KEY;
     const base64Credentials = btoa(`${clientID}:${secretKey}`);
     const tokenEndpoint = 'https://oauth2.bog.ge/auth/realms/bog/protocol/openid-connect/token';
@@ -27,34 +27,36 @@ async function getBankToken() {
 }
 
 export default defineEventHandler(async (event) => {
-    const { orderID, totalPrice, basket } = await readBody(event)
-    const apiUrl = config.BANK_API_URL
-    const baseURL = config.public.NUXT_PUBLIC_BASE_URL
+    try {
+        const { orderID, totalPrice, basket } = await readBody(event)
+        const apiUrl = config.BANK_API_URL
+        const baseURL = config.public.NUXT_PUBLIC_BASE_URL
+        const token = await getBankToken()
+        const requestData = {
+            callback_url: 'https://297c-88-12-201-144.ngrok-free.app/api/payment-callback',
+            external_order_id: orderID,
+            purchase_units: {
+                currency: 'GEL',
+                total_amount: totalPrice,
+                basket: basket
+            },
+            redirect_urls: {
+                fail: 'https://297c-88-12-201-144.ngrok-free.app/fail-order',
+                success: `https://297c-88-12-201-144.ngrok-free.app/success-order?order=${orderID}`
+            }
+        };
 
-    const token = await getBankToken()
-    console.log(token)
-
-    const requestData = {
-        callback_url: `${baseURL}/checkout`,
-        external_order_id: orderID,
-        purchase_units: {
-            currency: 'GEL',
-            total_amount: totalPrice,
-            basket: basket
-        },
-        redirect_urls: {
-            fail: `${baseURL}/checkout`,
-            success: `${baseURL}/checkout`
-        }
-    };
-
-    return await $fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Accept-Language': 'ka',
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestData)
-    });
+        return await $fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Accept-Language': 'ka',
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        });
+    } catch (error) {
+        console.error("Error in processing the request:", error);
+        throw new Error("An error occurred while processing the request.");
+    }
 });

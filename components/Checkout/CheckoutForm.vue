@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import type {CartProduct} from "~/types/local-types"
+import IconLoader from "assets/icons/loader.svg"
+import Icon from "~/components/Icon.vue"
+import { useCheckoutStore } from "~/store/checkout"
 const props = defineProps<{
   products: CartProduct[],
   total: string
 }>()
-import IconLoader from "assets/icons/loader.svg"
-import Icon from "~/components/Icon.vue"
-import { useCheckoutStore } from "~/store/checkout"
+
 const checkoutStore = useCheckoutStore()
 </script>
 <template>

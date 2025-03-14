@@ -1,4 +1,5 @@
 import type {Maybe, OpticalGlassesContenfull, SunglassesContenfull} from "~/types/contenfull-types"
+import type {Json} from "~/types/supabase";
 
 export type CartProduct = {
     product?: Maybe<OpticalGlassesContenfull> | Maybe<SunglassesContenfull>,
@@ -32,3 +33,20 @@ export type UserOrderItem = {
     price: string,
     quantity: string
 }
+
+export type OrderSuperbase = {
+    address: string | null
+    city: string | null
+    created_at: string
+    email: string | null
+    id: string
+    info_adicional: string | null
+    name: string | null
+    phone: string | null
+    products: Json | null
+    region: string | null
+    surname: string | null
+    total_price: string | null,
+    status: string | null
+}
+
