@@ -52,7 +52,7 @@ const addToCart = () => {
           class="text-xl md:text-2xl text-center bg-black/90 text-white py-3 md:py-4 px-8 rounded-full relative font-bold after:bg-black after:absolute after:z-0 after:h-full after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer overflow-hidden"
       >
         <span class="relative z-20">
-          კონტაქტი
+          კალათაში დამატება
         </span>
       </button>
     </div>

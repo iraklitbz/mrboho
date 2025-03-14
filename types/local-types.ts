@@ -12,7 +12,6 @@ export type UserOrderForm = {
     surname: string,
     address: string,
     city: string,
-    region: string,
     phone: string,
     additional: string,
     products?: string
@@ -44,7 +43,6 @@ export type OrderSuperbase = {
     name: string | null
     phone: string | null
     products: Json | null
-    region: string | null
     surname: string | null
     total_price: string | null,
     status: string | null

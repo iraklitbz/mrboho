@@ -90,21 +90,7 @@ const checkoutStore = useCheckoutStore()
             label="ქალაქი *"
             name="city"
             :classes="{
-              outer: 'col-span-2',
-            }"
-            validation="required"
-            :validation-message="{
-              required: 'Please enter your name'
-            }"
-        />
-        <FormKit
-            id="region"
-            type="text"
-            placeholder="Snow"
-            label="regioni"
-            name="region"
-            :classes="{
-              outer: 'col-span-2',
+              outer: 'col-span-3',
             }"
             validation="required"
             :validation-message="{
@@ -118,7 +104,7 @@ const checkoutStore = useCheckoutStore()
             label="ტელეფონი"
             name="phone"
             :classes="{
-              outer: 'col-span-2',
+              outer: 'col-span-3',
             }"
             validation="required"
             :validation-message="{

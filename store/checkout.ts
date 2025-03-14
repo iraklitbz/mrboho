@@ -19,7 +19,6 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
         surname: '',
         address: '',
         city: '',
-        region: '',
         phone : '',
         additional: '',
     })
@@ -50,7 +49,6 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
                         surname: userOrderForm.value.surname,
                         address: userOrderForm.value.address,
                         city: userOrderForm.value.city,
-                        region: userOrderForm.value.region,
                         phone: userOrderForm.value.phone,
                         info_adicional: userOrderForm.value.additional,
                         total_price: total,

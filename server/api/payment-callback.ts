@@ -60,14 +60,13 @@ const handleOrderPayment = async (orderID: string) => {
         surname: order.surname,
         address: order.address,
         city: order.city,
-        region: order.region,
         phone: order.phone,
         info_adicional: order.info_adicional
     };
     await handleSendEmail(userOrderForm, products, order.total_price ?? "0", orderID)
     await handleSendConfirmationEmailUser(userOrderForm, products, order.total_price ?? "0", orderID)
 };
-async function handleSendEmail(userOrderForm: OrderSuperbase, orderProducts: UserOrderItem[], total: string, orderID: string) {
+async function handleSendEmail(userOrderForm: any, orderProducts: UserOrderItem[], total: string, orderID: string) {
     let msg = {
         from: 'web@mrboho.ge',
         to: 'georgia@mrboho.ge',
@@ -80,7 +79,7 @@ async function handleSendEmail(userOrderForm: OrderSuperbase, orderProducts: Use
         body: msg
     });
 }
-async function handleSendConfirmationEmailUser(userOrderForm: OrderSuperbase, orderProducts: UserOrderItem[], total: string, orderID: string) {
+async function handleSendConfirmationEmailUser(userOrderForm: any, orderProducts: UserOrderItem[], total: string, orderID: string) {
     let msg = {
         from: 'mrboho@mrboho.ge',
         to: userOrderForm.email,
