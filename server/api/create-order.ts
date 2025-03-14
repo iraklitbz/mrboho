@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
         const baseURL = config.public.NUXT_PUBLIC_BASE_URL
         const token = await getBankToken()
         const requestData = {
-            callback_url: 'https://297c-88-12-201-144.ngrok-free.app/api/payment-callback',
+            callback_url: 'https://www.mrboho.ge/api/payment-callback',
             external_order_id: orderID,
             purchase_units: {
                 currency: 'GEL',
@@ -41,8 +41,8 @@ export default defineEventHandler(async (event) => {
                 basket: basket
             },
             redirect_urls: {
-                fail: 'https://297c-88-12-201-144.ngrok-free.app/fail-order',
-                success: `https://297c-88-12-201-144.ngrok-free.app/success-order?order=${orderID}`
+                fail: 'https://www.mrboho.ge/fail-order',
+                success: `https://www.mrboho.ge/success-order?order=${orderID}`
             }
         };
 
