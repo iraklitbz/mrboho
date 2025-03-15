@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
             external_order_id: orderID,
             purchase_units: {
                 currency: 'GEL',
-                total_amount: totalPrice,
+                total_amount: totalPrice.toString(),
                 basket: basket
             },
             redirect_urls: {

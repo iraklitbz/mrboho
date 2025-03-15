@@ -73,6 +73,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
             }))
             totalPrice.value = total
             const totalToNumber = parseFloat(total.replace(/[^\d.-]/g, '').replace(',', ''))
+            console.log(totalToNumber)
             const paymentData = await createOrder(orderID, totalToNumber, basket) as any
             if (!paymentData) {
                 errorPayment.value = true
