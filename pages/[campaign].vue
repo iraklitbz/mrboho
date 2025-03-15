@@ -5,7 +5,6 @@ await campaignStore().fetchCampaign(route.params.campaign as string)
 if(campaignStore().campaign === null || campaignStore().campaign === undefined) {
   navigateTo('/404')
 }
-console.log(campaignStore().campaign)
 </script>
 
 <template>
