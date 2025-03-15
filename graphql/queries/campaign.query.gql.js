@@ -7,6 +7,7 @@ export const dataQueryCampaign = gql`
                     onlyImages,
                     slidesCollection {
                         items {
+                            columns
                             headline
                             onlyText
                             privateName

@@ -5,6 +5,7 @@ await campaignStore().fetchCampaign(route.params.campaign as string)
 if(campaignStore().campaign === null || campaignStore().campaign === undefined) {
   navigateTo('/404')
 }
+console.log(campaignStore().campaign)
 </script>
 
 <template>
@@ -66,15 +67,15 @@ if(campaignStore().campaign === null || campaignStore().campaign === undefined) 
   </main>
   <main
       v-else
-      class="md:mt-10"
+      class="grid md:grid-cols-2"
   >
     <section
         v-for="(campaign, index) in campaignStore().campaign?.slidesCollection?.items"
         :key="index"
+        :class="campaign?.columns === 'two column' ? 'md:col-span-1' : 'md:col-span-2' "
     >
       <figure
           v-if="campaign?.image?.url"
-          class="aspect-video"
       >
         <nuxt-img
             :src="campaign?.image?.url as string"

@@ -21,7 +21,7 @@ const mainNavMenu = ref([
       },
       {
         name: 'ლუქბუქი',
-        slug: 'lookbook'
+        slug: 'lookbookspring'
       },
       {
         name: 'ჩვენ ვართ Mr.Boho',
