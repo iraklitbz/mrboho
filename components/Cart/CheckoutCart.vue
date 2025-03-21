@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type {CartProduct} from "~/types/local-types"
 import { cartStore } from "~/store/cart"
+import DiscountCode from "~/components/DiscountCode.vue";
 const props = defineProps<{
   products: CartProduct[],
   total: string
@@ -60,6 +61,7 @@ const props = defineProps<{
           </span>
         </li>
       </ul>
+      <DiscountCode />
     </div>
   </div>
 </template>

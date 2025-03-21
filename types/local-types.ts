@@ -48,3 +48,22 @@ export type OrderSuperbase = {
     status: string | null
 }
 
+export type DiscountCode = {
+    active: boolean | null;
+    amount: number | null;
+    assigned_user: string | null;
+    code: string | null;
+    created_at: string;
+    current_usage: number | null;
+    expiration_date: string | null;
+    id: string;
+    max_usage: number | null;
+    type: string | null;
+    canBeShared: boolean;
+};
+
+export type DiscountCodeState = {
+    valid: boolean;
+    message: string | null;
+    discount: DiscountCode[]
+};

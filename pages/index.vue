@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import { heroStore } from '~/store/hero';
 await heroStore().fetchHeroHome()
+import {useGoogleSheets} from "~/composables/useGoogleSheets";
+
+
+const sheetId = 'TU_ID_DE_HOJA'
+const range = 'A1:B10'
+const apiKey = 'TU_CLAVE_DE_API'
+
+onMounted(async () => {
+  await useGoogleSheets()
+})
 </script>
 
 <template>

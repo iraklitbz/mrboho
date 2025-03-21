@@ -9,6 +9,45 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      discount_codes: {
+        Row: {
+          active: boolean | null
+          amount: number | null
+          assigned_user: string | null
+          code: string | null
+          created_at: string
+          current_usage: number | null
+          expiration_date: string | null
+          id: string
+          max_usage: number | null
+          type: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          amount?: number | null
+          assigned_user?: string | null
+          code?: string | null
+          created_at?: string
+          current_usage?: number | null
+          expiration_date?: string | null
+          id?: string
+          max_usage?: number | null
+          type?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          amount?: number | null
+          assigned_user?: string | null
+          code?: string | null
+          created_at?: string
+          current_usage?: number | null
+          expiration_date?: string | null
+          id?: string
+          max_usage?: number | null
+          type?: string | null
+        }
+        Relationships: []
+      }
       orders: {
         Row: {
           address: string | null
@@ -18,9 +57,10 @@ export type Database = {
           id: string
           info_adicional: string | null
           name: string | null
+          order_id: string | null
           phone: string | null
           products: Json | null
-          region: string | null
+          status: string | null
           surname: string | null
           total_price: string | null
         }
@@ -32,9 +72,10 @@ export type Database = {
           id?: string
           info_adicional?: string | null
           name?: string | null
+          order_id?: string | null
           phone?: string | null
           products?: Json | null
-          region?: string | null
+          status?: string | null
           surname?: string | null
           total_price?: string | null
         }
@@ -46,9 +87,10 @@ export type Database = {
           id?: string
           info_adicional?: string | null
           name?: string | null
+          order_id?: string | null
           phone?: string | null
           products?: Json | null
-          region?: string | null
+          status?: string | null
           surname?: string | null
           total_price?: string | null
         }
