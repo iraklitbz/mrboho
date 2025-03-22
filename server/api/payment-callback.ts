@@ -33,7 +33,7 @@ const verifySignature = (signature: string, body: any): boolean => {
 const handleOrderPayment = async (orderID: string) => {
     const { data: order, error: findError } = await supabase
         .from('orders')
-        .select('*')
+        .select('*, discounts')
         .eq('order_id', orderID)
         .single();
 
@@ -45,6 +45,27 @@ const handleOrderPayment = async (orderID: string) => {
         throw { statusCode: 400, message: 'Order already processed' };
     }
 
+    const discountCodes = order.discounts
+        ? order.discounts.split(',').map((code: string) => code.trim())
+        : [];
+
+    if (discountCodes.length > 0) {
+        for (const code of discountCodes) {
+            const { data: discount, error: discountError } = await supabase
+                .from('discount_codes')
+                .select('current_usage')
+                .eq('code', code)
+                .single();
+
+            if (discount && !discountError) {
+                await supabase
+                    .from('discount_codes')
+                    .update({ current_usage: discount.current_usage + 1 })
+                    .eq('code', code);
+            }
+        }
+    }
+
     const { error: updateError } = await supabase
         .from('orders')
         .update({ status: 'completed' })
@@ -53,7 +74,8 @@ const handleOrderPayment = async (orderID: string) => {
     if (updateError) {
         throw { statusCode: 500, message: 'Failed to update order' };
     }
-    const products = JSON.parse(order.products)
+
+    const products = JSON.parse(order.products);
     const userOrderForm = {
         name: order.name,
         email: order.email,
@@ -63,8 +85,9 @@ const handleOrderPayment = async (orderID: string) => {
         phone: order.phone,
         info_adicional: order.info_adicional
     };
-    await handleSendEmail(userOrderForm, products, order.total_price ?? "0", orderID)
-    await handleSendConfirmationEmailUser(userOrderForm, products, order.total_price ?? "0", orderID)
+
+    await handleSendEmail(userOrderForm, products, order.total_price ?? "0", orderID);
+    await handleSendConfirmationEmailUser(userOrderForm, products, order.total_price ?? "0", orderID);
 };
 async function handleSendEmail(userOrderForm: any, orderProducts: UserOrderItem[], total: string, orderID: string) {
     let msg = {

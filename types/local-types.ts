@@ -45,7 +45,8 @@ export type OrderSuperbase = {
     products: Json | null
     surname: string | null
     total_price: string | null,
-    status: string | null
+    status: string | null,
+    discount: string | null
 }
 
 export type DiscountCode = {

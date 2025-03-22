@@ -11,6 +11,7 @@ interface PaymentData {
         };
     };
 }
+import {cartStore} from "~/store/cart"
 import createOrder from '@/composables/useSendOrder'
 import { customAlphabet } from 'nanoid'
 export const useCheckoutStore = defineStore('checkoutData', () => {
@@ -34,6 +35,32 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
         discount: [],
     })
     const totalPrice = ref('')
+
+    const finalPrice = computed(() => {
+        let total = cartStore().cartTotalPrice
+
+        if (discount.value.valid && discount.value.discount.length > 0) {
+            let totalPercentage = 0;
+            let totalFixedDiscount = 0;
+
+            discount.value.discount.forEach(d => {
+                if (d.type === 'percentage') {
+                    totalPercentage += d.amount ?? 0;
+                } else if (d.type === 'fix') {
+                    totalFixedDiscount += d.amount ?? 0;
+                }
+            });
+
+            if (totalPercentage > 0) {
+                total -= total * (totalPercentage / 100);
+            }
+            if (totalFixedDiscount > 0) {
+                total -= totalFixedDiscount;
+            }
+        }
+
+        return total.toFixed(2);
+    });
     async function handleCheckoutForm(products: any, total: string) {
         errorPayment .value = false
         const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
@@ -47,8 +74,8 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
             price: currencyFormat(product?.product?.price as number),
             imageUrl: product.product?.imagesCollection?.items[0]?.url || "default-image-url"
         }))
-
-            const { data: orderData, error: orderError } = await supabase
+        const appliedDiscounts = discount.value.discount.map(d => d.code).join(', ') || null
+        const { data: orderData, error: orderError } = await supabase
                 .from('orders')
                 .insert([
                     {
@@ -62,7 +89,8 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
                         total_price: total,
                         products: JSON.stringify(orderProducts),
                         order_id: orderID,
-                        status: 'pending'
+                        status: 'pending',
+                        discount: appliedDiscounts
                     }
                 ] as any)
 
@@ -103,18 +131,19 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
             discount.value = {
                 valid: false,
                 message: 'Código no encontrado',
-                discount: [],
+                discount: [...discount.value.discount],
             };
             return;
         }
 
         const now = new Date();
         const expirationDate = data.expiration_date ? new Date(data.expiration_date) : null;
+
         if (!data.active) {
             discount.value = {
                 valid: false,
                 message: 'Este código no está activo',
-                discount: [],
+                discount: [...discount.value.discount],
             };
             return;
         }
@@ -123,7 +152,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
             discount.value = {
                 valid: false,
                 message: 'Código agotado',
-                discount: [],
+                discount: [...discount.value.discount],
             };
             return;
         }
@@ -132,7 +161,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
             discount.value = {
                 valid: false,
                 message: 'Código expirado',
-                discount: [],
+                discount: [...discount.value.discount],
             };
             return;
         }
@@ -143,7 +172,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
             discount.value = {
                 valid: false,
                 message: 'Este código ya está añadido, no puedes aplicarlo otra vez.',
-                discount: discount.value.discount,
+                discount: [...discount.value.discount],
             };
             return;
         }
@@ -154,7 +183,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
                 message: 'Descuento aplicado correctamente',
                 discount: [data],
             };
-            discountInput.value = ''
+            discountInput.value = '';
             return;
         }
 
@@ -164,7 +193,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
             discount.value = {
                 valid: false,
                 message: 'No puedes compartir este descuento con otro.',
-                discount: discount.value.discount,
+                discount: [...discount.value.discount],
             };
             return;
         }
@@ -175,16 +204,18 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
             discount.value = {
                 valid: false,
                 message: 'No puedes compartir este descuento con otro.',
-                discount: discount.value.discount,
+                discount: [...discount.value.discount],
             };
             return;
         }
+
         discount.value = {
             valid: true,
             message: 'Descuento aplicado correctamente',
             discount: [...discount.value.discount, data],
         };
-        discountInput.value = ''
+        discountInput.value = '';
+        console.log(discount.value);
     }
     function handleRemoveDiscount(index: number) {
         if (!discount.value?.discount) return;
@@ -203,6 +234,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
         discount,
         error,
         errorPayment,
+        finalPrice,
         handleCheckoutForm,
         handleRemoveDiscount,
         handleValidateDiscount

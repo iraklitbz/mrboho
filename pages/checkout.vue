@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import CheckoutCart from "~/components/Cart/CheckoutCart.vue"
 import {cartStore} from "~/store/cart"
+import {useCheckoutStore} from "~/store/checkout"
 import ExpressCheckout from "~/components/Checkout/ExpressCheckout.vue";
 import CheckoutForm from "~/components/Checkout/CheckoutForm.vue";
 import {showModalCartIsUpdated} from "~/composables/useModalCartIsUpdated"
@@ -33,14 +34,14 @@ onMounted(async () => {
         <div>
           <CheckoutForm
               :products="cartStore().cartProducts"
-              :total="currencyFormat(cartStore().cartTotalPrice as number)"
+              :total="currencyFormat(useCheckoutStore().finalPrice)"
           />
         </div>
       </section>
       <aside class="hidden md:col-span-5 md:block">
         <CheckoutCart
             :products="cartStore().cartProducts"
-            :total="currencyFormat(cartStore().cartTotalPrice as number)"
+            :total="currencyFormat(useCheckoutStore().finalPrice)"
         />
       </aside>
     </div>
