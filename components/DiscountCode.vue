@@ -22,7 +22,7 @@
             v-model="checkoutStore.discountInput"
             id="discount"
             type="text"
-            label="Code"
+            label="დისკონტო კოდი"
             :classes="{
               wrapper: 'w-full',
             }"

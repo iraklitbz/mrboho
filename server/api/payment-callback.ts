@@ -33,7 +33,7 @@ const verifySignature = (signature: string, body: any): boolean => {
 const handleOrderPayment = async (orderID: string) => {
     const { data: order, error: findError } = await supabase
         .from('orders')
-        .select('*, discounts')
+        .select('*, discount')
         .eq('order_id', orderID)
         .single();
 

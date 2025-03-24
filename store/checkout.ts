@@ -128,10 +128,11 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
             .single() as { data: DiscountCode | null, error: any };
 
         if (error || !data) {
+            // No sobrescribir los descuentos existentes, solo añadir el mensaje de error
             discount.value = {
-                valid: false,
-                message: 'Código no encontrado',
-                discount: [...discount.value.discount],
+                valid: discount.value.discount.length > 0, // Mantener validez si hay descuentos
+                message: 'დისკონტო კოდი არ მოიძებნა',
+                discount: [...discount.value.discount], // Mantener descuentos existentes
             };
             return;
         }
@@ -141,8 +142,8 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
 
         if (!data.active) {
             discount.value = {
-                valid: false,
-                message: 'Este código no está activo',
+                valid: discount.value.discount.length > 0,
+                message: 'ამ კოდს არ აქვს მოქმედება',
                 discount: [...discount.value.discount],
             };
             return;
@@ -150,8 +151,8 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
 
         if ((data.current_usage ?? 0) >= (data.max_usage ?? 0)) {
             discount.value = {
-                valid: false,
-                message: 'Código agotado',
+                valid: discount.value.discount.length > 0,
+                message: 'დისკონტო კოდი ამოწურულია',
                 discount: [...discount.value.discount],
             };
             return;
@@ -159,8 +160,8 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
 
         if (expirationDate && expirationDate < now) {
             discount.value = {
-                valid: false,
-                message: 'Código expirado',
+                valid: discount.value.discount.length > 0,
+                message: 'დისკონტო კოდი გაუვიდა',
                 discount: [...discount.value.discount],
             };
             return;
@@ -170,17 +171,18 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
 
         if (isAlreadyApplied) {
             discount.value = {
-                valid: false,
-                message: 'Este código ya está añadido, no puedes aplicarlo otra vez.',
+                valid: discount.value.discount.length > 0,
+                message: 'ეს დისკონტო კოდი უკვე დაემატა, ვერ გამოიყენებ მას კიდევ ერთხელ',
                 discount: [...discount.value.discount],
             };
             return;
         }
 
+        // Resto de la lógica permanece igual...
         if (discount.value.discount.length === 0) {
             discount.value = {
                 valid: true,
-                message: 'Descuento aplicado correctamente',
+                message: 'დისკონტო სწორად დაემატა',
                 discount: [data],
             };
             discountInput.value = '';
@@ -191,8 +193,8 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
 
         if (hasNonSharableDiscount) {
             discount.value = {
-                valid: false,
-                message: 'No puedes compartir este descuento con otro.',
+                valid: discount.value.discount.length > 0,
+                message: 'არ შეგიძლია ამ დისკონტო სხვა ვერსიასთან გაზიარება',
                 discount: [...discount.value.discount],
             };
             return;
@@ -202,8 +204,8 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
 
         if (allExistingAreSharable && !data.canBeShared) {
             discount.value = {
-                valid: false,
-                message: 'No puedes compartir este descuento con otro.',
+                valid: discount.value.discount.length > 0,
+                message: 'არ შეგიძლია ამ დისკონტო სხვა ვერსიასთან გაზიარება',
                 discount: [...discount.value.discount],
             };
             return;
@@ -211,11 +213,10 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
 
         discount.value = {
             valid: true,
-            message: 'Descuento aplicado correctamente',
+            message: 'დისკონტო სწორად დაემატა',
             discount: [...discount.value.discount, data],
         };
         discountInput.value = '';
-        console.log(discount.value);
     }
     function handleRemoveDiscount(index: number) {
         if (!discount.value?.discount) return;

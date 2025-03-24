@@ -24,7 +24,7 @@ const checkoutStore = useCheckoutStore()
       @submit="checkoutStore.handleCheckoutForm(products, total)"
   >
     <div>
-      <h3 class="flex justify-between items-center mb-4">Contact <nuxt-link to="/account/login">Login</nuxt-link></h3>
+      <h3 class="flex justify-between items-center mb-4 text-xl font-bold">კონტაქტი <nuxt-link class="underline text-blue-950" to="/account/login">ავტორიზაცია</nuxt-link></h3>
       <FormKit
           id="email"
           type="email"
@@ -39,7 +39,7 @@ const checkoutStore = useCheckoutStore()
       />
     </div>
     <div>
-      <h3 class="flex justify-between items-center mb-4">Delivery</h3>
+      <h3 class="flex justify-between items-center mb-4 text-xl font-bold">მისამართი</h3>
       <div class="grid grid-cols-6 gap-4">
         <FormKit
             id="name"

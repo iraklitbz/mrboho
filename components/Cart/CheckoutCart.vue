@@ -6,12 +6,23 @@ const props = defineProps<{
   products: CartProduct[],
   total: string
 }>()
+import { useCheckoutStore } from "~/store/checkout"
+const checkoutStore = useCheckoutStore()
+
+const calculateDiscount = (price: number, discount: { amount: number; type: string }) => {
+  if (discount.type === 'porcentage' || discount.type === 'percentage') {
+    return price * (discount.amount / 100); // Calculamos el descuento y lo devolvemos como cantidad ahorrada
+  } else if (discount.type === 'fix') {
+    return discount.amount; // Descuento fijo
+  }
+  return 0;
+};
 </script>
 
 <template>
   <div class="sticky top-40">
     <ul
-      class="flex flex-col gap-2"
+        class="flex flex-col gap-2"
     >
       <li
           v-for="(item, index) in props.products"
@@ -44,6 +55,18 @@ const props = defineProps<{
             {{currencyFormat(cartStore().cartTotalPrice as number)}}
           </span>
         </li>
+        <li v-if="checkoutStore.discount && checkoutStore.discount.discount.length > 0">
+          <div v-for="(discount, index) in checkoutStore.discount.discount" :key="index" class="mt-4">
+            <div class="flex justify-between items-center">
+                <span>
+                  დისკონტო {{ discount.code }} ({{ discount.type === 'porcentage' || discount.type === 'percentage' ? discount.amount + '%' : currencyFormat(discount.amount) }})
+                </span>
+              <span>
+                  - {{ currencyFormat(calculateDiscount(cartStore().cartTotalPrice as number, discount)) }}
+                </span>
+            </div>
+          </div>
+        </li>
         <li class="flex items-center justify-between mt-2">
           <span>
             Shipping
@@ -65,7 +88,3 @@ const props = defineProps<{
     </div>
   </div>
 </template>
-
-<style scoped>
-
-</style>
