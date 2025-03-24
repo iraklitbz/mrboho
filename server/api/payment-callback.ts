@@ -45,8 +45,8 @@ const handleOrderPayment = async (orderID: string) => {
         throw { statusCode: 400, message: 'Order already processed' };
     }
 
-    const discountCodes = order.discounts
-        ? order.discounts.split(',').map((code: string) => code.trim())
+    const discountCodes = order.discount
+        ? order.discount.split(',').map((code: string) => code.trim())
         : [];
 
     if (discountCodes.length > 0) {
