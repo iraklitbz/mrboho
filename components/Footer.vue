@@ -20,6 +20,11 @@
       name: 'კონტაქტი',
       link: '/contact',
       external: false
+    },
+    {
+      name: 'წესები და პირობები',
+      link: '/general-conditions',
+      external: false
     }
   ]
 </script>
