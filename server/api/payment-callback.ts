@@ -1,19 +1,6 @@
-import type {OrderSuperbase, UserOrderForm, UserOrderItem} from "~/types/local-types";
-interface CustomError {
-    statusCode: number;
-    message: string;
-}
+import { completeOrder } from '~/services/orderService';
+import type { CustomError } from '~/types/local-types';
 import crypto from 'crypto';
-import { createClient } from '@supabase/supabase-js';
-import {orderEmailTemplate} from "~/services/emails/order";
-import {orderConfirmationEmailTemplate} from "~/services/emails/orderConfirmation";
-
-const config = useRuntimeConfig();
-const supabase = createClient(
-    config.public.SUPABASE_URL,
-    config.public.SUPABASE_KEY
-);
-
 const publicKey = `-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu4RUyAw3+CdkS3ZNILQh
 zHI9Hemo+vKB9U2BSabppkKjzjjkf+0Sm76hSMiu/HFtYhqWOESryoCDJoqffY0Q
@@ -30,92 +17,6 @@ const verifySignature = (signature: string, body: any): boolean => {
     return verify.verify(publicKey, signature, 'base64');
 };
 
-const handleOrderPayment = async (orderID: string) => {
-    const { data: order, error: findError } = await supabase
-        .from('orders')
-        .select('*, discount')
-        .eq('order_id', orderID)
-        .single();
-
-    if (findError || !order) {
-        throw { statusCode: 404, message: 'Order not found' };
-    }
-
-    if (order.status === 'completed' || order.status === 'failed') {
-        throw { statusCode: 400, message: 'Order already processed' };
-    }
-
-    const discountCodes = order.discount
-        ? order.discount.split(',').map((code: string) => code.trim())
-        : [];
-
-    if (discountCodes.length > 0) {
-        for (const code of discountCodes) {
-            const { data: discount, error: discountError } = await supabase
-                .from('discount_codes')
-                .select('current_usage')
-                .eq('code', code)
-                .single();
-
-            if (discount && !discountError) {
-                await supabase
-                    .from('discount_codes')
-                    .update({ current_usage: discount.current_usage + 1 })
-                    .eq('code', code);
-            }
-        }
-    }
-
-    const { error: updateError } = await supabase
-        .from('orders')
-        .update({ status: 'completed' })
-        .eq('order_id', orderID);
-
-    if (updateError) {
-        throw { statusCode: 500, message: 'Failed to update order' };
-    }
-
-    const products = JSON.parse(order.products);
-    const userOrderForm = {
-        name: order.name,
-        email: order.email,
-        surname: order.surname,
-        address: order.address,
-        city: order.city,
-        phone: order.phone,
-        info_adicional: order.info_adicional
-    };
-
-    await handleSendEmail(userOrderForm, products, order.total_price ?? "0", orderID);
-    await handleSendConfirmationEmailUser(userOrderForm, products, order.total_price ?? "0", orderID);
-};
-async function handleSendEmail(userOrderForm: any, orderProducts: UserOrderItem[], total: string, orderID: string) {
-    let msg = {
-        from: 'web@mrboho.ge',
-        to: 'georgia@mrboho.ge',
-        subject: `New order from ${userOrderForm.email}`,
-        html: orderEmailTemplate(userOrderForm, orderProducts, total, orderID)
-    };
-
-    await $fetch("/api/order-success-email", {
-        method: "POST",
-        body: msg
-    });
-}
-async function handleSendConfirmationEmailUser(userOrderForm: any, orderProducts: UserOrderItem[], total: string, orderID: string) {
-    let msg = {
-        from: 'mrboho@mrboho.ge',
-        to: userOrderForm.email,
-        subject: `Your order ${orderID}`,
-        html: orderConfirmationEmailTemplate(userOrderForm, orderProducts, total, orderID)
-    };
-
-    await $fetch("/api/order-success-email", {
-        method: "POST",
-        body: msg
-    });
-}
-
 export default defineEventHandler(async (event) => {
     if (event.node.req.method !== 'POST') {
         event.node.res.statusCode = 405;
@@ -125,7 +26,6 @@ export default defineEventHandler(async (event) => {
     try {
         const body = await readBody(event);
         const orderID = body.body.external_order_id;
-
         const signature = getHeader(event, 'callback-signature');
 
         if (!verifySignature(signature as string, body)) {
@@ -138,7 +38,7 @@ export default defineEventHandler(async (event) => {
         if (eventType === 'order_payment') {
             switch (orderData.order_status.key) {
                 case 'completed':
-                    await handleOrderPayment(orderID);
+                    await completeOrder(orderID);
                     break;
                 case 'failed':
                     console.log('El pago falló');

@@ -2,7 +2,6 @@
 import CheckoutCart from "~/components/Cart/CheckoutCart.vue"
 import {cartStore} from "~/store/cart"
 import {useCheckoutStore} from "~/store/checkout"
-import ExpressCheckout from "~/components/Checkout/ExpressCheckout.vue";
 import CheckoutForm from "~/components/Checkout/CheckoutForm.vue";
 import {showModalCartIsUpdated} from "~/composables/useModalCartIsUpdated"
 const arrayStrings = ref<string[]>(
@@ -24,13 +23,6 @@ onMounted(async () => {
       <section
         class="col-span-12 md:col-span-7"
       >
-<!--        <div>-->
-<!--          <h2 class="text-center mb-2 text-sm"> Express Checkout</h2>-->
-<!--          <ExpressCheckout />-->
-<!--        </div>-->
-<!--        <div class="py-3 flex items-center text-md text-gray-800 before:flex-1 before:border-t before:border-gray-300 before:Me-6 after:flex-1 after:border-t after:border-gray-300 after:ms-6 ">-->
-<!--          ან-->
-<!--        </div>-->
         <div>
           <CheckoutForm
               :products="cartStore().cartProducts"

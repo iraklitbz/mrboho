@@ -37,7 +37,7 @@ const handleColorFilter = (color: string) => {
   sunglassesStore().handleColorFilter(color)
 }
 const resetFilters = () => {
-  sunglassesStore().reserFilter()
+  sunglassesStore().resetFilter()
 }
 </script>
 

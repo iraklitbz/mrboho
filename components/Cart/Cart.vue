@@ -54,6 +54,7 @@ function updateTotal(id: string, newTotal: string) {
               v-for="(item, index) in cartStore().cartProducts as CartProduct[]"
               :key="index"
               :item="item as CartProduct"
+              :cartProductIndex="index"
           />
         </ul>
       </div>

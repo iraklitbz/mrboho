@@ -37,7 +37,6 @@ function showOrderDetailModal (products: string, address: string, city: string, 
   })
   orderDetailModalInstance.open()
 }
-console.log()
 </script>
 
 <template>

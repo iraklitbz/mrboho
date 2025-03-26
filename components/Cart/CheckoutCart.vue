@@ -11,9 +11,9 @@ const checkoutStore = useCheckoutStore()
 
 const calculateDiscount = (price: number, discount: { amount: number; type: string }) => {
   if (discount.type === 'porcentage' || discount.type === 'percentage') {
-    return price * (discount.amount / 100); // Calculamos el descuento y lo devolvemos como cantidad ahorrada
+    return price * (discount.amount / 100);
   } else if (discount.type === 'fix') {
-    return discount.amount; // Descuento fijo
+    return discount.amount;
   }
   return 0;
 };

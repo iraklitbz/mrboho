@@ -50,17 +50,19 @@ export const sunglassesStore = defineStore('sunglassesData', {
             this.sunglassesDetail = data.items[0] as SunglassesContenfull
         },
         getUniqueColors(sunglassesType: any) {
-            const allColors = sunglassesType.sunglassesCollection.items.flatMap(item => item.color)
+            const allColors = sunglassesType.sunglassesCollection.items.flatMap(
+                (item: SunglassesContenfull) => item.color
+            )
             this.uniqueColors = [...new Set(allColors)] as Array<string>
         },
         handleColorFilter(color: string) {
             if (this.sunglassesTypesBySlug?.sunglassesCollection?.items) {
                 this.filteredItems = this.sunglassesTypesBySlug.sunglassesCollection.items.filter(item =>
-                    item.color.includes(color)
+                    item?.color?.includes(color)
                 )
             }
         },
-        reserFilter() {
+        resetFilter() {
             this.filteredItems = [] as Array<Maybe<SunglassesContenfull>>
         }
     },

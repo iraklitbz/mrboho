@@ -4,7 +4,8 @@ import {cartStore} from "~/store/cart";
 import type {CartProduct} from "~/types/local-types";
 import {currencyFormat} from "~/utils/currency-utils";
 const props = defineProps<{
-  item: CartProduct
+  item: CartProduct,
+  cartProductIndex: number
 }>()
 onMounted(() => {
   const currentNode = getNode(`${props.item.product?.sys?.id}-quantity`)

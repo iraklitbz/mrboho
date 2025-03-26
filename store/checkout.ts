@@ -13,6 +13,7 @@ interface PaymentData {
 }
 import {cartStore} from "~/store/cart"
 import createOrder from '@/composables/useSendOrder'
+import {createPaypalOrder} from '@/composables/usePaypal'
 import { customAlphabet } from 'nanoid'
 export const useCheckoutStore = defineStore('checkoutData', () => {
     const supabase = useSupabaseClient()
@@ -29,6 +30,11 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
     const error = ref(false)
     const errorPayment = ref(false)
     const discountInput = ref('')
+    const paymentMethod = ref<'bank' | 'paypal' | null>(null)
+    const loadingStates = reactive({
+        bank: false,
+        paypal: false
+    })
     const discount = ref<DiscountCodeState>({
         valid: false,
         message: null,
@@ -61,21 +67,29 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
 
         return total.toFixed(2);
     });
-    async function handleCheckoutForm(products: any, total: string) {
-        errorPayment .value = false
-        const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-        const nanoid = customAlphabet(alphabet, 10);
-        const orderID = `MR-${nanoid()}`
-        const orderProducts = products.map((product: CartProduct) => ({
-            name: product?.product?.name,
-            slug: product?.product?.slug,
-            productID: product?.product?.sys?.id,
-            quantity: product?.total,
-            price: currencyFormat(product?.product?.price as number),
-            imageUrl: product.product?.imagesCollection?.items[0]?.url || "default-image-url"
-        }))
-        const appliedDiscounts = discount.value.discount.map(d => d.code).join(', ') || null
-        const { data: orderData, error: orderError } = await supabase
+    async function handleCheckoutForm(products: any, total: string, method: 'bank' | 'paypal') {
+        paymentMethod.value = method;
+
+        loadingStates[method] = true;
+        errorPayment.value = false;
+
+        try {
+            const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+            const nanoid = customAlphabet(alphabet, 10);
+            const orderID = `MR-${nanoid()}`;
+
+            const orderProducts = products.map((product: CartProduct) => ({
+                name: product?.product?.name,
+                slug: product?.product?.slug,
+                productID: product?.product?.sys?.id,
+                quantity: product?.total,
+                price: currencyFormat(product?.product?.price as number),
+                imageUrl: product.product?.imagesCollection?.items[0]?.url || "default-image-url"
+            }));
+
+            const appliedDiscounts = discount.value.discount.map(d => d.code).join(', ') || null;
+
+            const { data: orderData, error: orderError } = await supabase
                 .from('orders')
                 .insert([
                     {
@@ -92,14 +106,25 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
                         status: 'pending',
                         discount: appliedDiscounts
                     }
-                ] as any)
+                ] as any);
 
             if (orderError) {
-                console.error('Error al crear la orden:', orderError.message)
-                return
+                console.error('Error al crear la orden:', orderError.message);
+                return;
             }
-            await handleCheckoutPayment(orderID, products, total)
+
+            if (method === 'bank') {
+                await handleCheckoutPayment(orderID, products, total);
+            } else if (method === 'paypal') {
+                await handlePaypalPayment(orderID, products, total);
+            }
+        } catch (error) {
+            console.error('Error durante el checkout:', error);
+            errorPayment.value = true;
+        } finally {
+            loadingStates[method] = false;
         }
+    }
     async function handleCheckoutPayment(orderID: string, products: any, total: string) {
             errorPayment .value = false
             const basket = products.map((product: CartProduct) => ({
@@ -120,6 +145,32 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
                 errorPayment.value = true;
             }
         }
+    async function handlePaypalPayment(orderID: string, products: any, total: string) {
+        try {
+            const totalToNumber = parseFloat(total.replace(/[^\d.-]/g, '').replace(',', ''));
+            const basket = products.map((product: CartProduct) => ({
+                quantity: product?.total,
+                unit_price: product?.product?.price,
+                product_id: product?.product?.sys.id
+            }));
+
+            const paymentData: any = await createPaypalOrder(orderID, totalToNumber, basket, userOrderForm.value);
+
+            if (paymentData && paymentData.links) {
+                const approvalLink = paymentData.links.find((link: any) => link.rel === 'approve');
+                if (approvalLink) {
+                    window.location.href = approvalLink.href;
+                } else {
+                    errorPayment.value = true
+                }
+            } else {
+                errorPayment.value = true
+            }
+        } catch (err) {
+            console.error('Error en el pago con PayPal:', err);
+            errorPayment.value = true
+        }
+    }
     async function handleValidateDiscount(code: string) {
         const { data, error } = await supabase
             .from('discount_codes')
@@ -128,11 +179,10 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
             .single() as { data: DiscountCode | null, error: any };
 
         if (error || !data) {
-            // No sobrescribir los descuentos existentes, solo añadir el mensaje de error
             discount.value = {
-                valid: discount.value.discount.length > 0, // Mantener validez si hay descuentos
+                valid: discount.value.discount.length > 0,
                 message: 'დისკონტო კოდი არ მოიძებნა',
-                discount: [...discount.value.discount], // Mantener descuentos existentes
+                discount: [...discount.value.discount],
             };
             return;
         }
@@ -231,6 +281,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
     return {
         userOrderForm,
         loading,
+        paymentMethod,
         discountInput,
         discount,
         error,

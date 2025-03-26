@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import type { Breadcrumb } from '~/types/local-types'
 import IconChevronDown from "assets/icons/chevron-down.svg"
 import Icon from "~/components/Icon.vue";
 
 const props = defineProps<{
-  breadcrumbsNav: Array<{ text: string, to: string }>
+  breadcrumbsNav: Breadcrumb[]
 }>()
 </script>
 
@@ -25,8 +26,8 @@ const props = defineProps<{
            />
         </span>
         <nuxt-link
-            v-if="breadcrumb.to"
-            :to="breadcrumb.to"
+            v-if="breadcrumb?.to"
+            :to="breadcrumb?.to"
             class="md:mr-2 font-bold"
         >
             <span

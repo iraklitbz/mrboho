@@ -104,10 +104,14 @@ export default defineNuxtConfig({
     BANK_SECRET_KEY: process.env.BANK_SECRET_KEY,
     BANK_API_URL: process.env.BANK_API_URL,
     BANK_PUBLIC_KEY: process.env.BANK_PUBLIC_KEY,
+    PAYPAL_CLIENT: process.env.PAYPAL_CLIENT,
+    PAYPAL_SECRET: process.env.PAYPAL_SECRET,
+    PAYPAL_API_URL: process.env.PAYPAL_API_URL,
     public: {
       SUPABASE_URL: process.env.SUPABASE_URL,
       SUPABASE_KEY: process.env.SUPABASE_KEY,
-      NUXT_PUBLIC_BASE_URL: process.env.NUXT_PUBLIC_BASE_URL
+      NUXT_PUBLIC_BASE_URL: process.env.NUXT_PUBLIC_BASE_URL,
+      PAYPAL_C: process.env.PAYPAL_CLIENT,
     }
   },
   devtools: { enabled: true },

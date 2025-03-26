@@ -5,6 +5,10 @@ export type CartProduct = {
     product?: Maybe<OpticalGlassesContenfull> | Maybe<SunglassesContenfull>,
     total?: number
 }
+export type Breadcrumb = {
+    text: string
+    to?: string
+}
 
 export type UserOrderForm = {
     name: string,
@@ -15,6 +19,11 @@ export type UserOrderForm = {
     phone: string,
     additional: string,
     products?: string
+}
+
+export type  CustomError = {
+    statusCode: number;
+    message: string;
 }
 
 export type ExtendedUserOrderForm = UserOrderForm & {

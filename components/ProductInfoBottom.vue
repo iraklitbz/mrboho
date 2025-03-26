@@ -5,8 +5,11 @@ import type {
   OpticalGlassesContenfull
 } from '~/types/contenfull-types'
 import { cartStore } from "~/store/cart"
+import { useWishList } from "~/store/wishlist"
 import { currencyFormat } from "~/utils/currency-utils";
-
+import IconHeart from "~/assets/icons/heart.svg"
+import IconHeartFill from "~/assets/icons/heart-fill.svg"
+import Icon from "~/components/Icon.vue";
 const props = defineProps<{
   productDetail: Maybe<SunglassesContenfull | OpticalGlassesContenfull>
   breadcrumbsNav: any[]
@@ -34,27 +37,40 @@ const addToCart = () => {
     cartStore().addToCart(updatedProduct)
   }
 }
+console.log(useWishList().wishlist)
 
 </script>
 
 <template>
   <div
-      class="sticky bottom-0 left-0 right-0 bg-white z-40 w-full border-y border-solid border-black py-7 px-5 md:px-10 flex md:justify-end"
+      class="sticky bottom-0 left-0 right-0 bg-white z-40 w-full border-y border-solid border-black py-7 px-5 md:px-10 flex items-center justify-between "
   >
-    <div
-        class="flex justify-between md:justify-start gap-10 items-center w-full md:w-auto"
-    >
-      <h2 class="text-3xl md:text-4xl text-center uppercase">
-        {{ currencyFormat(props.productDetail?.price as number) }}
-      </h2>
-      <button
-          @click="addToCart"
-          class="text-xl md:text-2xl text-center bg-black/90 text-white py-3 md:py-4 px-8 rounded-full relative font-bold after:bg-black after:absolute after:z-0 after:h-full after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer overflow-hidden"
-      >
-        <span class="relative z-20">
-          კალათაში დამატება
-        </span>
+    <client-only>
+      <button class="cursor-pointer" @click="useWishList().toggleProduct(productDetail)">
+        <Icon
+            class="text-2xl md:text-5xl"
+            :class="productDetail?.sys?.id && useWishList().isInWishlist(productDetail.sys.id) ? 'text-red-500' : 'text-black'"
+            :icon="productDetail?.sys?.id && useWishList().isInWishlist(productDetail.sys.id) ? IconHeartFill : IconHeart"
+            :auto-align="false"
+        />
       </button>
+    </client-only>
+    <div class="flex items-center md:justify-end">
+      <div
+          class="flex justify-between md:justify-start gap-10 items-center w-full md:w-auto"
+      >
+        <h2 class="text-3xl md:text-4xl text-center uppercase">
+          {{ currencyFormat(props.productDetail?.price as number) }}
+        </h2>
+        <button
+            @click="addToCart"
+            class="text-xl md:text-2xl text-center bg-black/90 text-white py-3 md:py-4 px-8 rounded-full relative font-bold after:bg-black after:absolute after:z-0 after:h-full after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer overflow-hidden"
+        >
+          <span class="relative z-20">
+            კალათაში დამატება
+          </span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
