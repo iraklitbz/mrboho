@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import {useMeStore} from "~/store/me"
 import { format } from "@formkit/tempo"
-
+import IconEye from "~/assets/icons/eye.svg"
+import ModalOrderDetail from "~/components/Modal/ModalOrderDetail.vue"
 import Icon from "~/components/Icon.vue"
+import { useModal } from 'vue-final-modal'
 import type {
   ExtendedUserOrderForm
 } from '~/types/local-types'
@@ -14,6 +16,27 @@ definePageMeta({
 onMounted(async () => {
   await meStore.fetchProducts(user.value?.email || '')
 })
+function showOrderDetailModal (products: string, address: string, city: string, src: string) {
+  const orderDetailModalInstance = useModal({
+    component: ModalOrderDetail,
+    attrs: {
+      src,
+      products,
+      address,
+      city,
+      onBeforeOpen () {
+        blockScroll(window.scrollY)
+      },
+      onBeforeClose () {
+        unBlockScroll()
+      },
+      onClose () {
+        orderDetailModalInstance.close()
+      }
+    }
+  })
+  orderDetailModalInstance.open()
+}
 </script>
 
 <template>
@@ -51,6 +74,7 @@ onMounted(async () => {
                <th class="text-right px-5 py-2">
                  <button
                      class="flex items-center justify-end w-full"
+                     @click="showOrderDetailModal(item.products, item.address, item.city)"
                  >
                    <Icon
                        :icon="IconEye"

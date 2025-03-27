@@ -1,5 +1,7 @@
 <script setup lang="ts">
-
+import { useVfm } from 'vue-final-modal'
+const vfm = useVfm()
+const { closeAll } = vfm
 const props = defineProps<{
   products: string,
   address: string,
@@ -30,7 +32,7 @@ const products = computed(() => JSON.parse(props.products))
             <div>
               <nuxt-link
                   :to="product?.slug"
-
+                  @click="closeAll()"
                   class="text-blue-900 underline"
               >{{ product?.name }}</nuxt-link>
               <span class="ml-2">

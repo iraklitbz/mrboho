@@ -15,9 +15,7 @@
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-    <client-only>
-      <ModalsContainer />
-    </client-only>
+    <ModalsContainer />
   </div>
 </template>
 
