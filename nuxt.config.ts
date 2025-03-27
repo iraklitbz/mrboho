@@ -11,22 +11,6 @@ export default defineNuxtConfig({
         { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "anonymous" },
         { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@100..900&display=swap" }
       ],
-      script: [
-        {
-          hid: 'gtagHead',
-          src: `https://www.googletagmanager.com/gtag/js?id=${process.env.ANALITYC_ID}`,
-          async: true
-        },
-        {
-          hid: 'gtagInit',
-          innerHTML: process.env.NODE_ENV === 'production'
-              ? `window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', ${process.env.ANALITYC_ID});`
-              : ''
-        }
-      ],
     },
     layoutTransition: {
       name: "fade",
@@ -128,6 +112,7 @@ export default defineNuxtConfig({
       SUPABASE_KEY: process.env.SUPABASE_KEY,
       NUXT_PUBLIC_BASE_URL: process.env.NUXT_PUBLIC_BASE_URL,
       PAYPAL_C: process.env.PAYPAL_CLIENT,
+      ANALITYC_ID: process.env.ANALITYC_ID
     }
   },
   devtools: { enabled: true },
