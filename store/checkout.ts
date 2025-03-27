@@ -69,7 +69,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
     });
     async function handleCheckoutForm(products: any, total: string, method: 'bank' | 'paypal') {
         paymentMethod.value = method;
-
+        console.log(method)
         loadingStates[method] = true;
         errorPayment.value = false;
 
@@ -104,7 +104,8 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
                         products: JSON.stringify(orderProducts),
                         order_id: orderID,
                         status: 'pending',
-                        discount: appliedDiscounts
+                        discount: appliedDiscounts,
+                        payment: method
                     }
                 ] as any);
 
