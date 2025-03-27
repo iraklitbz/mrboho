@@ -60,8 +60,5 @@
     "vue": "3.5.12",
     "vue-final-modal": "4.5.5",
     "vue3-google-map": "0.21.0"
-  },
-  "dependencies": {
-    "@paypal/paypal-js": "^8.2.0"
   }
 }
