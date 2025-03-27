@@ -13,15 +13,19 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          hid: 'gtmHead',
-          innerHTML: process.env.NODE_ENV === 'production'
-              ? `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${process.env.GMT_CONTAINER_ID}');`
-              : '',
+          hid: 'gtagHead',
+          src: `https://www.googletagmanager.com/gtag/js?id=${process.env.ANALITYC_ID}`,
+          async: true
         },
+        {
+          hid: 'gtagInit',
+          innerHTML: process.env.NODE_ENV === 'production'
+              ? `window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', ${process.env.ANALITYC_ID});`
+              : ''
+        }
       ],
     },
     layoutTransition: {
