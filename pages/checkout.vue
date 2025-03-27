@@ -3,18 +3,13 @@ import CheckoutCart from "~/components/Cart/CheckoutCart.vue"
 import {cartStore} from "~/store/cart"
 import {useCheckoutStore} from "~/store/checkout"
 import CheckoutForm from "~/components/Checkout/CheckoutForm.vue";
-import {showModalCartIsUpdated} from "~/composables/useModalCartIsUpdated"
+
 const arrayStrings = ref<string[]>(
     cartStore().cartProducts
         .map(item => item?.product?.sys?.id)
         .filter((id): id is string => !!id)
 );
 await cartStore().fetchIfExist(arrayStrings.value)
-onMounted(async () => {
-  if(cartStore().cartUpdated) {
-    await showModalCartIsUpdated()
-  }
-})
 </script>
 
 <template>
