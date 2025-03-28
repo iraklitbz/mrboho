@@ -8,6 +8,8 @@ import type {
 } from '~/types/contenfull-types'
 import { sunglassesStore } from "~/store/sunglasses"
 import { opticalStore } from "~/store/optical"
+import ProductDetailCarrusel from "~/components/ProductDetailCarrusel.vue";
+import ProductAside from "~/components/ProductAside.vue";
 const route = useRoute()
 const productDetail = ref<Maybe<SunglassesContenfull | OpticalGlassesContenfull>>(null)
 const productData = ref<Maybe<SunglassesTypesContenfull | OpticalTypesContenfull>>(null)
@@ -38,49 +40,30 @@ if(route.params.collectionType === 'sunglasses') {
 
 <template>
   <main>
-    <Headline
-        :title="productData?.name as string"
-    />
     <Breadcrumbs
         :breadcrumbs-nav="breadcrumbsNav"
     />
     <section
-        class="mt-14 "
+        class="mt-14"
     >
-      <div class="grid grid-cols-12 gap-10 px-5 md:px-10 max-w-7xl m-auto">
-        <div class="flex flex-col col-span-12">
-          <ul
-              class="w-full"
-          >
-            <li
-                v-for="(images, index) in productDetail?.imagesCollection?.items"
-                :key="index"
-                class="p-5 md:p-0"
-            >
-              <nuxt-img
-                  :src="images?.url as string"
-                  :alt="productDetail?.name as string"
-                  class="w-full max-w-4xl m-auto h-full object-cover"
-                  format="webp"
-              />
-            </li>
-          </ul>
+      <div class="grid grid-cols-12 gap-10 px-5 md:px-10 max-w-7xl m-auto relative">
+        <ProductDetailCarrusel
+            class="grid grid-cols-6 col-span-8 gap-2"
+            :product-detail="productDetail as SunglassesContenfull | OpticalGlassesContenfull"
+        />
+        <div class="flex flex-col col-span-4 relative">
+          <ProductAside
+              :product-detail="productDetail as SunglassesContenfull | OpticalGlassesContenfull"
+              :products="route.params.collectionType === 'sunglasses' ? productData?.sunglassesCollection?.items : productData?.glassesCollection?.items"
+              :breadcrumbs-nav="breadcrumbsNav"
+          />
         </div>
-<!--        <div class="flex flex-col col-span-4">-->
-<!--          <SmallOverviewSwitcher-->
-<!--              :products="route.params.collectionType === 'sunglasses' ? productData?.sunglassesCollection?.items : productData?.glassesCollection?.items"-->
-<!--          />-->
-<!--        </div>-->
       </div>
     </section>
     <MoreProducts
         class="mb-10"
         :collection-type="productData?.name as string"
         :product-more-data="route.params.collectionType === 'sunglasses' ? productData?.sunglassesCollection?.items : productData?.glassesCollection?.items"
-    />
-    <ProductInfoBottom
-        :product-detail="productDetail as SunglassesContenfull | OpticalGlassesContenfull"
-        :breadcrumbs-nav="breadcrumbsNav"
     />
   </main>
 </template>

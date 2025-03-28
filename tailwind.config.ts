@@ -17,6 +17,7 @@ export default {
             colors: {
                 'transparent': 'transparent',
                 'current': 'currentColor',
+                'gray-50': '#F8F5F1',
                 'gray-100': '#DFDFDF',
                 'gray-400': '#999',
                 'gray-600': '#777',
@@ -31,7 +32,7 @@ export default {
                 'saba-red': '#d40e14',
                 'saba-red-100': '#9d0a0f',
                 'saba-yellow': '#FDB813',
-                'saba-success': '#30B675'
+                'saba-success': '#30B675',
             },
         }
     },
