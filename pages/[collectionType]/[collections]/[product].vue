@@ -48,7 +48,7 @@ if(route.params.collectionType === 'sunglasses') {
     >
       <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-10 px-5 md:px-10 max-w-7xl m-auto relative mb-10">
         <ProductDetailCarrusel
-            class="flex flex-col-reverse md:grid md:grid-cols-6 md:col-span-8 gap-2"
+            class="grid grid-cols-6 md:col-span-8 gap-2"
             :product-detail="productDetail as SunglassesContenfull | OpticalGlassesContenfull"
         />
         <div class="flex flex-col md:col-span-4 relative z-50">
@@ -62,6 +62,7 @@ if(route.params.collectionType === 'sunglasses') {
     </section>
     <div class="px-5 md:px-10">
       <SmallOverviewSwitcher
+          v-if="productData?.sunglassesCollection?.items && productData?.sunglassesCollection?.items.length > 1 || productData?.glassesCollection?.items && productData?.glassesCollection?.items.length > 1"
           :products="route.params.collectionType === 'sunglasses' ? productData?.sunglassesCollection?.items : productData?.glassesCollection?.items"
           class="mt-16 md:hidden"
       />

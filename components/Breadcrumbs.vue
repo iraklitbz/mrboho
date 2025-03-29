@@ -11,7 +11,7 @@ const props = defineProps<{
 <template>
   <nav>
     <ul
-        class="flex justify-center items-center text-base md:text-lg mt-8"
+        class="flex justify-center items-center text-xs md:text-lg mt-8"
     >
       <li
           v-for="(breadcrumb, index) in props.breadcrumbsNav"

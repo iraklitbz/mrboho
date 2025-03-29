@@ -41,12 +41,12 @@ const scrollToIndex = (index: number) => {
 
 <template>
   <div class="flex">
-    <ul class="flex md:flex-col w-full md:col-span-1 md:px-2">
+    <ul class="flex flex-col w-full col-span-1 md:px-2">
       <li
           v-for="(image, index) in productDetail?.imagesCollection?.items"
           :key="index"
           :class="index === activeIndex ? 'opacity-100' : 'opacity-50'"
-          class="p-2 lg:p-5 h-14 w-full md:h-28 lg:h-40 cursor-pointer transition-all duration-300 bg-gray-50"
+          class="p-2 lg:p-5 h-20 w-full md:h-28 lg:h-40 cursor-pointer transition-all duration-300 bg-gray-50"
           @click="scrollToIndex(index)"
       >
         <nuxt-img
@@ -59,7 +59,7 @@ const scrollToIndex = (index: number) => {
         />
       </li>
     </ul>
-<div class="relative w-full md:col-span-5">
+<div class="relative w-full col-span-5">
   <client-only>
     <button class="cursor-pointer absolute right-5 top-5 z-50" @click="useWishList().toggleProduct(productDetail)">
       <Icon

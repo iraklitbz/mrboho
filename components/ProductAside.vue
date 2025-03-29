@@ -50,6 +50,7 @@ const addToCart = () => {
       {{ currencyFormat(props.productDetail?.price as number) }}
     </h5>
     <SmallOverviewSwitcher
+        v-if="products && products.length > 1 || products && products.length > 1"
         :products="products"
         class="mt-10 hidden md:grid"
     />
