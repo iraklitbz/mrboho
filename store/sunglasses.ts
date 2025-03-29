@@ -22,6 +22,13 @@ export const sunglassesStore = defineStore('sunglassesData', {
         uniqueColors: [] as Array<string>,
         filteredItems: [] as Array<Maybe<SunglassesContenfull>>
     }),
+    getters: {
+        randomOpticalTypes: (state) => {
+            return [...state.sunglassesTypes]
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 4)
+        }
+    },
     actions: {
         async fetchSunglassesTypes() {
             const data = await apiCall(dataQuerySunGlassesTypes, 'sunglassesTypesCollection', {}, false) as SunglassesTypesCollectionContenfull

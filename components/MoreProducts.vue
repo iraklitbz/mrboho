@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {SunglassesContenfull} from "~/types/contenfull-types"
+import type {SunglassesContenfull, SunglassesTypesContenfull} from "~/types/contenfull-types"
 const route = useRoute()
 const props = defineProps({
   collectionType: {
@@ -7,7 +7,7 @@ const props = defineProps({
     required: true
   },
   productMoreData: {
-    type: Array as PropType<SunglassesContenfull[]>,
+    type: Array as PropType<SunglassesTypesContenfull[]>,
     required: true
   }
 })
@@ -15,17 +15,16 @@ const props = defineProps({
 
 <template>
   <section class="relative z-20">
-    <h2 class="text-4xl md:text-6xl uppercase py-14 px-5 md:px-10 text-center">More <span> {{props.collectionType}} </span> options</h2>
+    <h2 class="text-3xl md:text-5xl uppercase pt-10 pb-7 px-5 md:px-10 text-center">More</h2>
     <div
-        class="sunglasses-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        class="sunglasses-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2"
     >
-      <Card
-          v-for="(sunglasses, index) in props.productMoreData.slice(0, 4)"
+      <SmallCard
+          v-for="sunglasses in props.productMoreData"
           :key="sunglasses?.sys?.id"
           :product="sunglasses as SunglassesContenfull"
-          class="card border-l border-y border-solid border-black -mt-[1px]"
-          :class="index === (props.productMoreData.length - 1) ? 'border-r' : ''"
-          :slug="`${route.params.collectionType}/${sunglasses.familie?.slug}/${sunglasses?.slug}`"
+          class="bg-gray-50"
+          :slug="`${route.params.collectionType}/${sunglasses?.slug}`"
       />
     </div>
   </section>

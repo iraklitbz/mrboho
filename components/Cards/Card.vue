@@ -51,7 +51,7 @@ const props = defineProps<{
     <footer
         class="flex flex-col justify-between text-base"
     >
-      <h2 class="text-xl">
+      <h2 class="text-xl latin">
         {{ props.product.name }}
       </h2>
       <p class="text-xl font-bold mt-3 whitespace-nowrap">{{ currencyFormat(props.product.price as number) }} </p>

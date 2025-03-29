@@ -16,6 +16,13 @@ export const opticalStore = defineStore('opticalData', {
         opticalDetail: {} as Maybe<OpticalGlassesContenfull>,
         allOptical: [] as Array<Maybe<OpticalTypesContenfull>>,
     }),
+    getters: {
+        randomOpticalTypes: (state) => {
+            return [...state.opticalTypes]
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 4)
+        }
+    },
     actions: {
         async fetchOpticalTypes() {
             const data = await apiCall(dataQueryOpticalTypes, 'opticalTypesCollection', {}, false) as OpticalTypesCollectionContenfull

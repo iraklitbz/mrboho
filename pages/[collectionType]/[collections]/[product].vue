@@ -13,12 +13,15 @@ import ProductAside from "~/components/ProductAside.vue";
 const route = useRoute()
 const productDetail = ref<Maybe<SunglassesContenfull | OpticalGlassesContenfull>>(null)
 const productData = ref<Maybe<SunglassesTypesContenfull | OpticalTypesContenfull>>(null)
+const productFamily = ref<Maybe<Array<SunglassesTypesContenfull | OpticalTypesContenfull>>>(null)
 const breadcrumbsNav = ref<Breadcrumb[]>([])
 if(route.params.collectionType === 'sunglasses') {
   await sunglassesStore().fetchSunglassesDetail(route.params.product as string)
   await sunglassesStore().fetchSunglassesTypesBySlug(route.params.collections as string)
+  await sunglassesStore().fetchSunglassesTypes()
   productDetail.value = sunglassesStore().sunglassesDetail
   productData.value = sunglassesStore().sunglassesTypesBySlug
+  productFamily.value = sunglassesStore().randomOpticalTypes
   breadcrumbsNav.value = [
     { text: 'Sunglasses', to: '/sunglasses' },
     { text: productData.value?.name as string, to: `/sunglasses/${productData.value?.slug}` },
@@ -27,8 +30,10 @@ if(route.params.collectionType === 'sunglasses') {
 } else {
   await opticalStore().fetchOpticalDetail(route.params.product as string)
   await opticalStore().fetchOpticalTypesBySlug(route.params.collections as string)
+  await opticalStore().fetchOpticalTypes()
   productDetail.value = opticalStore().opticalDetail
   productData.value = opticalStore().opticalTypesBySlug
+  productFamily.value = opticalStore().randomOpticalTypes
   breadcrumbsNav.value = [
     { text: 'Optical', to: '/optical' },
     { text: productData.value?.name as string, to: `/optical/${productData.value?.slug}` },
@@ -60,11 +65,13 @@ if(route.params.collectionType === 'sunglasses') {
         </div>
       </div>
     </section>
-    <MoreProducts
-        class="mb-10"
-        :collection-type="productData?.name as string"
-        :product-more-data="route.params.collectionType === 'sunglasses' ? productData?.sunglassesCollection?.items : productData?.glassesCollection?.items"
-    />
+    <client-only>
+      <MoreProducts
+          class="mb-10"
+          :collection-type="productData?.name as string"
+          :product-more-data="productFamily"
+      />
+    </client-only>
   </main>
 </template>
 

@@ -72,7 +72,7 @@ function updateTotal(id: string, newTotal: string) {
         <nuxt-link
             to="/checkout"
             @click.native="cartStore().handleCartToggle()"
-            class="text-center w-full block mt-4 bg-black/90 text-white py-3 md:py-3 px-8 relative font-bold after:bg-black after:absolute after:z-0 after:h-full after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer overflow-hidden"
+            class="text-center w-full block mt-4 bg-black/90 text-white py-4 md:py-3 px-8 relative font-bold after:bg-black after:absolute after:z-0 after:h-full after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer overflow-hidden"
         >
           <span class="relative z-20">ყიდვის გაგრძელება</span>
         </nuxt-link>
