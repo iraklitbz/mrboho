@@ -46,7 +46,7 @@ if(route.params.collectionType === 'sunglasses') {
     <section
         class="mt-5 md:mt-14"
     >
-      <div class="grid md:grid-cols-12 gap-10 md:px-5 md:px-10 max-w-7xl m-auto relative mb-10">
+      <div class="grid md:grid-cols-12 gap-10 md:px-10 max-w-7xl m-auto relative mb-10">
         <ProductDetailCarrusel
             class="grid grid-cols-6 md:col-span-8 gap-2"
             :product-detail="productDetail as SunglassesContenfull | OpticalGlassesContenfull"

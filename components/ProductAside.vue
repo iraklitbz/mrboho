@@ -43,6 +43,26 @@ const addToCart = () => {
   <div
       class="sticky top-36"
   >
+    <header
+        class="w-full"
+    >
+      <div
+          v-if="productDetail?.soldOut || productDetail?.new"
+      >
+        <span
+            v-if="productDetail?.soldOut"
+            class="text-white font-bold text-xs bg-orange-600 rounded-md px-2 py-1"
+        >
+        გაყიდულია
+      </span>
+        <span
+            v-if="productDetail?.new"
+            class="text-white font-bold text-xs bg-green-700 rounded-md px-2 py-1"
+        >
+        ახალი
+      </span>
+      </div>
+    </header>
     <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-left uppercase latin mt-1 md:mt-5">
       {{ productDetail?.name }}
     </h2>
@@ -54,7 +74,7 @@ const addToCart = () => {
         :products="products"
         class="mt-5"
     />
-    <div class="fixed md:relative bottom-0 left-0 w-full">
+    <div v-if="!productDetail?.soldOut" class="fixed md:relative bottom-0 left-0 w-full">
       <div class="md:mt-10">
         <button
             @click="addToCart"

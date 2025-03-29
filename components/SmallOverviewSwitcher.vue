@@ -24,7 +24,7 @@ const props = defineProps({
         <nuxt-img
           :src="product?.imagesCollection?.items[0]?.url as string"
           :alt="product?.name as string"
-          class="object-fit w-full mix-blend-multiply"
+          class="object-fit w-full"
           width="100"
           height="70"
         />

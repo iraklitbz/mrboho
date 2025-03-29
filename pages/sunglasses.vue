@@ -10,14 +10,13 @@ await sunglassesStore().fetchAllSunglasses()
         :title="'Sunglasses'"
     />
     <section
-        class="sunglasses-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-14"
+        class="sunglasses-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 px-5 mt-10"
     >
       <Card
           v-for="(sunglasses, index) in sunglassesStore().allGlasses"
           :key="index"
           :product="sunglasses as SunglassesContenfull"
-          class="card border-l border-y border-solid border-black -mt-[1px]"
-          :class="index === (sunglassesStore().allGlasses?.length - 1) ? 'border-r' : ''"
+          class="card bg-gray-50"
           :slug="`sunglasses/${sunglasses.familie?.slug}/${sunglasses.slug}`"
       />
     </section>

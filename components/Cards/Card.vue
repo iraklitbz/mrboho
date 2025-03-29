@@ -21,15 +21,15 @@ const props = defineProps<{
       >
         <span
             v-if="props.product?.soldOut"
-            class="text-gray-400"
+            class="text-white font-bold text-xs bg-orange-600 rounded-md px-2 py-1"
         >
-        Sold out
+        გაყიდულია
       </span>
         <span
             v-if="props.product?.new"
-            class="text-green-500 font-bold"
+            class="text-white font-bold text-xs bg-green-700 rounded-md px-2 py-1"
         >
-        New in
+        ახალი
       </span>
       </div>
     </header>
@@ -43,7 +43,7 @@ const props = defineProps<{
 
       <nuxt-img
           v-if="props.product?.imagesCollection?.items[1]"
-          class="absolute w-full h-full left-0 object-contain top-0 transition-opacity duration-500 opacity-0 group-hover:opacity-100 "
+          class="absolute w-full h-full left-0 object-contain top-0 transition-opacity duration-500 opacity-0 group-hover:opacity-100"
           :src="props.product.imagesCollection.items[1]?.url as string"
           :alt="props.product?.name as string"
       />

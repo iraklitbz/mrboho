@@ -52,7 +52,7 @@ const scrollToIndex = (index: number) => {
         <nuxt-img
             :src="image?.url as string"
             :alt="productDetail?.name as string"
-            class="w-full m-auto h-full object-contain mix-blend-multiply"
+            class="w-full m-auto h-full object-contain"
             format="webp"
             width="200"
             height="200"
@@ -84,7 +84,7 @@ const scrollToIndex = (index: number) => {
         <nuxt-img
             :src="image?.url as string"
             :alt="productDetail?.name as string"
-            class="w-full max-w-4xl m-auto h-full object-contain mix-blend-multiply"
+            class="w-full max-w-4xl m-auto h-full object-contain"
             format="webp"
         />
       </li>

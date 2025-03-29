@@ -23,6 +23,7 @@ onMounted(async () => {
       to: '/optical'
     }
   }
+  console.log(productData.value)
 })
 
 function getItems() {
