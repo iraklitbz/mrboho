@@ -16,6 +16,7 @@ const props = defineProps<{
       class="absolute w-full top-0 left-0"
     >
       <div
+          v-if="props.product?.soldOut || props.product?.new"
           class="flex justify-between items-center py-2 px-4"
       >
         <span

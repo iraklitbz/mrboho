@@ -58,7 +58,7 @@ const addToCart = () => {
       <div class="md:mt-10">
         <button
             @click="addToCart"
-            class="text-xl  bg-black md:bg-black/90 text-white py-3 md:py-4 px-8 relative w-full font-bold after:bg-black after:absolute after:z-0 after:h-full after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer overflow-hidden"
+            class="text-xl  bg-black md:bg-black/90 text-white py-4 px-8 relative w-full font-bold after:bg-black after:absolute after:z-0 after:h-full after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer overflow-hidden"
         >
           <span class="relative z-10">
             კალათაში დამატება

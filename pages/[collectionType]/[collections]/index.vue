@@ -50,14 +50,13 @@ const resetFilters = () => {
         :category-type="categoryType"
         :hero-image="productData?.hero?.url as string"
     />
-    <section class="relative mt-14 mb-10">
-      <div class="sunglasses-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-7">
+    <section class="relative mb-10">
+      <div class="sunglasses-grid grid grid-cols-1 gap-5 px-5 md:grid-cols-3 lg:grid-cols-4">
         <Card
             v-for="(sunglasses, index) in getItems()"
             :key="sunglasses?.sys?.id"
             :product="sunglasses as SunglassesContenfull"
-            class="card border-l border-y border-solid border-black -mt-[1px]"
-            :class="index === (getItems()?.length - 1) ? 'border-r' : ''"
+            class="card bg-gray-50"
             :slug="`${route.params.collectionType}/${sunglasses.familie?.slug}/${sunglasses?.slug}`"
         />
       </div>
