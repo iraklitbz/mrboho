@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { heroStore } from '~/store/hero';
 await heroStore().fetchHeroHome()
+const mainImage = 'https://downloads.ctfassets.net/4tddvybktz4p/4zqJR6fHkJ1qZK8ulLSalM/7e494563c6955b3926eee4264a15781c/MRBOHO_02_LIVA-AMAND-JUL_0998.jpg'
+useSeoMeta(mainImage as string, 'ჩვენ ვართ MR.BOHO', 'Official Partner & Exclusive Distributor in Georgia', 'https://mrboho.ge')
+
 </script>
 
 <template>

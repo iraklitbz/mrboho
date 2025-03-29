@@ -13,7 +13,6 @@ export default defineNuxtConfig({
       ],
       script: [
         {
-          hid: 'gtmHead',
           innerHTML: (process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production')
               ? `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -36,15 +35,15 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false
   },
-  // vite: {
-  //   server: {
-  //     allowedHosts: [
-  //       '297c-88-12-201-144.ngrok-free.app',
-  //       'localhost',
-  //       '127.0.0.1',
-  //     ]
-  //   }
-  // },
+  vite: {
+    server: {
+      allowedHosts: [
+        'f3f0-88-12-201-144.ngrok-free.app',
+        'localhost',
+        '127.0.0.1',
+      ]
+    }
+  },
   modules: [
     "@nuxtjs/tailwindcss",
     "@nuxt/image",

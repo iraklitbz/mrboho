@@ -10,7 +10,9 @@ import { sunglassesStore } from "~/store/sunglasses"
 import { opticalStore } from "~/store/optical"
 import ProductDetailCarrusel from "~/components/ProductDetailCarrusel.vue";
 import ProductAside from "~/components/ProductAside.vue";
+import {currencyFormat} from "~/utils/currency-utils";
 const route = useRoute()
+const url = useRequestURL()
 const productDetail = ref<Maybe<SunglassesContenfull | OpticalGlassesContenfull>>(null)
 const productData = ref<Maybe<SunglassesTypesContenfull | OpticalTypesContenfull>>(null)
 const productFamily = ref<Maybe<Array<SunglassesTypesContenfull | OpticalTypesContenfull>>>(null)
@@ -40,7 +42,7 @@ if(route.params.collectionType === 'sunglasses') {
     { text: productDetail.value?.name as string }
   ]
 }
-
+useSeoMeta(productDetail.value?.imagesCollection?.items[0]?.url as string, productDetail.value?.name as string, currencyFormat(productDetail.value?.price as number), url?.href as string)
 </script>
 
 <template>

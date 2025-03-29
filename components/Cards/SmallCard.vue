@@ -5,7 +5,6 @@ const props = defineProps<{
   product: SunglassesTypesContenfull;
   slug: string
 }>();
-console.log(props);
 </script>
 
 <template>
