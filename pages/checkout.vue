@@ -14,9 +14,9 @@ await cartStore().fetchIfExist(arrayStrings.value)
 
 <template>
   <main class="border-t border-black mt-10">
-    <div class="max-w-5xl mx-auto grid grid-cols-12 gap-10 my-20 w-full px-5 md:px-10">
+    <div class="max-w-5xl mx-auto flex flex-col-reverse md:grid grid-cols-1 md:grid-cols-12 gap-10 my-10 md:my-20 w-full px-5 md:px-10">
       <section
-        class="col-span-12 md:col-span-7"
+        class="md:col-span-7"
       >
         <div>
           <CheckoutForm
@@ -25,7 +25,7 @@ await cartStore().fetchIfExist(arrayStrings.value)
           />
         </div>
       </section>
-      <aside class="hidden md:col-span-5 md:block">
+      <aside class="md:col-span-5 md:block">
         <CheckoutCart
             :products="cartStore().cartProducts"
             :total="currencyFormat(useCheckoutStore().finalPrice)"

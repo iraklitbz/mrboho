@@ -20,7 +20,7 @@ const calculateDiscount = (price: number, discount: { amount: number; type: stri
 </script>
 
 <template>
-  <div class="sticky top-40">
+  <div class="md:sticky md:top-40">
     <ul
         class="flex flex-col gap-2"
     >
