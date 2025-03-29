@@ -10,12 +10,12 @@ const props = defineProps({
 
 <template>
   <ul
-    class="grid grid-cols-4 gap-4 w-full"
+    class="grid grid-cols-5 w-full"
   >
     <li
       v-for="product in products"
       :key="product?.sys?.id"
-      class="flex px-2 md:px-0"
+      class="flex px-3  bg-gray-50 mb-2"
     >
       <nuxt-link
         :to="`/sunglasses/${product.familie?.slug}/${product?.slug}`"
