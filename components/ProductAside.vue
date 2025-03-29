@@ -46,21 +46,24 @@ const addToCart = () => {
     <h2 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-left uppercase latin mt-1 md:mt-5">
       {{ productDetail?.name }}
     </h2>
-    <h5 class="text-2xl text-left uppercase mt-2">
+    <h5 class="text-xl md:text-2xl text-left uppercase mt-2">
       {{ currencyFormat(props.productDetail?.price as number) }}
     </h5>
     <SmallOverviewSwitcher
         :products="products"
+        class="mt-10 hidden md:grid"
     />
-    <div class="mt-10">
-      <button
-          @click="addToCart"
-          class="text-xl bg-black/90 text-white py-3 md:py-4 px-8 relative w-full font-bold after:bg-black after:absolute after:z-0 after:h-full after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer overflow-hidden"
-      >
-          <span class="relative z-20">
+    <div class="fixed md:relative bottom-0 left-0 w-full">
+      <div class="md:mt-10">
+        <button
+            @click="addToCart"
+            class="text-xl bg-black/90 text-white py-3 md:py-4 px-8 relative w-full font-bold after:bg-black after:absolute after:z-0 after:h-full after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer overflow-hidden"
+        >
+          <span class="relative z-10">
             კალათაში დამატება
           </span>
-      </button>
+        </button>
+      </div>
     </div>
   </div>
 </template>

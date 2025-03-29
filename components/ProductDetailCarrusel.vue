@@ -41,36 +41,41 @@ const scrollToIndex = (index: number) => {
 
 <template>
   <div class="flex">
-    <ul class="w-full  col-span-1 px-2">
+    <ul class="flex md:flex-col w-full md:col-span-1 md:px-2">
       <li
           v-for="(image, index) in productDetail?.imagesCollection?.items"
           :key="index"
           :class="index === activeIndex ? 'opacity-100' : 'opacity-50'"
-          class="p-5 md:p-0 h-40 cursor-pointer transition-all duration-300 bg-gray-50"
+          class="p-2 lg:p-5 h-14 w-full md:h-28 lg:h-40 cursor-pointer transition-all duration-300 bg-gray-50"
           @click="scrollToIndex(index)"
       >
         <nuxt-img
             :src="image?.url as string"
             :alt="productDetail?.name as string"
-            class="w-full max-w-4xl m-auto h-full object-contain"
+            class="w-full m-auto h-full object-contain mix-blend-multiply"
             format="webp"
             width="200"
             height="200"
         />
       </li>
     </ul>
+<div class="relative w-full md:col-span-5">
+  <client-only>
+    <button class="cursor-pointer absolute right-5 top-5 z-50" @click="useWishList().toggleProduct(productDetail)">
+      <Icon
+          class="text-2xl"
+          :class="productDetail?.sys?.id && useWishList().isInWishlist(productDetail.sys.id) ? 'text-red-500' : 'text-black'"
+          :icon="productDetail?.sys?.id && useWishList().isInWishlist(productDetail.sys.id) ? IconHeartFill : IconHeart"
+          :auto-align="false"
+      />
+    </button>
+  </client-only>
+    <ul
+        ref="scrollContainer"
+        class="w-full px-10 bg-gray-50 h-[21rem] md:h-[28rem] lg:h-[41.5rem] overflow-y-auto snap-y snap-mandatory scrollbar-hide relative"
+        @scroll="onScroll"
+    >
 
-    <ul ref="scrollContainer" class="w-full bg-gray-50 col-span-5 h-[41.5rem] overflow-y-auto snap-y snap-mandatory scrollbar-hide relative" @scroll="onScroll">
-      <client-only>
-        <button class="cursor-pointer absolute right-5 top-5" @click="useWishList().toggleProduct(productDetail)">
-          <Icon
-              class="text-2xl"
-              :class="productDetail?.sys?.id && useWishList().isInWishlist(productDetail.sys.id) ? 'text-red-500' : 'text-black'"
-              :icon="productDetail?.sys?.id && useWishList().isInWishlist(productDetail.sys.id) ? IconHeartFill : IconHeart"
-              :auto-align="false"
-          />
-        </button>
-      </client-only>
       <li
           v-for="(image, index) in productDetail?.imagesCollection?.items"
           :key="index"
@@ -79,11 +84,12 @@ const scrollToIndex = (index: number) => {
         <nuxt-img
             :src="image?.url as string"
             :alt="productDetail?.name as string"
-            class="w-full max-w-4xl m-auto h-full object-contain"
+            class="w-full max-w-4xl m-auto h-full object-contain mix-blend-multiply"
             format="webp"
         />
       </li>
     </ul>
+</div>
   </div>
 </template>
 
