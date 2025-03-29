@@ -19,7 +19,7 @@ onMounted(() => {
 
 <template>
   <li
-      class="bg-gray-100/50 p-2 rounded-lg border-solid border-gray-300 border"
+      class="bg-gray-50 p-2 rounded-lg border-solid border-gray-300 border"
   >
     <div
         class="flex flex-col items-center justify-between w-full gap-5"
