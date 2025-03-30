@@ -6,6 +6,7 @@ const props = defineProps({
     required: true
   }
 })
+const route = useRoute()
 </script>
 
 <template>
@@ -18,7 +19,7 @@ const props = defineProps({
       class="flex px-3  bg-gray-50 mb-2"
     >
       <nuxt-link
-        :to="`/sunglasses/${product.familie?.slug}/${product?.slug}`"
+        :to="`/${route.params.collectionType}/${product.familie?.slug}/${product?.slug}`"
         class="w-16 md:w-32 h-10 md:h-10 flex items-center justify-center"
       >
         <nuxt-img
