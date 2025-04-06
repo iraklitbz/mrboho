@@ -2,7 +2,7 @@
 import { heroStore } from '~/store/hero';
 await heroStore().fetchHeroHome()
 const mainImage = 'https://downloads.ctfassets.net/4tddvybktz4p/4zqJR6fHkJ1qZK8ulLSalM/7e494563c6955b3926eee4264a15781c/MRBOHO_02_LIVA-AMAND-JUL_0998.jpg'
-useSeoMeta(mainImage as string, 'ჩვენ ვართ MR.BOHO', 'Official Partner & Exclusive Distributor in Georgia', 'https://mrboho.ge')
+useSeoMeta(mainImage as string, 'ჩვენ ვართ MR.BOHO', 'Official & Exclusive Partner in Georgia', 'https://mrboho.ge')
 
 </script>
 
@@ -30,7 +30,7 @@ useSeoMeta(mainImage as string, 'ჩვენ ვართ MR.BOHO', 'Official P
        <h3 class="text-3xl latin w-full sm:text-5xl text-white md:text-7xl font-bold uppercase lg:text-8xl  text-center md:px-10 px-5">
          ჩვენ ვართ <span class="latin">MR.BOHO</span>
        </h3>
-       <p class="text-xl w-full sm:text-3xl text-white text-center mt-3 latin px-5">Official Partner & Exclusive Distributor in Georgia</p>
+       <p class="text-xl w-full sm:text-3xl text-white text-center mt-3 latin px-5">Official & Exclusive Partner in Georgia</p>
      </div>
     </section>
     <section
