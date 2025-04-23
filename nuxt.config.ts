@@ -68,6 +68,14 @@ export default defineNuxtConfig({
         indent: "tab",
         semi: true,
       },
+      rules: {
+        'vue/multi-word-component-names': 'off',
+        'vue/require-default-prop': 'error',
+        'vue/attributes-order': 'warn',
+        'vue/order-in-components': 'warn',
+        'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+      }
     },
   },
   svgo: {
@@ -87,7 +95,12 @@ export default defineNuxtConfig({
         },
         defaultOptions: {
           query: {
-            fetchPolicy: 'no-cache',
+            // Mejorado para cache estratégica
+            fetchPolicy: 'cache-first',
+            errorPolicy: 'all'
+          },
+          watchQuery: {
+            fetchPolicy: 'cache-and-network',
             errorPolicy: 'all'
           }
         }
