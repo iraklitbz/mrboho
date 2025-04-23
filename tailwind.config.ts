@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 import FormKitVariants from '@formkit/themes/tailwindcss'
 export default {
+    darkMode: 'class',
     content: [
         './components/**/*.{vue,js,ts}',
         './containers/**/*.{vue,js,ts}',
@@ -21,6 +22,9 @@ export default {
                 'gray-100': '#DFDFDF',
                 'gray-400': '#999',
                 'gray-600': '#777',
+                'gray-700': '#555',
+                'gray-800': '#333',
+                'gray-900': '#222',
                 'white': '#ffffff',
                 'black': '#111',
                 'lightblue': '#E2F5FD',
@@ -34,6 +38,18 @@ export default {
                 'saba-yellow': '#FDB813',
                 'saba-success': '#30B675',
             },
+            backgroundColor: {
+                dark: '#121212',
+                'dark-card': '#1E1E1E',
+                'dark-surface': '#242424'
+            },
+            textColor: {
+                'dark-primary': '#FFFFFF',
+                'dark-secondary': '#AAAAAA',
+            },
+            borderColor: {
+                'dark-border': '#333333'
+            }
         }
     },
     variants: {
