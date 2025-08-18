@@ -99,7 +99,7 @@ export const dataQuerySunglasses = gql`
                 }
                 imagesCollection {
                     items {
-                        url(transform: {format: WEBP, resizeStrategy: FIT, width: 1000, height: 700})
+                        url(transform: {format: WEBP, width: 1000, height: 700})
                     }
                 }
             }
