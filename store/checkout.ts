@@ -134,7 +134,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
                 product_id: product?.product?.sys.id
             }))
             totalPrice.value = total
-            const totalToNumber = parseFloat(total.replace(/[^\d.-]/g, '').replace(',', ''))
+            const totalToNumber = parseFloat(total.replace(',', '.').replace(/[^\d.-]/g, ''))
             const paymentData = await createOrder(orderID, totalToNumber, basket) as any
             if (!paymentData) {
                 errorPayment.value = true
@@ -148,7 +148,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
         }
     async function handlePaypalPayment(orderID: string, products: any, total: string) {
         try {
-            const totalToNumber = parseFloat(total.replace(/[^\d.-]/g, '').replace(',', ''));
+            const totalToNumber = parseFloat(total.replace(',', '.').replace(/[^\d.-]/g, ''));
             const basket = products.map((product: CartProduct) => ({
                 quantity: product?.total,
                 unit_price: product?.product?.price,

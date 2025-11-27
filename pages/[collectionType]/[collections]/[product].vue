@@ -60,6 +60,7 @@ useSeoMeta(productDetail.value?.imagesCollection?.items[0]?.url as string, produ
         />
         <div class="flex flex-col md:col-span-4 relative z-50 px-5">
           <ProductAside
+              v-if="productDetail"
               :product-detail="productDetail as SunglassesContenfull | OpticalGlassesContenfull"
               :products="route.params.collectionType === 'sunglasses' ? productData?.sunglassesCollection?.items : productData?.glassesCollection?.items"
               :breadcrumbs-nav="breadcrumbsNav"
