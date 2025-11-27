@@ -65,7 +65,7 @@ export const useCheckoutStore = defineStore('checkoutData', () => {
             }
         }
 
-        return total.toFixed(2);
+        return total;
     });
     async function handleCheckoutForm(products: any, total: string, method: 'bank' | 'paypal') {
         paymentMethod.value = method;
