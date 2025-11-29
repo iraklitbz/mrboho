@@ -118,6 +118,7 @@ export default defineNuxtConfig({
     PAYPAL_CLIENT: process.env.PAYPAL_CLIENT,
     PAYPAL_SECRET: process.env.PAYPAL_SECRET,
     PAYPAL_API_URL: process.env.PAYPAL_API_URL,
+    SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
     public: {
       SUPABASE_URL: process.env.SUPABASE_URL,
       SUPABASE_KEY: process.env.SUPABASE_KEY,
