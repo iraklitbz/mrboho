@@ -6,7 +6,7 @@ import type {UserOrderItem} from "~/types/local-types";
 const config = useRuntimeConfig();
 const supabase = createClient(
     config.public.SUPABASE_URL,
-    config.public.SUPABASE_KEY
+    config.SUPABASE_SERVICE_ROLE_KEY
 );
 
 export async function completeOrder(orderID: string) {
