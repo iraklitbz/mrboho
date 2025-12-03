@@ -15,7 +15,7 @@ useSeoMeta(mainImage as string, 'ჩვენ ვართ MR.BOHO', 'Official &
         <div class="absolute inset-0 w-full h-full overflow-hidden">
           <video
               class="absolute top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 object-cover"
-              src="https://videos.ctfassets.net/4tddvybktz4p/29yVhS3bcUu4EzYCRmjKp8/758438d815ec81220a1eefd30470e2eb/mrboho.mp4"
+              src="https://videos.ctfassets.net/4tddvybktz4p/5RQ3iSkdktyKR6TcJKZsQO/39f97e4d1fcbc45bc381abe36d7ef486/black_friday.mp4"
               title="we are mrboho video"
               autoplay
               loop
